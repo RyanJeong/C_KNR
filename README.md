@@ -6,7 +6,7 @@
 ![cover](./img/cover.jpg)
 
 * [제1장 언어소개](https://github.com/RyanJeong/C/tree/master/chapter1)
-* [제2장 형, 연산자, 수식(https://github.com/RyanJeong/C/tree/master/chapter2)
+* [제2장 형, 연산자, 수식](https://github.com/RyanJeong/C/tree/master/chapter2)
 * [제3장 제어흐름](https://github.com/RyanJeong/C/tree/master/chapter3)
 * [제4장 함수와 프로그램 구조](https://github.com/RyanJeong/C/tree/master/chapter4)
 * [제5장 포인터와 배열](https://github.com/RyanJeong/C/tree/master/chapter5)
