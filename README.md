@@ -5,6 +5,7 @@
 
 ![cover](./img/cover.jpg)
 
+#### 본 repository는 github 및 markdown 사용 숙달과 더불어 그동안 공부한 내용들을 게시하기 위한 목적으로 생성되었으며, 게시된 내용들에 오류가 있거나 다소 주관적일 수 있음. 
 * [제1장 언어소개](https://github.com/RyanJeong/C/tree/master/chapter1)
 * [제2장 형, 연산자, 수식](https://github.com/RyanJeong/C/tree/master/chapter2)
 * [제3장 제어흐름](https://github.com/RyanJeong/C/tree/master/chapter3)
