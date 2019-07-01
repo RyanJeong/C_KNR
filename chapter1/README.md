@@ -6,6 +6,6 @@
 
 main()                      //  함수 main을 정의, 매개변수는 없다.
 {                           //  main함수 시작
-  printf("Hello, world\n"); //  문자출력을 위해 printf 
+  printf("Hello, world\n"); //  문자출력을 위해 printf 함수를 호출
 }                           //  main함수 종료
 ```
