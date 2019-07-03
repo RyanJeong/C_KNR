@@ -4,8 +4,10 @@
  */
 #include <stdio.h>
 
-main()
+void main()
 {
   printf("%d\n", EOF);
+  
+  return;
 }
 ```
