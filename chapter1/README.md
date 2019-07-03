@@ -54,7 +54,7 @@ main()
 	lower	= 0;	/*	lower limit of temperature table	*/
 	upper	= 300;	/*	upper limit	*/
 	step	= 20;	/*	step size	*/
-	fahr = lower;
+	fahr 	= lower;
 	while (fahr <= upper) {
 		celsius = 5 * (fahr - 32) / 9;
 		printf("%d\t%d\n", fahr, celsius);
@@ -75,7 +75,7 @@ main()
 	lower	= 0;	/*	lower limit of temperature table	*/
 	upper	= 300;	/*	upper limit	*/
 	step	= 20;	/*	step size	*/
-	fahr = lower;
+	fahr 	= lower;
 	while (fahr <= upper) {
 		celsius = (5.0 / 9.0) * (fahr - 32.0);
 		printf("%3.0f %6.1f\n", fahr, celsius);
@@ -147,6 +147,97 @@ main()
 	}
 }
 ```
+```c
+#include <stdio.h>
+
+/*	count characters in input; 1st version	*/
+
+main( )
+{
+	long nc;
+
+	nc = 0;
+	while (getchar() 1= EOF) {
+		++nc;
+	}
+	printf ("%ld\n", nc);
+}
+```
+```c
+#include <stdio.h>
+
+/*	count characters in input; 2nd version	*/
+
+main( )
+{
+	double nc;
+	
+	for (nc = 0; getchar() 1= EOF; ++nc) {
+		;
+	}
+	printf("%.Of\n", nc);
+}
+```
+```c
+include <stdio.h>
+
+/*	count lines in input	*/
+
+main()
+{
+	int c, nl;
+
+	nl = 0;
+	while ((c = getchar()) != EOF) {
+		if (c == '\n') {
+			++nl;
+		}
+	}
+	printf("%d\n", nl);
+}
+```
+```c
+#include <stdio.h>
+#define IN	1	/*	inside a word	*/
+#define OUT	0	/*	outside a word	*/
+
+/*	count lines, words, and characters in input	*/
+
+main()
+{
+	int c, nl, nw, nc, state;
+
+	state 	= OUT;
+	nl 	= nw = nc = 0;
+	while ((c = getchar()) != EOF) {
+		++nc;
+		if (c == '\n') {
+			++nl;
+		}
+		if ((c == ' ') || (c == '\n') || (c == '\t')) {
+			state = OUT;
+		} else if (state == OUT) {
+			state = IN;
+			++nw;
+		}
+	}
+	printf ("%d %d "d\n", nl, nw, nc);
+}
+```
+### 1.6 Arrays<br>
+```c
+```
 
 ## 예제
 * [1-1](./1-1)
+* [1-2](./1-2)
+* [1-3](./1-3)
+* [1-4](./1-4)
+* [1-5](./1-5)
+* [1-6](./1-6)
+* [1-7](./1-7)
+* [1-8](./1-8)
+* [1-9](./1-9)
+* [1-10](./1-10)
+* [1-11](./1-11)
+* [1-12](./1-12)
