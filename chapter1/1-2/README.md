@@ -6,7 +6,7 @@
  
 #include <stdio.h>
 
-main()
+void main()
 {
   printf("a:\a"); /* valid */
   printf("b:\b"); /* valid */
@@ -124,6 +124,8 @@ main()
   printf(".:\.");
   printf("?:\?"); /* valid */
   printf("/:\/");
+  
+  return;
 }
 ```
 ## Result
