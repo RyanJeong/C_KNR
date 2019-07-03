@@ -6,10 +6,12 @@
  
 #include <stdio.h>
 
-main()
+void main()
 {
   printf("hello, ");
   printf("world");
   printf("\n");
+  
+  return;
 }
 ```
