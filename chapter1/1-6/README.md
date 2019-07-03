@@ -4,9 +4,7 @@
  */
 #include <stdio.h>
 
-/* copy input to output; 2nd version */
-
-main()
+void main()
 {
 	int c;
 	
@@ -14,5 +12,7 @@ main()
 		printf("%s%d\n", "c != EOF, ", c != EOF);
 	}
 	printf("%s%d\n", "c == EOF, ", c != EOF);
+	
+	return;
 }
 ```
