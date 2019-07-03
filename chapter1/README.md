@@ -18,31 +18,135 @@
 * 문자를 처리하는 변수의 type을 char 형이 아닌 int 형을 사용하는 이유는 ASCII 코드와 같이 양의 정수로 이루어진 문자는 상관 없지만 EOF(-1)과 같은 값은 char 형으로 처리할 수 없음<br>
 
 ## 소스코드
-### p.13<br>
+### 1.1 Getting Started<br>
 ```c
-#include <stdio.h>          //  표준 입출력 라이브러리의 함수를 이용
+#include <stdio.h>          		//  	* include information about standard library
 
-main()                      //  함수 main을 정의, 매개변수는 없다.
-{                           //  main함수 시작
-  printf("Hello, world\n"); //  문자출력을 위해 printf 함수를 호출
-}                           //  main함수 종료
+main()                      		//  	* define a function named main that receives no argument values
+{					//  	* statements of main are enclosed in braces
+					//  	* main calls library function printf to 
+  	printf("Hello, world\n");	//	  print this sequence of characters; 
+					//	  \n represents the newline character
+}					
 ```
-### p.14<br>
-### p.18<br>
-### p.21<br>
-### p.22<br>
-### p.24<br>
-### p.25<br>
-### p.26<br>
-### p.27<br>
-### p.28<br>
-### p.30<br>
-### p.32<br>
-### p.35<br>
-### p.37<br>
-### p.38<br>
-### p.39<br>
-### p.42<br>
+```c
+#include <stdio.h>
+
+main()
+{
+	printf("hello, ");
+	printf("world");
+	printf("\n");
+}
+```
+### 1.2 Variables and Arithmetic Expressions<br>
+```c
+#include <stdio.h>
+
+/*	print Fahrenheit-Celsius table
+	for fahr = 0, 20, ..., 300	*/
+	
+main()
+{
+	int fahr, celsius;
+	int lower, upper, step;
+	
+	lower	= 0;	/*	lower limit of temperature table	*/
+	upper	= 300;	/*	upper limit	*/
+	step	= 20;	/*	step size	*/
+	fahr = lower;
+	while (fahr <= upper) {
+		celsius = 5 * (fahr - 32) / 9;
+		printf("%d\t%d\n", fahr, celsius);
+		fahr = fahr + step;
+	}
+}
+```
+```c
+#include <stdio.h>
+
+	/*	print Fahrenheit-Celsius table
+		for fahr = 0, 20, ..., 300; floatinq-point version	*/
+main()
+{
+	float	fahr, celsius;
+	int	lower, upper, step;
+
+	lower	= 0;	/*	lower limit of temperature table	*/
+	upper	= 300;	/*	upper limit	*/
+	step	= 20;	/*	step size	*/
+	fahr = lower;
+	while (fahr <= upper) {
+		celsius = (5.0 / 9.0) * (fahr - 32.0);
+		printf("%3.0f %6.1f\n", fahr, celsius);
+		fahr = fahr + step;
+	}
+}
+```
+### 1.3 The For Statement<br>
+```c
+#include <stdio.h>
+
+/* print Fahrenheit-Celsius table */
+
+main( )
+{
+	int fahr;
+
+	for (fahr = 0; fahr <= 300; fahr = fahr + 20) {
+		printf("%3d %6.1f\n", fahr, (5.0 / 9.0) * (fahr - 32));
+	}
+}
+```
+### 1.4 Symbolic Constants<br>
+```c
+#include <stdio.h>
+#define	LOWER	0	/*	lower limit of temperature table	*/
+#define	UPPER	300	/*	upper limit	*/
+#define	STEP	20	/*	step size	*/
+
+/* print Fahrenheit-Celsius table */
+
+main ()
+{
+	int fahr;
+
+	for (fahr = LOWER; fahr <= UPPER; fahr = fahr + STEP) {
+		printf("%3d %6.1f\n", fahr, (5.0 / 9.0) * (fahr - 32));
+	}
+}
+```
+### 1.5 Character Input and Output<br>
+```c
+#include <stdio.h>
+
+/* copy input to output; 1st version */
+
+main( )
+{
+	int c;
+
+	c = getchar();
+	while (c != EOF) {
+		putchar(c);
+		c = getchar();
+	}
+}
+```
+```c
+#include <stdio.h>
+
+/* copy input to output; 2nd version */
+
+main()
+{
+	int c;
+	
+	while ((c = getchar()) != EOF) {
+		putchar(c);
+	}
+}
+```
 
 ## 예제
 * [1-1](./1-1)
