@@ -1,7 +1,4 @@
-# C언어 프로그래밍
-## The C PROGRAMMING LANGUAGE
-### BRIAN W. KERNIGHAN, DENNIS M. RITCHIE 공저
-### 김석환, 박용규, 최홍순 공역
+# The C PROGRAMMING LANGUAGE
 
 ![cover](./img/cover.jpg)
 
