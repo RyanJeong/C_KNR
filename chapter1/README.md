@@ -460,6 +460,28 @@ void _copy()
 	}
 }
 ```
+```c
+/*	_getlineAdvanced: read a line into s, return length	*/
+
+int _getlineAdvanced()
+{
+	int 		c, i;
+	extern char 	line[];
+	
+	for (i = 0; i < (MAXLINE - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
+		line[i] = c;
+	}
+	if ((i < (MAXLINE - 1) && (c == '\n')) {
+		line[i] = c;
+		++i;
+	}
+	line[i] = '\0';
+	
+	return i;
+}
+
+/*	_copy: copy 'from' into 'to'; assume to is big enough	*/
+```
 ## 예제
 * [1-1](./1-1)
 * [1-2](./1-2)
