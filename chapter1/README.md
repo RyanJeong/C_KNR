@@ -471,7 +471,7 @@ int _getlineAdvanced()
 	for (i = 0; i < (MAXLINE - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
 		line[i] = c;
 	}
-	if ((i < (MAXLINE - 1) && (c == '\n')) {
+	if ((i < (MAXLINE - 1)) && (c == '\n')) {
 		line[i] = c;
 		++i;
 	}
