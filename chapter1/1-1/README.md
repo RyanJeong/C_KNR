@@ -1,8 +1,15 @@
 ```c
-#include <stdio.h>          //  표준 입출력 라이브러리의 함수를 이용
+/*  
+ *  Run the "hello, world" program on your system. 
+ *  Experiment with leaving out parts of the program, to see what error messages you get.
+ */
+ 
+#include <stdio.h>
 
-main()                      //  함수 main을 정의, 매개변수는 없다.
-{                           //  main함수 시작
-  printf("Hello, world\n"); //  문자출력을 위해 printf 함수를 호출
-}                           //  main함수 종료
+main()
+{
+  printf("hello, ");
+  printf("world");
+  printf("\n");
+}
 ```
