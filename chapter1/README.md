@@ -22,11 +22,11 @@
 ```c
 #include <stdio.h>          		// * include information about standard library
 
-main()                      		// * define a function named main that receives no argument values
+main()                      		// * define a function named main
 					//   that receives no argument values
 {					// * statements of main are enclosed in braces
 					// * main calls library function printf to 
-  	printf("Hello, world\n");	//   print this sequence of characters; 
+	printf("Hello, world\n");	//   print this sequence of characters; 
 					//   \n represents the newline character
 }					
 ```
