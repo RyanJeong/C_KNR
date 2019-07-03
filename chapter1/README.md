@@ -414,9 +414,30 @@ int _getline()
 	int 		c, i;
 	extern char 	line[];
 	
+	/*
+	 *	if (i < (MAXLINE - 1)) {
+	 *		if ((c = getchar()) != EOF) {
+	 *			if (c != '\n') {
+	 *				...
+	 */
 	for (i = 0; i < (MAXLINE - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
 		line[i] = c;
 	}
+	/*
+	 *	MAXLINE	: 4
+	 *	INPUT	: H I \n \0
+	 *	---------------------
+	 *		i = 0 -> store H, c = H
+	 *		i = 1 -> store I, c = I
+	 *		i = 2 -> store \n, c = \n
+	 *		i = 3 -> escape for statement{ i < (MAXLINE - 1) }, c = \n
+	 *		if (c == '\n') {
+	 *			line[i] = c;
+	 *			++i;
+	 *		}
+	 *		i = 4 -> result: H I \n \n
+	 *		line[i] = '\0' // ERROR!!(out of range)
+	 */
 	if (c == '\n') {
 		line[i] = c;
 		++i;
