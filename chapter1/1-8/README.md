@@ -5,7 +5,7 @@
 
 #include <stdio.h>
 
-main()
+void main()
 {
   int nb, nt, nl;
 
@@ -22,6 +22,8 @@ main()
     }
   }
   printf("Blanks: %d, Tabs: %d, Newlines: %d\n", nb, nt, nl);
+  
+  return;
 }
 
 ```
