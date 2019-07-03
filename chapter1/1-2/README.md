@@ -126,3 +126,11 @@ main()
   printf("/:\/");
 }
 ```
+## Result
+### Environment: gcc (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
+```
+a:bc:cd:de:f:
+              g:gh:hi:ij:jk:kl:lm:mn:
+s:st:pq:u:☃v:
+y:yz:zA:AB:BC:CD:DE::FG:GH:HI:IJ:JK:KL:LM:MN:NO:OP:PQ:QR:RS:ST:RU:☃V:VW:WX:XY:YZ:Z0:1:2:3:4:5:6:7:8:89:9~:~`:`!:!@:@#:#$:$%:%^:^&:&*:*(:():)_:_-:-+:+{:{[:[}:}]:]|:|:\a::::;:;":"':'<:<,:,>:>.:.?:?/:/
+```
