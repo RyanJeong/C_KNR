@@ -314,8 +314,8 @@ int power(int base, int n)
 #include <stdio.h>
 #define MAXLINE 1000	/*	maximum input line size	*/
 
-int _getline(char line[], int maxline);
-void _copy(char to[], char from[]);
+int 	_getline(char line[], int maxline);
+void 	_copy(char to[], char from[]);
 
 /*	print longest input line	*/
 
@@ -374,14 +374,14 @@ void _copy(char to[], char from[])
 ### 1.10 External Variables and Scope<br>
 ```c
 #include <stdio.h>
-#define MAXLINE 1000	/*	maximum input line size	*/
+#define MAXLINE 1000		/*	maximum input line size	*/
 
-int max;		/*	maximum length seen so far	*/
-char line[MAXLINE];	/*	current input line	*/
-char longest[MAXLINE];	/*	longest line saved here	*/
+int 	max;			/*	maximum length seen so far	*/
+char 	line[MAXLINE];		/*	current input line	*/
+char 	longest[MAXLINE];	/*	longest line saved here	*/
 
-int _getline(void);
-void _copy(void);
+int 	_getline(void);
+void 	_copy(void);
 
 /*	print longest input line	*/
 
@@ -451,3 +451,15 @@ void _copy()
 * [1-10](./1-10)
 * [1-11](./1-11)
 * [1-12](./1-12)
+* [1-13](./1-13)
+* [1-14](./1-14)
+* [1-15](./1-15)
+* [1-16](./1-16)
+* [1-17](./1-17)
+* [1-18](./1-18)
+* [1-19](./1-19)
+* [1-20](./1-20)
+* [1-21](./1-21)
+* [1-22](./1-22)
+* [1-23](./1-23)
+* [1-24](./1-24)
