@@ -13,6 +13,6 @@ main()
 	while ((c = getchar()) != EOF) {
 		printf("%s%d\n", "c != EOF, ", c != EOF);
 	}
-  printf("%s%d\n", "c == EOF, ", c != EOF);
+	printf("%s%d\n", "c == EOF, ", c != EOF);
 }
 ```
