@@ -7,7 +7,6 @@
 #define MAXLINE 1000		/*	maximum input line size	*/
 #define MIN     80
 
-int 	max;			/*	maximum length seen so far	*/
 char 	line[MAXLINE];		/*	current input line	*/
 
 int 	_getline(void);
@@ -17,10 +16,8 @@ int 	_getline(void);
 void main()
 {
 	int 		len;
-	extern int 	max;
 	extern char 	longest[];
 	
-	max = 0;
 	while ((len = _getline()) > 0) {
 		if (len > MIN) {
 			puts(line);

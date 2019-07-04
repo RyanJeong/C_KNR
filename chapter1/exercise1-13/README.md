@@ -5,7 +5,7 @@
  *  It is easy to draw the histogram with the bars horizontal.
  */
 
-#include<stdio.h>
+#include <stdio.h>
 
 void main(void)
 {
