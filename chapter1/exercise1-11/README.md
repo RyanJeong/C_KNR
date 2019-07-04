@@ -4,6 +4,10 @@
  *  What kinds of input are most likely to uncover bugs if there are any?
  */
 
+#include <stdio.h>
+#define OUT	0
+#define IN	1
+
 void main()
 {
 	int c, nl, nw, nc, state;
@@ -22,12 +26,8 @@ void main()
 			++nw;
 		}
 	}
-	printf ("%d %d "d\n", nl, nw, nc);
+	printf ("%d %d %d\n", nl, nw, nc);
   
   return;
 }
-```
-## Result
-### Environment: gcc (Ubuntu 7.4.0-1ubuntu1~18.04.1) 7.4.0
-```
 ```

@@ -7,6 +7,8 @@
  *  This makes tabs and backspaces visible in an unambiguous way.
  */
 
+#include <stdio.h>
+
 void main()
 {
   int c;

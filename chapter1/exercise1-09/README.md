@@ -14,12 +14,15 @@ void main()
 
   state = OFF;
   while ((c = getchar()) != EOF) {
-    if ((c == ' ') && (!state)) {
-      putchar(c);
-      state = ON;
+    if (c == ' ') {
+      if (!state) {
+        putchar(c);
+        state = ON;
+      }
     } else {
       putchar(c);
       state = OFF;
+    }
   }
   
   return;

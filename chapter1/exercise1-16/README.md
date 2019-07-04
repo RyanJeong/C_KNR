@@ -17,7 +17,7 @@ void 	_copy(void);
 
 /*	print longest input line	*/
 
-main()
+void main()
 {
 	int 		len;
 	extern int 	max;

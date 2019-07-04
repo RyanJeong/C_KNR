@@ -7,6 +7,7 @@
 
 void main()
 {
+  int c;
   int nb, nt, nl;
 
   nb = nt = nl;

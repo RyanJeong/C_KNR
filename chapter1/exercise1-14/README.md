@@ -14,7 +14,7 @@ void main(void)
   int c, i;
   
   while ((c = getchar()) != EOF) {
-    ++count[TNO];
+    ++count[c];
   }
   for (i = 0; i < TNO; ++i) {
     putchar(i);
