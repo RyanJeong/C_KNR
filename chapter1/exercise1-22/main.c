@@ -6,91 +6,109 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#define ON	1	//	start word
-#define OFF	0	//	end word
+#define ON	1
+#define OFF	0
 
-/*
- *	count		= number of characters
- *	copy_count	= number of characters copied
- *	state		= check character is blank
- *	pBuffer		= pointer of buffer
- *	pLine		= pointer of line
- */
-
-void main()
+void main(void)
 {
-	int column;
-	int c, count, state, copy_count;
-	char *buffer, *line, *pBuffer, *pLine;
+	/*
+	 *	i	: use at for statement
+	 *	n	: tab size
+	 *	c	: getchar()'s buffer
+	 *	max	: column size
+	 *	index	: position of line
+	 *	count	: number of white space
+	 *	state	: check if input is white space
+	 *	len	: size of buffer
+	 *	skip	: skip white space when new line(except first line)
+	 *	buffer	: temporary word buffer
+	 */
+	int	i, n, c, max, index, count, state, len, skip;
+	char	*buffer, *pBuffer;
 
-	state	= OFF;
+	index	= 0;
 	count	= 0;
-	printf("Input max column: ");
-	scanf("%d", &column);
+	len	= 0;
+	skip	= OFF;
+	state	= OFF;
+	printf("Tab size?\n");
+	scanf("%d", &n);
 	getchar();
-	buffer	= (char *) malloc(column + 1);
-	line	= (char *) malloc(column + 1);
+	printf("Column size?\n");
+	scanf("%d", &max);
+	getchar();
+	buffer	= (char *) malloc(max + 1);
 	pBuffer	= buffer;
-	pLine	= line;
+	printf("Set tab size: %d, Column size: %d\n", n, max);
 	while ((c = getchar()) != EOF) {
 		if ((c == ' ') || (c == '\n') || (c == '\t')) {
-			state = ON;
-			if (c == '\n') {
-				*pBuffer = '\0';
-				if (count > column) {
-					if (pLine != line) {	// if line is empty(first word) 
-						*pLine	= '\0';
-						puts(line);	
-						pLine	= line;
-					}
-					puts(buffer);
-				} else {
-					pBuffer = buffer;	//	set to start address of buffer
-					while ((*pLine++ = *pBuffer++)) {
-						;
-					}
-					puts(line);
-					pLine = line;
+			if (!state && len) {	//	input white space and buffer is not empty
+				state = ON;
+				if ((index + len) > max) {
+					putchar('\n');
+					index	= 0;
 				}
-				pBuffer	= buffer;
-				count	= 0;
+				for (i = 0; i < len; ++i) {
+					putchar(*(buffer + i));
+					++index;
+				}
+				len 	= 0;
+				pBuffer = buffer;
 			}
-			if (count) {
+			if (!skip) {		//	start a new line without white space
 				++count;
-				*pBuffer++ = c;
+			}
+			switch (c) {
+				case ' ':
+					if ((index + count) > max) {
+						putchar('\n');
+						skip	= ON;
+						index	= 0;
+						count	= 0;
+					} else if (!((index + count) % n)) {
+						while (count) {
+							++index;
+							--count;
+							putchar(' ');
+						}
+					}
+					break;
+				case '\t':
+					count = n - (index % n);
+					if ((index + count) > max) {
+						putchar('\n');
+						skip	= ON;
+						index	= 0;
+						count	= 0;
+					} else {
+						while (count) {
+							++index;
+							--count;
+							putchar(' ');
+						}
+					}
+					break;
+				case '\n':
+					putchar('\n');
+					skip	= ON;
+					index	= 0;
+					count	= 0;
+					break;
+				default:
+					break;
 			}
 		} else {
-			if (state) {
-				*pBuffer	= '\0';
-				copy_count	= 0;
-				state		= OFF;
-				if (count > column) {
-					if (pLine != line) {
-						*pLine	= '\0';
-						puts(line);	// if line is empty(first word) 
-						pLine	= line;
-						count = 0;
-					}
-				}
-				pBuffer = buffer;	// set to start address of buffer
-				while ((*pLine++ = *pBuffer++)) {
-					++copy_count;	//	count characters copied
-				}
-				if (!count) {
-					count += copy_count;	//	pass a value if new line
-				}
-				pBuffer = buffer;	// set to start address of buffer
-				--pLine;	//	null escape purpose
+			state	= OFF;
+			skip	= OFF;
+			while (count) {
+				++index;
+				--count;
+				putchar(' ');
 			}
-			++count;
 			*pBuffer++ = c;
+			++len;
 		}
-		// printf("state: %d, count: %d\n", state, count);
-		// printf("%s%s\n%s%s\n", "Buffer: ", buffer, "Line: ", line);
 	}
-	free(line);
-	free(buffer);
-
+	
 	return;
 }
-//c == '\n || count ? colummn??
