@@ -57,7 +57,8 @@ void main()
 
 /*
  *	singleComment(void)	: get character until c = '\n'
- *	c	: used for getchar();
+ *
+ *	c			: used for getchar();
  */
 void singleComment(void)
 {
@@ -76,8 +77,9 @@ void singleComment(void)
 
 /*
  *	multiComment(void)	: get character until c_n = '*' && c_(n + 1) = '/'
- *	c		: used for getchar();
- *	isAsterisk	: check c is '*'
+ *
+ *	c			: used for getchar();
+ *	isAsterisk		: check c is '*'
  */
 void multiComment(void)
 {
