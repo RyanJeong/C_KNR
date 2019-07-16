@@ -12,6 +12,8 @@ void multiComment(void);
 
 /*
  *	c	: used for getchar();
+ *	isQuote	: check c is '"'
+ *	isSlash	: check c is '/'
  */
 void main()
 {
@@ -52,6 +54,11 @@ void main()
 	return;
 }
 
+
+/*
+ *	singleComment(void)	: get character until c = '\n'
+ *	c	: used for getchar();
+ */
 void singleComment(void)
 {
 	int c;
@@ -66,6 +73,12 @@ void singleComment(void)
 	return;
 }
 
+
+/*
+ *	multiComment(void)	: get character until c_n = '*' && c_(n + 1) = '/'
+ *	c		: used for getchar();
+ *	isAsterisk	: check c is '*'
+ */
 void multiComment(void)
 {
 	int c, isAsterisk;
