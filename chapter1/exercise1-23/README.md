@@ -98,5 +98,4 @@ void multiComment(void)
 
 	return;
 }
-
 ```

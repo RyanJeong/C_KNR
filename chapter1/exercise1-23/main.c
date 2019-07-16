@@ -82,7 +82,7 @@ void multiComment(void)
 {
 	int c, isAsterisk;
 
-	isAsterisk	= FALSE;
+	isAsterisk = FALSE;
 	while ((c = getchar()) != EOF) {
 		if (!isAsterisk && (c == '*')) {
 			isAsterisk = TRUE;
