@@ -25,8 +25,7 @@ void main()
 {
 	int c, isQuote, isSlash;
 
-	isQuote		= FALSE;
-	isSlash		= FALSE;
+	isQuote = isSlash = FALSE;
 	while ((c = getchar()) != EOF) {
 		if (!isQuote) {
 			if (c == '"') {

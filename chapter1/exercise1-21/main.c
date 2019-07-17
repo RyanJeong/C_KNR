@@ -10,11 +10,10 @@ void main(void)
 {
 	int n, c, index, count;
 
-	index = 0;
-	count = 0;
+	index = count = 0;
 	printf("Tab size?\n");
 	scanf("%d", &n);
-	getchar();
+	getchar();	//	skip '\n'
 	printf("Set tab size: %d, expressed blank as +(purpose to check it works.)\n", n);
 	while ((c = getchar()) != EOF) {
 		if (c == ' ') {

@@ -3,6 +3,7 @@
  * Write a program to remove all comments from a C program. Don’t forget to handle quoted strings and character constants properly.
  * C comments don’t nest.
  */
+
 #include <stdio.h>
 #define FALSE	0
 #define TRUE	1
@@ -19,8 +20,7 @@ void main()
 {
 	int c, isQuote, isSlash;
 
-	isQuote		= FALSE;
-	isSlash		= FALSE;
+	isQuote = isSlash = FALSE;
 	while ((c = getchar()) != EOF) {
 		if (!isQuote) {
 			if (c == '"') {
@@ -54,7 +54,6 @@ void main()
 	return;
 }
 
-
 /*
  *	singleComment(void)	: get character until c = '\n'
  *
@@ -74,7 +73,6 @@ void singleComment(void)
 	return;
 }
 
-
 /*
  *	multiComment(void)	: get character until c_n = '*' && c_(n + 1) = '/'
  *
@@ -85,7 +83,7 @@ void multiComment(void)
 {
 	int c, isAsterisk;
 
-	isAsterisk	= FALSE;
+	isAsterisk = FALSE;
 	while ((c = getchar()) != EOF) {
 		if (!isAsterisk && (c == '*')) {
 			isAsterisk = TRUE;

@@ -16,7 +16,6 @@ int 	_getline(void);
 void 	_copy(void);
 
 /*	print longest input line	*/
-
 void main()
 {
 	int 		len;
@@ -39,7 +38,6 @@ void main()
 }
 
 /*	_getline: read a line into s, return length	*/
-
 int _getline()
 {
 	int 		c, i;
@@ -58,7 +56,6 @@ int _getline()
 }
 
 /*	_copy: copy 'from' into 'to'; assume to is big enough	*/
-
 void _copy()
 {
 	int 		i;
@@ -68,5 +65,7 @@ void _copy()
 	while ((longest[i] = line[i]) != '\0') {
 		++i;
 	}
+
+	return;
 }
 ```

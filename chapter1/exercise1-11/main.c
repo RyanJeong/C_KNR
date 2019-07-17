@@ -11,8 +11,8 @@ void main()
 {
 	int c, nl, nw, nc, state;
 
-	state = OUT;
-	nl 	  = nw = nc = 0;
+	state	= OUT;
+	nl	= nw = nc = 0;
 	while ((c = getchar()) != EOF) {
 		++nc;
 		if (c == '\n') {
@@ -27,5 +27,5 @@ void main()
 	}
 	printf ("%d %d %d\n", nl, nw, nc);
   
-  return;
+	return;
 }

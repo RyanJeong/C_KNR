@@ -7,9 +7,9 @@
 #include <stdio.h>
 #define MAXLINE 1000		/*	maximum input line size	*/
 
-char 	line[MAXLINE];		/*	current input line	*/
-
 int 	_getline(void);
+
+char 	line[MAXLINE];		/*	current input line	*/
 
 void main()
 {
@@ -35,7 +35,6 @@ void main()
 }
 
 /*	_getline: read a line into s, return length	*/
-
 int _getline()
 {
 	int 		c, i;

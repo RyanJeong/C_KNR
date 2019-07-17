@@ -10,9 +10,9 @@ void main()
 	int c;
 	
 	while ((c = getchar()) != EOF) {
-		printf("%s%d\n", "c != EOF, ", c != EOF);
+		printf("%s%d\n", "c != EOF, value: ", c != EOF);
 	}
-	printf("%s%d\n", "c == EOF, ", c != EOF);
+	printf("%s%d\n", "c == EOF, value: ", c != EOF);
 	
 	return;
 }

@@ -3,15 +3,14 @@
  */
  
 #include <stdio.h>
-#define MAXLINE 1000		/*	maximum input line size	*/
+#define MAXLINE 1000	/*	maximum input line size	*/
 #define MIN     80
-
-char 	line[MAXLINE];		/*	current input line	*/
 
 int 	_getline(void);
 
-/*	print longest input line	*/
+char 	line[MAXLINE];	/*	current input line	*/
 
+/*	print longest input line	*/
 void main()
 {
 	int 		len;
@@ -27,7 +26,6 @@ void main()
 }
 
 /*	_getline: read a line into s, return length	*/
-
 int _getline()
 {
 	int 		c, i;

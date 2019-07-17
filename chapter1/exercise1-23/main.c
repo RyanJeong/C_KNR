@@ -2,6 +2,7 @@
  * Write a program to remove all comments from a C program. Don’t forget to handle quoted strings and character constants properly.
  * C comments don’t nest.
  */
+
 #include <stdio.h>
 #define FALSE	0
 #define TRUE	1
@@ -18,8 +19,7 @@ void main()
 {
 	int c, isQuote, isSlash;
 
-	isQuote		= FALSE;
-	isSlash		= FALSE;
+	isQuote = isSlash = FALSE;
 	while ((c = getchar()) != EOF) {
 		if (!isQuote) {
 			if (c == '"') {

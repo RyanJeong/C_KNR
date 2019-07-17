@@ -110,8 +110,8 @@ void main(void)
 			++len;
 		}
 	}
+	free(buffer);	// free allocated memory
 	
 	return;
 }
-
 ```

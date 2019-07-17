@@ -5,7 +5,6 @@
  *  Draw the histogram with the bars vertical.
  */
 #include <stdio.h>
-#include <stdlib.h>
 
 #define MAX 1000
 
@@ -26,10 +25,8 @@ void main()
 	while ((c = getchar()) != EOF) {
 		if ((c == ' ') || (c == '\t') || (c == '\n')) {
 			lenOfWord[count++] = nc;
-			if (nc > max) {
-				max = nc;
-			}
-			nc = 0;
+			max	= (nc > max) ? nc : max;
+			nc	= 0;
 		} else {
 			++nc;
 		}

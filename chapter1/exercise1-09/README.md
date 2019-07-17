@@ -10,21 +10,21 @@
 
 void main()
 {
-  int c, state;
+	int c, state;
 
-  state = OFF;
-  while ((c = getchar()) != EOF) {
-    if (c == ' ') {
-      if (!state) {
-        putchar(c);
-        state = ON;
-      }
-    } else {
-      putchar(c);
-      state = OFF;
-    }
-  }
+	state = OFF;
+	while ((c = getchar()) != EOF) {
+		if (c == ' ') {
+			if (!state) {
+				putchar(c);
+				state = ON;
+			}
+		} else {
+			putchar(c);
+			state = OFF;
+		}
+	}
   
-  return;
+	return;
 }
 ```

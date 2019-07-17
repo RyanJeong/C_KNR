@@ -6,7 +6,7 @@
 
 void main()
 {
-	printf("%d\n", EOF);
+	printf("value of EOF is %d\n", EOF);
   
 	return;
 }

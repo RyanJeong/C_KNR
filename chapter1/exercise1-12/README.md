@@ -7,15 +7,15 @@
 
 void main()
 {
-  int c;
+	int c;
   
-  while ((c = getchar()) != EOF) {
-    if (c == ' ') {
-      c = '\n';
-    }
-    putchar(c);
-  }
+	while ((c = getchar()) != EOF) {
+		if ((c == ' ') || (c == '\t')) {
+			c = '\n';
+		}
+		putchar(c);
+	}
   
-  return;
+	return;
 }
 ```

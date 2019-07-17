@@ -8,8 +8,7 @@
 
 void main()
 {
-	int fahr, celsius;
-	int lower, upper, step;
+	int fahr, celsius, lower, upper, step;
 
 	lower	= 0;	/*	lower limit of temperature table	*/
 	upper	= 300;	/*	upper limit	*/
