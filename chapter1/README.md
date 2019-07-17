@@ -1,4 +1,4 @@
-# 제1장 언어소개
+# 제1장 A Tutorial Introduction
 
 ## 요약
 *	site_t: 가장 큰 사이즈를 담을 수 있는 unsigned 정수형을 나타냄<br>
