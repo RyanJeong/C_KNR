@@ -177,6 +177,7 @@ int bitcount(unsigned x)
 
 	return b;
 }
+```
 ### 2.11 Conditional Expressions
 ```c
 for (i = 0; i < n; ++i) {
