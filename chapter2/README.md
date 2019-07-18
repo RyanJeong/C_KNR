@@ -13,16 +13,22 @@
 * 부호형을 우측으로 이동할 경우, 기종에 따라 0으로 채우기도(logical shift), 1로 채우기도 함(arithmetic shift)
 * &: MASK, |: SET<br>
 * 정수형 상수<br>
-	*			int	1234<br>
-	*	unsigned	int	1234u or 1234U<br>
-	*			long	1234l or 1234L<br>
-	*	unsigned	long	1234ul or 1234UL<br>
-* 8진수 또는 16진수에도 L이나 U와 같은 접미사를 사용할 수 있음<br>
-	*	ex) 0xFUL(10진수 15의 무부호 배정도상수)<br>
+
+|자료형|표현|
+|------|---|
+|int|1234|
+|unsigned int|1234u or 1234U|
+|long|1234l or 1234L|
+|unsigned long|1234ul or 1234UL|<br>
+	8진수 또는 16진수에도 L이나 U와 같은 접미사를 사용할 수 있음 ex) 0xFUL(10진수 15의 무부호 배정도상수)
+	
 * 실수형 상수<br>
-	*		float	1.234f or 1.234F<br>
-	*		double	1.234<br>
-	*	long	double	1.234l or 1.234L<br>
+
+|자료형|표현|
+|------|---|
+|float|1.234f or 1.234F|
+|double|1.234|
+|long double|1.234l or 1.234L|<br>
 * bit pattern(with escape sequence)<br>
 	*	\000	: 한 개에서 세 개까지의 8진수 입력 가능<br>
 	*	\xhh	: 한 개에서 두 개까지의 16진수 입력 가능<br>
