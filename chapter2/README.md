@@ -7,7 +7,7 @@ while (getchar != '\n') {
 	;
 }
 ```
-* fflush(stdout)은 출력 버퍼를 지우기 위한 목적으로만 
+* fflush(stdout)은 출력 버퍼를 지우기 위한 목적으로만 사용
 * 정수형<br>
 	* signed 또는 unsigned로 나누어 사용할 수 있음<br>
 	* shift 연산 가능(twice as wide)<br>
