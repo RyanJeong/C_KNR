@@ -26,6 +26,7 @@ int main(void)
 		s1[i] = c;
 	}
 	s1[i] = '\0';
+	puts("Input s2");
 	for (i = 0; ((c = getchar()) != EOF); ++i) {
 		if (i == limit) {
 			while (getchar() != '\n') {
@@ -39,13 +40,27 @@ int main(void)
 		s2[i] = c;
 	}
 	s2[i] = '\0';
-	printf("s1: %s, 2s: %s\n", s1, s2);
+	printf("s1: %s, s2: %s\n", s1, s2);
 	squeeze(s1, s2);
+	printf("result: %s\n", s1);
 
 	return 0;
 }
 
 void squeeze(char *s1, char *s2)
 {
+	int	c, i;
+	char	*p_s1;
+
+	while ((c = *s2++)) {
+		p_s1 = s1;
+		for (i = 0; *(s1 + i); ++i) {
+			if (*(s1 + i) != c) {
+				*p_s1++	= *(s1 + i);
+			}
+		}
+		*p_s1 = '\0';
+	}
+
 	return;
 }
