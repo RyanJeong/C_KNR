@@ -9,21 +9,21 @@ while (getchar != '\n') {
 ```
 * fflush(stdout)은 출력 버퍼를 지우기 위한 목적으로만 사용
 * Buffered issue:<br>
-	* explicit flush<br>
-		* fflush after each write to profit from the buffer and still enforce the desiredbehavior/display explicitly.<br>
+1. explicit flush<br>
+fflush after each write to profit from the buffer and still enforce the desiredbehavior/display explicitly.<br>
 ```c
 	fflush( stdout );
 ```
-	* have the buffer only buffer lines-wise<br>
-		* useful for when you know that it is enough to print only complete lines<br>
+2. have the buffer only buffer lines-wise<br>
+useful for when you know that it is enough to print only complete lines<br>
 ```c
 setlinebuf(stdout);
 ```
-	* disable the buffer<br>
+3. disable the buffer<br>
 ```c
 setbuf(stdout, NULL);
 ```
-	* disable buffering in your console through what ever options menu it provides<br>
+4. disable buffering in your console through what ever options menu it provides<br>
 * 정수형<br>
 	* signed 또는 unsigned로 나누어 사용할 수 있음<br>
 	* shift 연산 가능(twice as wide)<br>
