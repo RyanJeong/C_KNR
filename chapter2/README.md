@@ -12,7 +12,7 @@ while (getchar != '\n') {
 1. explicit flush<br>
 fflush after each write to profit from the buffer and still enforce the desiredbehavior/display explicitly.<br>
 ```c
-	fflush( stdout );
+fflush( stdout );
 ```
 2. have the buffer only buffer lines-wise<br>
 useful for when you know that it is enough to print only complete lines<br>
