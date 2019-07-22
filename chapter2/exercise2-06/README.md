@@ -5,8 +5,9 @@
  */
 #include <stdio.h>
 
-unsigned setbits(unsigned, int, int, unsigned);
-void printDecToBin(unsigned);
+unsigned	setbits(unsigned, int, int, unsigned);
+void		printDecToBin(unsigned);
+void		_printDecToBin(unsigned);
 
 int main(void)
 {
@@ -15,8 +16,11 @@ int main(void)
 	
 	puts("Select mode, 1: input binary, 2: input decimal");
 	c = getchar();
-	getchar();
-	if (c == '1') {
+	if (getchar() != '\n') {
+		puts("Error!");
+		
+		return 1;
+	} else if (c == '1') {
 		puts("Input x in binary");
 		x = 0;
 		while ((c = getchar()) != '\n') {
@@ -66,10 +70,17 @@ unsigned setbits(unsigned x, int p, int n, unsigned y)
 
 void printDecToBin(unsigned u)
 {
-	if (u > 1) {
-		printDecToBin((u >> 1));	
+	(u) ? _printDecToBin(u) : putchar('0');
+
+	return;
+}
+
+void _printDecToBin(unsigned u)
+{
+	if (u) {
+		_printDecToBin((u >> 1));	
+		putchar((u & 01) + '0');
 	}
-	putchar((u & 01) + '0');
 
 	return;	
 }
