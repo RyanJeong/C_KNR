@@ -7,6 +7,10 @@
 * switch의 default는 switch의 case보다 아래에 적는 것이 보통이며, 논리 흐름의 안정성을 위해 default가 맨 마지막에 등장하더라도 break를 사용하는 것이 권장됨<br>
 * for vs. while<br>
 ```c
+//	exp1, exp3: assignment or called function
+//	exp2: relational expression
+//	초기치를 설정하는 경우에는 for statement가 적합
+
 //	for statement
 for (exp1; exp2; exp3) {
 	...
@@ -18,9 +22,6 @@ while (exp2) {
 	exp3;
 }
 ```
-	* exp1, exp3: assignment or called function<br>
-	* exp2: relational expression<br>
-	* 초기치를 설정하는 경우에는 for statement가 적합<br>
 * comma(,) 연산은 왼쪽에서 오른쪽으로 순차 계산되며, macro 구조 내에서 가끔 사용됨<br>
 * do-while: while문과 혼동을 막기 위해 중괄호{} 사용<br>
 * break가 사용되는 구문: switch, for, while, do-while<br>
