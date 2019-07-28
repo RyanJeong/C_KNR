@@ -164,10 +164,78 @@ for (i = 0, j = (strlen(s) - 1); i < j; ++i, --j) {
 ```
 ### 3.6 Loops--Do-while<br>
 ```c
+/*	itoa: convert n to characters in s	*/
+void itoa(int n, char s[])
+{
+	int i, sign;
+
+	if ((sign = n) < 0) {	/*	record sign	*/
+		n = (-n);	/*	make n positive	*/
+	}
+	i = 0;
+	do {
+		s[i++] = (n % 10) + '0';	/*	get next digit	*/
+	} while ((n /= 10) > 0);	/*	delete it	*/
+	if (sign < 0) {
+		s[i++] = '-';
+	}
+	s[i] = '\0';
+	reverse(s);
+
+	return;
+}
 ```
 ### 3.7 Break and Continue<br>
 ```c
+/*	trim: remove trailing blanks, tabs, newlines	*/
+int trim(char s[])
+{
+	int n;
+
+	for (n = (strlen(s) - 1); n >= 0; --n) {
+		if ((s[n] != ' ') && (s[n] != '\t') && (s[n] != '\n')) {
+			break;
+		}
+	}
+	s[n+1] = '\0';
+
+	return n;
+}
+```
+```c
+for (i = 0; i < n; ++i) {
+	if (a[i] < 0) {	/*	skip negative elements	*/
+		continue;
+	}
+	...	/*	do positive elements	*/
+}
 ```
 ### 3.8 Goto and Labels<br>
 ```c
+	for (i = 0; i < n; ++i) {
+		for (j = 0; j < m; ++j) {
+			if (a[i] == b[j]) {
+				goto found;
+			}	/*	didn't find any common elements	*/
+		}
+	}
+	...
+found:
+	/*	got one: a[i] == b[j]	*/
+	...
+```
+```c
+found = 0;
+for (i = 0; (i < n) && !found; ++i) {	//	++i -> found check
+	for (j = 0; (j < m) && !found; ++j) {	//	++j -> found check
+		if (a[i] == b[j]) {
+			found = 1;
+		}
+	}
+}
+if (found) {
+	...	/*	got one: a[i-1] == b[j-1]	*/
+} else {
+	...	/*	didn't find any common element	*/
+}
 ```
