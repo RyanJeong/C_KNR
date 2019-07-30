@@ -45,13 +45,28 @@ int _getline(char s[], int lim)
 
 void expand(char *s1, char *s2) 
 {
-	int	state;
+	int	state, temp;
 	char	c, start, end;
 
 	start	= end	= 0;
 	state	= OFF;
 	while (c = *s1++) {
-
+		if (c == '-') {
+			if (!start) {
+				*s2++ = c;
+			} else {
+				state = ON;
+			}
+		} else {
+			((state) ? end : start) = c;
+			if (end && (ABS((start - end))) < 26) {	//	max('Z' - 'A' or 'z' - 'a' or '9' - '0')
+				while (start - end) {
+					*s2++ = (start < end) ? start++ : start--;
+				}
+			} else {
+				
+			}
+		}
 	}
 
 	return;
