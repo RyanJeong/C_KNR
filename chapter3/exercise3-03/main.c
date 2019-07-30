@@ -6,9 +6,53 @@
  */
 
 #include <stdio.h>
+#include <string.h>
+#define MAX	(1 << 8)
+#define ON 	1
+#define OFF	0
+#define ABS(x)	(((x > 0) - (x < 0)) * x)
 
-int main()
+int	_getline(char [], int);
+void	expand(char *, char *);
+
+int main(void)
 {
+	char	s1[MAX], s2[MAX];
+	
+	_getline(s1, MAX);
+	expand(s1, s2);
+	printf("%s\n%s\n", "Before: ", s1, "After: ", s2);
 
 	return 0;
+}
+
+/*	_getline: read a line into s, return length	*/
+int _getline(char s[], int lim)
+{
+	int c, i;
+	
+	for (i = 0; i < (lim - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
+		s[i] = c;
+	}
+	if (c == '\n') {
+		s[i] = c;
+		++i;
+	}
+	s[i] = '\0';
+	
+	return i;
+}
+
+void expand(char *s1, char *s2) 
+{
+	int	state;
+	char	c, start, end;
+
+	start	= end	= 0;
+	state	= OFF;
+	while (c = *s1++) {
+
+	}
+
+	return;
 }
