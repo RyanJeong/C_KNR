@@ -1,3 +1,4 @@
+```c
 /*
  *	Our binary search makes two tests inside the loop, when one would suffice (at the price of more tests outside).
  *	Write a version with only one test inside the loop and measure the difference in run-time.
@@ -77,3 +78,4 @@ int binsearch2(int x, int v[], int n)
 
 	return ((x == v[mid]) ? mid : (-1));
 }
+```
