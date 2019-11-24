@@ -1,5 +1,5 @@
 # The C PROGRAMMING LANGUAGE
-
+![cover](https://github.com/RyanJeong/C/blob/master/cover.jpg?raw=true)
 ### 본 repository는 github 및 markdown 사용 숙달과 더불어 그동안 공부한 내용들을 게시하기 위한 목적으로 생성되었으며, 게시된 내용들에 오류가 있거나 다소 주관적일 수 있음. 
 * [제1장 A Tutorial Introduction](./chapter1)
 * [제2장 Types, Operators, and Expressions](./chapter2)
