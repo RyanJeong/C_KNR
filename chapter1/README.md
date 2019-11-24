@@ -17,6 +17,55 @@
 	2. 외부 변수와 함수가 서로 다른 파일에 선언된 경우, extern 키워드 필수<br>
 * 문자를 처리하는 변수의 type을 char 형이 아닌 int 형을 사용하는 이유는 ASCII 코드와 같이 양의 정수로 이루어진 문자는 상관 없지만 EOF(-1)과 같은 값은 char 형으로 처리할 수 없음<br>
 
+## 예제
+* [1-01](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-01) : Run the "hello world" program on your system. Experiment with leaving out parts of the program, to see what error messages you get.<br>
+
+* [1-02](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-02) : Experiment to find out what happens when printf 's argument string contains \c, where c is some character not listed above.<br>
+
+* [1-03](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-03) : Modify the temperature conversion program to print a heading above the table.<br>
+
+* [1-04](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-04) : Write a program to print the corresponding Celsius to Fahrenheit table.<br>
+
+* [1-05](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-05) : Modify the temperature conversion program to print the table in reverse order, that is, from 300 degrees to 0.<br>
+
+* [1-06](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-06) : Verify that the expression getchar() != EOF is 0 or 1.<br>
+
+* [1-07](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-07) : Write a program to print the value of EOF.<br>
+
+* [1-08](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-08) : Write a program to count blanks, tabs, and newlines.<br>
+
+* [1-09](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-09) : Write a program to copy its input to its output, replacing each string of one or more blanks by a single blank.<br>
+
+* [1-10](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-10) : Write a program to copy its input to its output, replacing each tab by \t , each backspace by \b , and each backslash by \\ . This makes tabs and backspaces visible in an unambiguous way.<br>
+
+* [1-11](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-11) : How would you test the word count program? What kinds of input are most likely to uncover bugs if there are any?<br>
+
+* [1-12](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-12) : Write a program that prints its input one word per line.<br>
+
+* [1-13](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-13) : Write a program to print a histogram of the lengths of words in its input. It is easy to draw the histogram with the bars horizontal; a vertical orientation is more challenging.<br>
+
+* [1-14](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-14) : Write a program to print a histogram of the frequencies of different characters in its input.<br>
+
+* [1-15](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-15) : Rewrite the temperature conversion program of Section 1.2 to use a function for conversion.<br>
+
+* [1-16](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-16) : Revise the main routine of the longest-line program so it will correctly print the length of arbitrarily long input lines, and as much as possible of the text.<br>
+
+* [1-17](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-17) : Write a program to print all input lines that are longer than 80 characters.<br>
+
+* [1-18](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-18) : Write a program to remove all trailing blanks and tabs from each line of input, and to delete entirely blank lines.<br>
+
+* [1-19](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-19) : Write a function reverse(s) that reverses the character string s . Use it to write a program that reverses its input a line at a time.<br>
+
+* [1-20](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-20) : Write a program detab that replaces tabs in the input with the proper number of blanks to space to the next tab stop. Assume a fixed set of tab stops, say every n columns. Should n be a variable or a symbolic parameter?<br>
+
+* [1-21](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-21) : Write a program entab that replaces strings of blanks with the minimum number of tabs and blanks to achieve the same spacing. Use the same stops as for detab . When either a tab or a single blank would suffice to reach a tab stop, which should be given preference?<br>
+
+* [1-22](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-22) : Write a program to "fold" long input lines into two or more shorter lines after the last non-blank character that occurs before the n -th column of input. Make sure your program does something intelligent with very long lines, and if there are no blanks or tabs before the specified column.<br>
+
+* [1-23](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-23) : Write a program to remove all comments from a C program. Don't forget to handle quoted strings and character constants properly. C comments do not nest.<br>
+
+* [1-24](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-24) : Write a program to check a C program for rudimentary syntax errors like unbalanced parentheses, brackets and braces. Don't forget about quotes, both single and double, escape sequences, and comments. (This program is hard if you do it in full generality.)<br>
+
 ## 소스코드
 ### 1.1 Getting Started<br>
 ```c
