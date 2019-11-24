@@ -49,7 +49,7 @@ output
 #define OFF	0
 #define ABS(x)	(((x > 0) - (x < 0)) * x)
 
-int	_getline(char [], int);
+int		_getline(char [], int);
 void	expand(char *, char *);
 
 int main(void)
