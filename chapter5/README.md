@@ -1,4 +1,4 @@
-7u8# 제5장 Pointers and Arrays
+# 제5장 Pointers and Arrays
 
 ## 요약<br>
 
