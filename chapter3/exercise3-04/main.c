@@ -3,7 +3,6 @@
  *	that is, the value of n equal to -(2 to the power (wordsize - 1)). Explain why not.
  *	Modify it to print that value correctly regardless of the machine on which it runs.
  */
-#include <stdlib.h>
 #include <stdio.h>
 #include <limits.h>
 
@@ -14,13 +13,13 @@ void reverse(char *);
 
 int main(void)
 {
-    char buf[20];
-    
-    printf("INT_MIN: %d\n", INT_MIN);
-    itoa(INT_MIN, buf);
-    printf("After itoa : %s\n", buf);
-    
-    return 0;
+	char buf[20];
+
+	printf("INT_MIN: %d\n", INT_MIN);
+	itoa(INT_MIN, buf);
+	printf("After itoa : %s\n", buf);
+
+	return 0;
 }
 
 void itoa(int n, char *buf)
@@ -56,7 +55,7 @@ void reverse(char *buf)
 		c		= *buf;
 		*buf++	= *p;
 		*p--	= c;	
-    }
+	}
 
 	return;
 }
