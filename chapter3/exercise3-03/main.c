@@ -1,110 +1,133 @@
 /*
-sample input #0
-				f-w
-output
-				s1=f-w
-				s2=fghijklmnopqrstuvw
-
-Sample input #1
-				2-7
-output
-				s1=2-7
-				s2=234567
-
-Sample input #2
-				a-b-c-f
-output
-				s1=a-b-c-f
-				s2=abcdef
-
-Sample input #3
-				-a-b-c9-0-3b-s-
-output
-				s1=-a-b-c9-0-3b-s-
-				s2=abc90123bcdefghijklmnopqrstuvwxyz
-
-Sample input #4
-				a-0-6b--pq-w9-0-3
-output
-				s1=a-0-6b--pq-w9-0-3
-				s2=abcdefghijklmnopqrstuvwxyz0123456bcdefghijklmnopqrstuvw90123
-
-Sample input #5
-				9-0
-output				
-				9876543210
+	#01: 1-4--97-2
+	output: 123456789765432 
+	#02: -a--z-c9-3f-a
+	output: -abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihgfedc9876543fedcba
+	#03: 0-9a--z0---9
+	output: 0123456789abcdefghijklmnopqrstuvwxyz0123456789
+	#04: a-z-g-w-h
+	output: abcdefghijklmnopqrstuvwxyzyxwvutsrqponmlkjihghijklmnopqrstuvwvutsrqponmlkjih
+	#05: ----a--z--
+	output: ----abcdefghijklmnopqrstuvwxyz--
+	#06: f-w0-2a-f
+	output: fghijklmnopqrstuvw012abcdef
+	#07: 2-7
+	output: 234567
+	#08: a-9-g-3
+	output: abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123
+	#09: a-c9-0
+	output: abc9876543210
+	#10: a-0-6b--pq-w9-0-3
+	output: abcdefghijklmnopqrstuvwxyz0123456bcdefghijklmnopqrstuvw9876543210123
 */
-
 /*
  *	Write a function expand(s1,s2) that expands shorthand notations
  *	like a-z in the string s1 into the equivalent complete list abc...xyz in s2.
  *	Allow for letters of either case and digits, and be prepared to handle cases like a-b-c and a-z0-9 and -a-z.
  *	Arrange that a leading or trailing - is taken literally.
  */
-
 #include <stdio.h>
-#include <string.h>
-#define MAX	(1 << 8)
-#define ON 	1
-#define OFF	0
-#define ABS(x)	(((x > 0) - (x < 0)) * x)
 
-int		_getline(char [], int);
-void	expand(char *, char *);
+#define SIZE 1000
 
-int main(void)
+void expand(char *, char *);
+
+int main()
 {
-	char	s1[MAX], s2[MAX];
+	char	*str[10], buf[SIZE];
+	size_t	i;
+	int		c;
 	
-	_getline(s1, MAX);
-	expand(s1, s2);
-	printf("%s\n%s\n", "Before: ", s1, "After: ", s2);
+	*(str + 0) = "1-4--97-2";
+	*(str + 1) = "-a--z-c9-3f-a";
+	*(str + 2) = "0-9a--z0---9";
+	*(str + 3) = "a-z-g-w-h";
+	*(str + 4) = "----a--z--";
+	*(str + 5) = "f-w0-2a-f";
+	*(str + 6) = "2-7";
+	*(str + 7) = "a-9-g-3";
+	*(str + 8) = "a-c9-0";
+	*(str + 9) = "a-0-6b--pq-w9-0-3";
+	for (i = 0; i < 10; ++i) {
+		expand(*(str + i), buf);
+		printf("#%02lu: %s\noutput: %s\n", (i + 1), *(str + i), buf);
+	}
 
 	return 0;
 }
 
-/*	_getline: read a line into s, return length	*/
-int _getline(char s[], int lim)
+void expand(char *s, char *t)
 {
-	int c, i;
-	
-	for (i = 0; i < (lim - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
-		s[i] = c;
-	}
-	if (c == '\n') {
-		s[i] = c;
-		++i;
-	}
-	s[i] = '\0';
-	
-	return i;
-}
+	size_t	src, dest;
 
-void expand(char *s1, char *s2) 
-{
-	int	state, temp;
-	char	c, start, end;
-
-	start	= end	= 0;
-	state	= OFF;
-	while (c = *s1++) {
-		if (c == '-') {
-			if (!start) {
-				*s2++ = c;
-			} else {
-				state = ON;
-			}
+	while (*s == '-') {
+		++s;
+		*t++ = '-';
+	}
+	while (1) {
+		if (*s == '\0') {
+			break;
+		} else if (*s != '-') {	//	-a0-	: next step will be in here
+			src = *s++;
+			*t++ = src;
 		} else {
-			((state) ? end : start) = c;
-			if (end && (ABS((start - end))) < 26) {	//	max('Z' - 'A' or 'z' - 'a' or '9' - '0')
-				while (start - end) {
-					*s2++ = (start < end) ? start++ : start--;
+			while (*s != '\0') {
+				if (*s == '-') {
+					++s;
+				} else {
+					dest = *s++;	//	a-a-a , a--a--a, ..., a------a : next step will be in here,
+					if ((src >= '0') && (src <= '9')) {
+						if ((dest >= '0') && (dest <= '9')) {
+							while (src != dest) {
+								if (src > dest) {
+									*t++ = --src;	
+								} else {
+									*t++ = ++src;
+								}
+							}
+						} else if ((dest >= 'a') && (dest <= 'z')) {
+							while (src < '9') {
+								*t++ = ++src;
+							}
+							src = 'a';
+							while (src != dest) {
+								*t++ = src++;
+							}
+							*t++ = src;
+						}
+					} else if ((src >= 'a') && (src <= 'z')) {
+						if ((dest >= '0') && (dest <= '9')) {
+							while (src < 'z') {
+								*t++ = ++src;
+							}
+							src = '0';
+							while (src != dest) {
+								*t++ = src++;
+							}
+							*t++ = src;
+						} else if ((dest >= 'a') && (dest <= 'z')) {
+							while (src != dest) {
+								if (src > dest) {
+									*t++ = --src;	
+								} else {
+									*t++ = ++src;
+								}
+							}
+						}
+					}
+					break;
 				}
-			} else {
-				
+			}
+			if (*s == '\0') {
+				break;
 			}
 		}
 	}
+	--s;
+	while (*s-- == '-') {
+		*t++ = '-';
+	}
+	*t = '\0';
 
 	return;
 }
