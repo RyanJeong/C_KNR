@@ -1,6 +1,17 @@
 # 제4장 Functions and Program Structure
 
 ## 요약<br>
+>   The function atof must be declared and defined consistently. If atof itself and the call to it in main have inconsistent types in the same source file, the error will be detected by the compiler.<br>
+But if (as is more likely) atof were compiled separately, the mismatch would not be detected, atof would return a double that main would treat as an int, and meaningless answers would result.<br>
+In the light of what we have said about how declarations must match definitions, this might seem surprising. The reason a mismatch can happen is that if there is no function prototype, a function is implicitly declared by its first appearance in an expression, such as<br>
+```C
+sum += atof(line)
+```
+>   If a name that has not been previously declared occurs in an expression and is followed by a left parentheses, it is declared by context to be a function name, the function is assumed to return an int, and nothing is assumed about its arguments. Furthermore, if a function declaration does not include arguments, as in<br>
+```C
+double atof();
+```
+>   that too is taken to mean that nothing is to be assumed about the arguments of atof; all parameter checking is turned off. This special meaning of the empty argument list is intended to permit older C programs to compile with new compilers. But it's a bad idea to use it with new C programs. If the function takes arguments, declare them; if it takes no arguments, use void.<br>
 
 ## 예제<br>
 * [4-01](https://github.com/RyanJeong/C/tree/master/chapter4/exercise4-01) : Write the function strrindex(s, t), which returns the position of the rightmost occurrence of t in s, or -1 if there is none.<br>
@@ -32,3 +43,383 @@
 * [4-14](https://github.com/RyanJeong/C/tree/master/chapter4/exercise4-14) : Define a macro swap(t, x, y) that interchanges two arguments of type t. (Block structure will help.)<br>
 
 ## 소스코드<br>
+### 4.1 Basics of Functions<br>
+```c
+#include <stdio.h>
+
+#define MAXLINE 1000 /* maximum input line length */
+
+int getline(char line[], int max);
+int strindex(char source[], char searchfor[]);
+
+char pattern[] = "ould"; /* pattern to search for */
+
+/* find all lines matching pattern */
+main()
+{
+    char    line[MAXLINE];
+    int     found;
+
+    found = 0;
+    while (getline(line, MAXLINE) > 0) {
+        if (strindex(line, pattern) >= 0) {
+            printf("%s", line);
+            found++;
+        }
+    }
+
+    return found;
+}
+
+/* getline: get line into s, return length */
+int getline(char s[], int lim)
+{
+    int c, i;
+
+    i = 0;
+    while ((--lim > 0) && ((c = getchar()) != EOF) && (c != '\n')) {
+        s[i++] = c;
+    }
+    if (c == '\n') {
+        s[i++] = c;
+    }
+    s[i] = '\0';
+
+    return i;
+}
+
+/* strindex: return index of t in s, -1 if none */
+int strindex(char s[], char t[])
+{
+    int i, j, k;
+
+    for (i = 0; s[i] != '\0'; i++) {
+        for (j = i, k = 0; (t[k] != '\0') && (s[j] == t[k]); j++, k++) {
+            ;
+        }
+        if ((k > 0) && (t[k] == '\0')) {
+
+            return i;
+        }
+    }
+
+    return -1;
+}
+```
+### 4.2 Functions Returning Non-integers<br>
+```C
+#include <ctype.h>
+/* atof: convert string s to double */
+double atof(char s[])
+{
+    double  val, power;
+    int     i, sign;
+
+    for (i = 0; isspace(s[i]); ++i) {   /* skip white space */
+        ;
+    }
+    sign = (s[i] == '-') ? -1 : 1;
+    if (s[i] == '+' || s[i] == '-') {
+        ++i;
+    }
+    for (val = 0.0; isdigit(s[i]); i++) {
+        val = 10.0 * val + (s[i] - '0');
+    }
+    if (s[i] == '.') {
+        i++;
+    }
+    for (power = 1.0; isdigit(s[i]); i++) {
+        val = 10.0 * val + (s[i] - '0');
+        power *= 10;
+    }
+
+    return sign * val / power;
+}
+```
+```C
+#include <stdio.h>
+
+#define MAXLINE 100
+
+/* rudimentary calculator */
+main()
+{
+    double  sum, atof(char []);
+    char    line[MAXLINE];
+
+    int getline(char line[], int max);
+    sum = 0;
+    while (getline(line, MAXLINE) > 0) {
+        printf("\t%g\n", sum += atof(line));
+    }
+
+    return 0;
+}
+```
+```C
+/* atoi: convert string s to integer using atof */
+int atoi(char s[])
+{
+    double atof(char s[]);
+    
+    return (int) atof(s);
+}
+```
+### 4.3 External Variables<br>
+```C
+#include <stdio.h>
+#include <stdlib.h> /* for atof() */
+
+#define MAXOP 100 /* max size of operand or operator */
+#define NUMBER '0' /* signal that a number was found */
+
+int getop(char []);
+void push(double);
+double pop(void);
+
+/* reverse Polish calculator */
+main()
+{
+    int     type;
+    double  op2;
+    char    s[MAXOP];
+
+    while ((type = getop(s)) != EOF) {
+        switch (type) {
+        case NUMBER:
+            push(atof(s));
+            break;
+        case '+':
+            push(pop() + pop());
+            break;
+        case '*':
+            push(pop() * pop());
+            break;
+        case '-':
+            op2 = pop();
+            push(pop() - op2);
+            break;
+        case '/':
+            op2 = pop();
+            if (op2 != 0.0) {
+                push(pop() / op2);
+            } else {
+                printf("error: zero divisor\n");
+            }
+            break;
+        case '\n':
+            printf("\t%.8g\n", pop());
+            break;
+        default:
+            printf("error: unknown command %s\n", s);
+            break;
+        }
+    }
+
+    return 0;
+}
+```
+```C
+#define MAXVAL 100 /* maximum depth of val stack */
+
+int     sp = 0; /* next free stack position */
+double  val[MAXVAL]; /* value stack */
+
+/* push: push f onto value stack */
+void push(double f)
+{
+    if (sp < MAXVAL) {
+        val[sp++] = f;
+    } else {
+        printf("error: stack full, can't push %g\n", f);
+    }
+
+    return;
+}
+
+/* pop: pop and return top value from stack */
+double pop(void)
+{
+    if (sp > 0) {
+
+        return val[--sp];
+    } else {
+        printf("error: stack empty\n");
+
+        return 0.0;
+    }
+}
+```
+```C
+#include <ctype.h>
+
+int     getch(void);
+void    ungetch(int);
+
+/* getop: get next character or numeric operand */
+int getop(char s[])
+{
+    int i, c;
+
+    while ((s[0] = c = getch()) == ' ' || c == '\t') {
+        ;
+    }
+    s[1] = '\0';
+    if (!isdigit(c) && c != '.') {
+
+        return c; /* not a number */
+    }
+    i = 0;
+    if (isdigit(c)) {   /* collect integer part */
+        while (isdigit(s[++i] = c = getch())) {
+            ;
+        }
+    }
+    if (c == '.') { /* collect fraction part */
+        while (isdigit(s[++i] = c = getch())) {
+            ;
+        }
+    }
+    s[i] = '\0';
+    if (c != EOF) {
+        ungetch(c);
+    }
+
+    return NUMBER;
+}
+```
+```C
+#define BUFSIZE 100
+
+char    buf[BUFSIZE]; /* buffer for ungetch */
+int     bufp = 0; /* next free position in buf */
+
+int getch(void) /* get a (possibly pushed-back) character */
+{
+
+    return (bufp > 0) ? buf[--bufp] : getchar();
+}
+
+void ungetch(int c) /* push character back on input */
+{
+    if (bufp >= BUFSIZE) {
+        printf("ungetch: too many characters\n");
+    } else {
+        buf[bufp++] = c;
+    }
+
+    return
+}
+```
+### 4.7 Register Variables<br>
+```C
+register int    x;
+register char   c;
+```
+### 4.10 Recursion<br>
+```C
+#include <stdio.h>
+
+/* printd: print n in decimal */
+void printd(int n)
+{
+    if (n < 0) { 
+        putchar('-');
+        n = -n;
+    }
+    if (n / 10) {
+        printd(n / 10);
+    }
+    putchar(n % 10 + '0');
+    
+    return;
+}
+```
+```C
+/* qsort: sort v[left]...v[right] into increasing order */
+void qsort(int v[], int left, int right)
+{
+    int     i, last;
+    void    swap(int v[], int i, int j);
+
+    if (left >= right) { /* do nothing if array contains */
+
+        return; /* fewer than two elements */
+    }
+    swap(v, left, (left + right) / 2); /* move partition elem */
+    last = left; /* to v[0] */
+    for (i = left + 1; i <= right; i++) {  /* partition */
+        if (v[i] < v[left]) {
+            swap(v, ++last, i);
+        }
+    }
+    swap(v, left, last); /* restore partition elem */
+    qsort(v, left, last-1);
+    qsort(v, last+1, right);
+
+    return;
+}
+```
+```C
+/* swap: interchange v[i] and v[j] */
+void swap(int v[], int i, int j)
+{
+    int temp;
+
+    temp = v[i];
+    v[i] = v[j];
+    v[j] = temp;
+
+    return;
+}
+```
+### 4.11 The C Preprocessor<br>
+```C
+/*  4.11.1 File Inclusion   */
+#include "filename"
+#include <filename>
+```
+```C
+/*  4.11.2 Macro Substitution   */
+#define forever     for (;;) /* infinite loop */
+#define max(A, B)   ((A) > (B) ? (A) : (B))
+
+#undef getchar
+
+#define dprint(expr) printf(#expr " = %g\n", expr)
+/*
+    dprint(x/y)
+the macro is expanded into
+    printf("x/y" " = &g\n", x/y);
+and the strings are concatenated, so the effect is
+    printf("x/y = &g\n", x/y);
+Within the actual argument, each " is replaced by \" and each \ by \\,
+so the result is a legal string constant. 
+*/
+
+#define paste(front, back) front ## back
+/*  paste(name, 1) creates the token name1. */
+```
+```C
+/*  4.11.3 Conditional Inclusion    */
+#if !defined(HDR)
+#define HDR
+/* contents of hdr.h go here */
+#endif
+
+#if SYSTEM == SYSV
+#define HDR "sysv.h"
+#elif SYSTEM == BSD
+#define HDR "bsd.h"
+#elif SYSTEM == MSDOS
+#define HDR "msdos.h"
+#else
+#define HDR "default.h"
+#endif
+#include HDR
+
+#ifndef HDR
+#define HDR
+/* contents of hdr.h go here */
+#endif
+```
