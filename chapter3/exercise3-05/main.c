@@ -13,7 +13,7 @@ void reverse(char *);
 
 int main()
 {
-	char    buf[1 << 5];
+    char    buf[1 << 5];
     size_t  i;
     int     pos, neg;
 
