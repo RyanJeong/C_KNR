@@ -1,6 +1,7 @@
 # 제4장 Functions and Program Structure
 
 ## 요약<br>
+* Function declare
 >   The function atof must be declared and defined consistently. If atof itself and the call to it in main have inconsistent types in the same source file, the error will be detected by the compiler.<br>
 But if (as is more likely) atof were compiled separately, the mismatch would not be detected, atof would return a double that main would treat as an int, and meaningless answers would result.<br>
 In the light of what we have said about how declarations must match definitions, this might seem surprising. The reason a mismatch can happen is that if there is no function prototype, a function is implicitly declared by its first appearance in an expression, such as<br>
@@ -12,6 +13,77 @@ sum += atof(line)
 double atof();
 ```
 >   that too is taken to mean that nothing is to be assumed about the arguments of atof; all parameter checking is turned off. This special meaning of the empty argument list is intended to permit older C programs to compile with new compilers. But it's a bad idea to use it with new C programs. If the function takes arguments, declare them; if it takes no arguments, use void.<br>
+
+* 모호성
+>   \+ and \* are commutative operators, the order in which the popped operands are combined is irrelevant, but for \- and \/ the left and right operand must be distinguished. In<br>
+```C
+push(pop() - pop()); /* WRONG */
+```
+>   the order in which the two calls of pop are evaluated is not defined. To guarantee the right order, it is necessary to pop the first value into a temporary variable as we did in main.<br>
+
+* Scope
+```C
+main() { ... }
+
+int sp = 0;
+double val[MAXVAL];
+
+void push(double f) { ... }
+double pop(void) { ... }
+```
+>   then the variables sp and val may be used in push and pop simply by naming them; no further declarations are needed. But these names are not visible in main, nor are push and pop themselves.<br>
+On the other hand, if an external variable is to be referred to before it is defined, or if it is defined in a different source file from the one where it is being used, then an extern declaration is mandatory. <br>
+
+* Header
+>   There is a tradeoff between the desire that each file have access only to the information it needs for its job and the practical reality that it is harder to maintain more header files.<br>
+Up to some moderate program size, it is probably best to have one header file that contains everything that is to be shared between any two parts of the program; that is the decision we made here.<br>
+For a much larger program, more organization and more headers would be needed.<br>
+
+* External
+>   The
+adjective \'external\' is used in contrast to \'internal\', which describes the arguments and variables defined inside functions.<br>
+External variables are defined outside of any function, and are thus potentionally available to many functions.<br>
+Functions themselves are always external, because C does not allow functions to be defined inside other functions.<br>
+By default, external variables and functions have the property that all references to them by the same name, even from functions compiled separately, are references to the same thing. (The standard calls this property external linkage.)<br>
+
+* Static
+>   The external static declaration is most often used for variables, but it can be applied to functions as well. Normally, function names are global, visible to any part of the entire program. If a function is declared static, however, its name is invisible outside of the file in which it is declared.<br>
+
+* Register
+>   A register declaration advises the compiler that the variable in question will be heavily used.<br>
+The idea is that register variables are to be placed in machine registers, which may result in smaller and faster programs. **But compilers are free to ignore the advice.**<br>
+
+* Scope
+```C
+if (n > 0) {
+    int i; /* declare a new i */
+    
+    for (i = 0; i < n; i++)
+        ...
+}
+```
+>   the scope of the variable i is the \'true\' branch of the if; this i is unrelated to any i outside the block.<br>
+An automatic variable declared and initialized in a block is initialized each time the block is entered.<br>
+
+* Initialization
+```C
+int low = 0;
+int high = n - 1;
+int mid;
+...
+ 
+```
+```C
+int low, high, mid;
+ 
+low = 0;
+high = n - 1;
+...
+
+```
+>   In effect, initialization of automatic variables are just shorthand for assignment statements.<br> 
+Which form to prefer is largely a matter of taste. We have generally used explicit assignments, because initializers in declarations are harder to see and further away from the point of use.<br>
+
 
 ## 예제<br>
 * [4-01](https://github.com/RyanJeong/C/tree/master/chapter4/exercise4-01) : Write the function strrindex(s, t), which returns the position of the rightmost occurrence of t in s, or -1 if there is none.<br>
