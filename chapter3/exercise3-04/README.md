@@ -14,7 +14,7 @@ void reverse(char *);
 
 int main(void)
 {
-	char buf[20];
+    char buf[1 << 5];
 
 	printf("INT_MIN: %d\n", INT_MIN);
 	itoa(INT_MIN, buf);

@@ -5,9 +5,80 @@
  */
 
 #include <stdio.h>
+#include <limits.h>
 
-int main()
+#define ABS(n)  (((n > 0) - (n < 0)) * n)
+#define SIZE    (1 << 5)
+
+void itoa(int, char *, size_t);
+void reverse(char *);
+
+int main(void)
 {
+    char    buf[SIZE];
+    int     a, b, c, d, e;
+    a   = 102;
+    b   = -2345;
+    c   = 502831;
+    d   = -9987734;
+    e   = 1702523523;
+    
+    itoa(a, buf, SIZE);
+    printf("a: %s\n", buf);
+    itoa(b, buf, SIZE);
+    printf("b: %s\n", buf);
+    itoa(c, buf, SIZE);
+    printf("c: %s\n", buf);
+    itoa(d, buf, SIZE);
+    printf("d: %s\n", buf);
+    itoa(e, buf, SIZE);
+    printf("e: %s\n", buf);
 
-	return 0;
+    return 0;
+}
+
+void itoa(int n, char *buf, size_t width)
+{
+    int     sign;
+    char    *p;
+    size_t  count;
+    
+    count   = 0;
+    p       = buf;
+    sign    = n;
+    while (n) {
+        *buf++  = ABS((n % 10)) + '0';
+        n       /= 10;
+        ++count;
+    }
+    if (sign < 0) {
+        *buf++ = '-';
+        ++count;
+    }
+    while (count < SIZE) {
+        *buf++ = ' ';
+        ++count;
+    }
+    *buf = '\0';
+    reverse(p);
+
+    return;
+}
+
+void reverse(char *buf) 
+{
+    char c, *p;
+    
+    p = buf;
+    while (*p != '\0') {
+        ++p;
+    }
+    --p;    // one step before('\0')
+    while (buf < p) {
+        c       = *buf;
+        *buf++  = *p;
+        *p--    = c;    
+    }
+
+    return;
 }
