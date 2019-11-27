@@ -1,7 +1,10 @@
 # 제4장 Functions and Program Structure
 
 ## 요약<br>
-* Function declare
+*   C 프로그램은 여러 개의 함수들로 이루어진 구조이며, 하나 또는 여러 개의 소스파일로 나뉠 수 있음(이때, 각 소스파일은 개별 compile됨)<br>
+
+*   Function declare<br>
+    *   형이 정의되지 않은 함수는 return type이 int type으로 임의 지정됨<br>
 >   The function atof must be declared and defined consistently. If atof itself and the call to it in main have inconsistent types in the same source file, the error will be detected by the compiler.<br>
 But if (as is more likely) atof were compiled separately, the mismatch would not be detected, atof would return a double that main would treat as an int, and meaningless answers would result.<br>
 In the light of what we have said about how declarations must match definitions, this might seem surprising. The reason a mismatch can happen is that if there is no function prototype, a function is implicitly declared by its first appearance in an expression, such as<br>
@@ -14,14 +17,14 @@ double atof();
 ```
 >   that too is taken to mean that nothing is to be assumed about the arguments of atof; all parameter checking is turned off. This special meaning of the empty argument list is intended to permit older C programs to compile with new compilers. But it's a bad idea to use it with new C programs. If the function takes arguments, declare them; if it takes no arguments, use void.<br>
 
-* 모호성
+* 모호성<br>
 >   \+ and \* are commutative operators, the order in which the popped operands are combined is irrelevant, but for \- and \/ the left and right operand must be distinguished. In<br>
 ```C
 push(pop() - pop()); /* WRONG */
 ```
 >   the order in which the two calls of pop are evaluated is not defined. To guarantee the right order, it is necessary to pop the first value into a temporary variable as we did in main.<br>
 
-* Scope
+* Scope<br>
 ```C
 main() { ... }
 
@@ -34,26 +37,6 @@ double pop(void) { ... }
 >   then the variables sp and val may be used in push and pop simply by naming them; no further declarations are needed. But these names are not visible in main, nor are push and pop themselves.<br>
 On the other hand, if an external variable is to be referred to before it is defined, or if it is defined in a different source file from the one where it is being used, then an extern declaration is mandatory. <br>
 
-* Header
->   There is a tradeoff between the desire that each file have access only to the information it needs for its job and the practical reality that it is harder to maintain more header files.<br>
-Up to some moderate program size, it is probably best to have one header file that contains everything that is to be shared between any two parts of the program; that is the decision we made here.<br>
-For a much larger program, more organization and more headers would be needed.<br>
-
-* External
->   The
-adjective \'external\' is used in contrast to \'internal\', which describes the arguments and variables defined inside functions.<br>
-External variables are defined outside of any function, and are thus potentionally available to many functions.<br>
-Functions themselves are always external, because C does not allow functions to be defined inside other functions.<br>
-By default, external variables and functions have the property that all references to them by the same name, even from functions compiled separately, are references to the same thing. (The standard calls this property external linkage.)<br>
-
-* Static
->   The external static declaration is most often used for variables, but it can be applied to functions as well. Normally, function names are global, visible to any part of the entire program. If a function is declared static, however, its name is invisible outside of the file in which it is declared.<br>
-
-* Register
->   A register declaration advises the compiler that the variable in question will be heavily used.<br>
-The idea is that register variables are to be placed in machine registers, which may result in smaller and faster programs. **But compilers are free to ignore the advice.**<br>
-
-* Scope
 ```C
 if (n > 0) {
     int i; /* declare a new i */
@@ -65,7 +48,40 @@ if (n > 0) {
 >   the scope of the variable i is the \'true\' branch of the if; this i is unrelated to any i outside the block.<br>
 An automatic variable declared and initialized in a block is initialized each time the block is entered.<br>
 
-* Initialization
+* Header<br>
+>   There is a tradeoff between the desire that each file have access only to the information it needs for its job and the practical reality that it is harder to maintain more header files.<br>
+Up to some moderate program size, it is probably best to have one header file that contains everything that is to be shared between any two parts of the program; that is the decision we made here.<br>
+For a much larger program, more organization and more headers would be needed.<br>
+
+* External<br>
+>   The
+adjective \'external\' is used in contrast to \'internal\', which describes the arguments and variables defined inside functions.<br>
+External variables are defined outside of any function, and are thus potentionally available to many functions.<br>
+Functions themselves are always external, because C does not allow functions to be defined inside other functions.<br>
+By default, external variables and functions have the property that all references to them by the same name, even from functions compiled separately, are references to the same thing. (The standard calls this property external linkage.)<br>
+
+* Static<br>
+    *   정적변수(static variable)는 루틴 수행이 종료되어도 사라지지 않으며, 초기화는 한 번만 이루어짐<br>
+>   The external static declaration is most often used for variables, but it can be applied to functions as well. **Normally, function names are global, visible to any part of the entire program. If a function is declared static, however, its name is invisible outside of the file in which it is declared**.<br>
+
+* Register<br>
+    *   레지스터(register)는 자동변수 또는 매개변수에만 사용 가능하며, 프로그램을 더욱 빠르게 수행시킬 수 있음<br>
+>   A register declaration advises the compiler that the variable in question will be heavily used.<br>
+The idea is that register variables are to be placed in machine registers, which may result in smaller and faster programs. **But compilers are free to ignore the advice.**<br>
+
+| memory |
+|----------|
+| Register |
+| .data variables |
+| .bss variables |
+| ... |
+| stack |
+| heap |
+
+    *   .data 영역은 초기화된 전역변수 또는 정적변수가 존재<br>
+    *   .bss 영역은 초기화되지 않은 전역변수 또는 정적변수가 존재하며, 모든 값은 0으로 초기화함<br>
+
+* Initialization<br>
 ```C
 int low = 0;
 int high = n - 1;
