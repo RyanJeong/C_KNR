@@ -16,6 +16,59 @@
 	1. 외부 변수와 함수가 같은 파일 내에 선언된 경우, extern 키워드 선택 가능<br>
 	2. 외부 변수와 함수가 서로 다른 파일에 선언된 경우, extern 키워드 필수<br>
 * 문자를 처리하는 변수의 type을 char 형이 아닌 int 형을 사용하는 이유는 ASCII 코드와 같이 양의 정수로 이루어진 문자는 상관 없지만 EOF(-1)과 같은 값은 char 형으로 처리할 수 없음<br>
+* Call by value? Call by reference? 
+	* Call by value<br>
+	>	One aspect of C functions may be unfamiliar to programmers who are used to some other languages, particularly Fortran.<br>
+	**In C, all function arguments are passed "by value."** This means that the called function is given the values of its
+	arguments in temporary variables rather than the originals.<br>
+	This leads to some different properties than are seen with "call by reference" languages like Fortran or with var parameters in Pascal, **in which the called routine has access to the original argument, not a local copy.**<br>
+
+	* [Call by reference](https://en.wikipedia.org/wiki/Evaluation_strategy#Call_by_reference)<br>
+	>	Call by reference (or pass by reference) is an evaluation strategy where a function receives an implicit reference to a variable used as argument, rather than a copy of its value.<br>
+	**This typically means that the function can modify (i.e., assign to) the variable used as argument—something that will be seen by its caller.**
+
+	* ISO/IEC 9899:2011
+		* 6.5.2.2 Function calls
+		>	4. An argument may be an expression of any complete object type. In preparing for the call to a function, the arguments are evaluated, and **each parameter is assigned the value of the corresponding argument.**93)
+		
+		* Appendix 93)
+		>	93) **A function may change the values of its parameters, but these changes cannot affect the values of the arguments.** On the other hand, it is possible to pass a pointer to an object, and the function may change the value of the object pointed to. A parameter declared to have array or function type is adjusted to have a pointer type as described in 6.9.1.
+	
+	* Example code
+	```C
+	#include <stdio.h>
+
+	void test(int *p)   /*  parameter   */
+	{
+		printf("2. [test()] addr: %p, value: %d\n", p, *p);
+		++(*p);
+		printf("3. [test()] addr: %p, value: %d\n", p, *p);
+		++p;
+		printf("4. [test()] addr: %p, value: %d\n", p, *p);
+
+		return;
+	}
+
+	int main()
+	{
+		int b = 3;
+		int *a = &b;    /*  will use as argument    */
+
+		printf("1. [main()] addr: %p, value: %d\n", a, *a);
+		test(a);
+		printf("5. [main()] addr: %p, value: %d\n", a, *a);
+
+		return 0;
+	}
+	```
+	* Results
+	```Text
+	1. [main()] addr: 0x7ffcf711ad5c, value: 3
+	2. [test()] addr: 0x7ffcf711ad5c, value: 3
+	3. [test()] addr: 0x7ffcf711ad5c, value: 4
+	4. [test()] addr: 0x7ffcf711ad60, value: -149836452
+	5. [main()] addr: 0x7ffcf711ad5c, value: 4
+	```
 
 ## 예제
 * [1-01](https://github.com/RyanJeong/C/tree/master/chapter1/exercise1-01) : Run the "hello world" program on your system. Experiment with leaving out parts of the program, to see what error messages you get.<br>
