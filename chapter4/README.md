@@ -396,7 +396,7 @@ void ungetch(int c) /* push character back on input */
         buf[bufp++] = c;
     }
 
-    return
+    return;
 }
 ```
 ### 4.7 Register Variables<br>
