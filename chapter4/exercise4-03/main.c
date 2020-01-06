@@ -28,12 +28,22 @@ int     bufp = 0;       /* next free position in buf */
 /*
  *  Examples:
  *  --------------
- *  2 3 4 + -
- *  2 8 2 + /
- *  3 6 2 / *
- *  2 0 /
- *  0 2 /
- *
+ *  2   3   4   + -
+ *  2   8   2   + /
+ *  3   6   2   / *
+ *  2   0       /
+ *  0   2       /
+ *  2   .3      +
+ *  -3  -3      -
+ *  -3  -4      -
+ *  -4  -3      -
+ *  -1  -3      *
+ *  -3  9       *
+ *  4   3       %
+ *  4   0       %
+ *  -4  3       %
+ *  4   -3      %
+ *  -4  -3      %
  */
 int main()
 {
@@ -57,9 +67,10 @@ int main()
             push(pop() - op2);
             break;
         case '/':
+        case '%':
             op2 = pop();
             if (op2 != 0.0) {
-                push(pop() / op2);
+                push((type == '/') ? (pop() / op2) : (((int) pop()) % ((int) op2)));
             } else {
                 printf("error: zero divisor\n");
             }
@@ -105,17 +116,27 @@ double pop(void)
 /* getop: get next character or numeric operand */
 int getop(char s[])
 {
-    int i, c, sign;
+    int i, c;
 
-    while ((s[0] = c = getch()) == ' ' || c == '\t') {
+    while ((s[0] = c = getch()) == ' ' || c == '\t') {  /*  ignore white spaces */
         ;
     }
-    s[1] = '\0';
+    s[1]    = '\0';    /*  for debug output    */
+    i       = 0;
+    if (c == '-') {
+        if (isdigit(c = getch())) {
+            s[++i]  = c;
+        } else {
+            /*  s[0]    = '-';  '-' already located at index 0  */
+            ungetch(c); /*  restore a character c, ungetch()  */
+
+            return '-';
+        }
+    }
     if (!isdigit(c) && c != '.') {
 
         return c; /* not a number */
     }
-    i = 0;
     if (isdigit(c)) {   /* collect integer part */
         while (isdigit(s[++i] = c = getch())) {
             ;
@@ -128,7 +149,7 @@ int getop(char s[])
     }
     s[i] = '\0';
     if (c != EOF) {
-        ungetch(c);
+        ungetch(c); /*  keep white space into the buffer    */
     }
 
     return NUMBER;
