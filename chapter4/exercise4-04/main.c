@@ -20,6 +20,7 @@ void    ungetch(int);
 void    print(void);        /*  @   */
 void    duplicate(void);    /*  #   */
 void    swap(void);         /*  $   */
+void    clear(void);        /*  !   */
 
 int     sp = 0;         /* next free stack position */
 double  val[MAXVAL];    /* value stack */
@@ -69,6 +70,8 @@ int     bufp = 0;       /* next free position in buf */
  *      -18
  *  3 4 5 $ # * - +
  *      -8
+ *  3 4 ! 5 # +
+ *      10
  */
 int main()
 {
@@ -108,6 +111,9 @@ int main()
             break;
         case '$':
             swap();
+            break;
+        case '!':
+            clear();
             break;
         case '\n':
             printf("\t%.8g\n", pop());
@@ -253,3 +259,10 @@ void swap(void)
     return;
 }
 
+/*  clear: clear the stack */
+void clear(void)
+{
+    sp = 0;
+
+    return;
+}
