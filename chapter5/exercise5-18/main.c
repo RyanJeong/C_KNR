@@ -71,10 +71,28 @@ int gettoken(void)
             return tokentype = '(';
         }
     } else if (c == '[') {
+        *p++ = c;
+        while (*p = getch()) {
+            if (*p != ']') {
+                if (*p == '(' || *p == ')' || *p == '\n') {
+                    printf("error: missing ]\n");
+                    ungetch(*p);
+                    *p = ']';
+                    break;
+                } else {
+                    ++p;
+                }
+            } else {
+                break;
+            }
+        }
+        *++p = '\0';
+/*
         for (*p++ = c; (*p++ = getch()) != ']'; ) {
             ;
         }
         *p = '\0';
+*/
 
         return tokentype = BRACKETS;
     } else if (isalpha(c)) {
@@ -82,8 +100,8 @@ int gettoken(void)
             *p++ = c;
         }
         *p = '\0';
-
         ungetch(c);
+
         return tokentype = NAME;
     } else {
 
