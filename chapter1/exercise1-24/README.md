@@ -7,234 +7,243 @@
  */
 
 #include <stdio.h>
-#define FALSE	0
-#define TRUE	1
 
-void	singleComment(void);
-void	multiComment(void);
-int	checkParen(void);
-int	checkCurly(void);
-int	checkSquare(void);
-int	checkSingleQuote(void);
+enum {
+    FALSE,
+    TRUE
+};
 
-/*
- *	c		: used for getchar();
- *	isQuote		: check c is '"'
- *	isSlash		: check c is '/'
- */
-void main()
+void    singleComment(void);
+void    multiComment(void);
+int     checkParen(void);
+int     checkCurly(void);
+int     checkSquare(void);
+int     checkSingleQuote(void);
+
+int main(void)
 {
-	int c, isQuote, isSlash;
+/*
+ *  c       : used for getchar();
+ *  isQuote     : check c is '"'
+ *  isSlash     : check c is '/'
+ */
+    int c, isQuote, isSlash;
 
-	isQuote = isSlash = FALSE;
-	while ((c = getchar()) != EOF) {
-		if (!isQuote) {
-			if (c == '"') {
-				isQuote = TRUE;
-				putchar('"');
-			} else {
-				if (!isSlash && (c == '/')) {
-					isSlash = TRUE;
-				} else if (isSlash && (c == '/')) {
-					isSlash = FALSE;
-					singleComment();
-				} else if (isSlash && (c == '*')) {
-					isSlash = FALSE;
-					multiComment();
-				} else {
-					if (isSlash) {
-						putchar('/');
-					}
-					isSlash = FALSE;
-					putchar(c);
-					switch (c) {
-						case '(':
-							if (checkParen()) {
-						
-								return;
-							}
-							break;
-						case '{':
-							if (checkCurly()) {
-						
-								return;
-							}
-							break;
-						case '[':
-							if (checkSquare()) {
-						
-								return;
-							}
-							break;
-						case '\'':
-							if (checkSingleQuote()) {
-						
-								return;
-							}
-							break;
-						case ')':
-						case '}':
-						case ']':
-							puts("");
-							puts("Syntax Error!");
+    isQuote = isSlash = FALSE;
+    while ((c = getchar()) != EOF) {
+        if (!isQuote) {
+            if (c == '"') {
+                isQuote = TRUE;
+                putchar('"');
+            } else {
+                if (!isSlash && (c == '/')) {
+                    isSlash = TRUE;
+                } else if (isSlash && (c == '/')) {
+                    isSlash = FALSE;
+                    singleComment();
+                } else if (isSlash && (c == '*')) {
+                    isSlash = FALSE;
+                    multiComment();
+                } else {
+                    if (isSlash) {
+                        putchar('/');
+                    }
+                    isSlash = FALSE;
+                    putchar(c);
+                    switch (c) {
+                        case '(':
+                            if (checkParen()) {
+                        
+                                return 1;
+                            }
+                            break;
+                        case '{':
+                            if (checkCurly()) {
+                        
+                                return 1;
+                            }
+                            break;
+                        case '[':
+                            if (checkSquare()) {
+                        
+                                return 1;
+                            }
+                            break;
+                        case '\'':
+                            if (checkSingleQuote()) {
+                        
+                                return 1;
+                            }
+                            break;
+                        case ')':
+                        case '}':
+                        case ']':
+                            puts("");
+                            puts("Syntax Error!");
 
-							return;
-						default:
-							break;
-					}
-				}
-			}
-		} else {
-			if (c == '"') {
-				isQuote = FALSE;
-			}
-			putchar(c);
-		}
-	}
+                            return 1;
+                        default:
+                            break;
+                    }
+                }
+            }
+        } else {
+            if (c == '"') {
+                isQuote = FALSE;
+            }
+            putchar(c);
+        }
+    }
 
-	return;
+    return 0;
 }
 
 /*
- *	singleComment(void)	: get character until c = '\n'
- *
- *	c			: used for getchar();
+ *  singleComment(void) : get character until c = '\n'
  */
 void singleComment(void)
 {
-	int c;
+/*
+ *  c : used for getchar();
+ */
+    int c;
 
-	while ((c = getchar()) != EOF) {
-		if (c == '\n') {
-			putchar('\n');
-			break;
-		}
-	}	
+    while ((c = getchar()) != EOF) {
+        if (c == '\n') {
+            putchar('\n');
+            break;
+        }
+    }   
 
-	return;
+    return;
 }
 
 /*
- *	multiComment(void)	: get character until c_n = '*' && c_(n + 1) = '/'
- *
- *	c			: used for getchar();
- *	isAsterisk		: check c is '*'
+ *  multiComment(void)  : get character until c_n = '*' && c_(n + 1) = '/'
  */
 void multiComment(void)
 {
-	int c, isAsterisk;
+/*
+ *  c           : used for getchar();
+ *  isAsterisk  : check c is '*'
+ */
+    int c, isAsterisk;
 
-	isAsterisk = FALSE;
-	while ((c = getchar()) != EOF) {
-		if (!isAsterisk && (c == '*')) {
-			isAsterisk = TRUE;
-		} else if (isAsterisk && (c == '/')) {
-			break;
-		} else {
-			isAsterisk = FALSE;
-		}
-	}	
+    isAsterisk = FALSE;
+    while ((c = getchar()) != EOF) {
+        if (!isAsterisk && (c == '*')) {
+            isAsterisk = TRUE;
+        } else if (isAsterisk && (c == '/')) {
+            break;
+        } else {
+            isAsterisk = FALSE;
+        }
+    }   
 
-	return;
+    return;
 }
 
 /*
- *	checkParen(void)	: check syntax error on parenthesis
- *
- *	c			: used for getchar();
+ *  checkParen(void)    : check syntax error on parenthesis
  */
 int checkParen(void)
 {
-	int c;
+/*
+ *  c : used for getchar();
+ */
+    int c;
 
-	while ((c = getchar()) != EOF) {
-		putchar(c);
-		if ((c == '(') || (c == ')') || (c == '\n')) {
-			if (c != ')') {
-				puts("");
-				puts("Syntax Error!");
-				
-				return 1;
-			}
-			break;
-		}
-	}
+    while ((c = getchar()) != EOF) {
+        putchar(c);
+        if ((c == '(') || (c == ')') || (c == '\n')) {
+            if (c != ')') {
+                puts("");
+                puts("Syntax Error!");
+                
+                return 1;
+            }
+            break;
+        }
+    }
 
-	return 0;
+    return 0;
 }
 
 /*
- *	checkCurly(void)	: check syntax error on curly brackets
- *
- *	c			: used for getchar();
+ *  checkCurly(void)    : check syntax error on curly brackets
  */
 int checkCurly(void)
 {
-	int c;
+/*  
+ *  c : used for getchar();
+ */
+    int c;
 
-	while ((c = getchar()) != EOF) {
-		putchar(c);
-		if ((c == '{') || (c == '}') || (c == '\n')) {
-			if (c != '}') {
-				puts("");
-				puts("Syntax Error!");
-				
-				return 1;
-			}
-			break;
-		}
-	}
+    while ((c = getchar()) != EOF) {
+        putchar(c);
+        if ((c == '{') || (c == '}') || (c == '\n')) {
+            if (c != '}') {
+                puts("");
+                puts("Syntax Error!");
+                
+                return 1;
+            }
+            break;
+        }
+    }
 
-	return 0;
+    return 0;
 }
 
 /*
- *	checkSquare(void)	: check syntax error on square brackets
- *
- *	c			: used for getchar();
+ *  checkSquare(void)   : check syntax error on square brackets
  */
 int checkSquare(void)
 {
-	int c;
+/*
+ *  c : used for getchar();
+ */
+    int c;
 
-	while ((c = getchar()) != EOF) {
-		putchar(c);
-		if ((c == '[') || (c == ']') || (c == '\n')) {
-			if (c != ']') {
-				puts("");
-				puts("Syntax Error!");
+    while ((c = getchar()) != EOF) {
+        putchar(c);
+        if ((c == '[') || (c == ']') || (c == '\n')) {
+            if (c != ']') {
+                puts("");
+                puts("Syntax Error!");
 
-				return 1;
-			}
-			break;
-		}
-	}
+                return 1;
+            }
+            break;
+        }
+    }
 
-	return 0;
+    return 0;
 }
 
 /*
- *	checkSingleQuote(void)	: check syntax error on single quote
- *
- *	c			: used for getchar();
+ *  checkSingleQuote(void)  : check syntax error on single quote
  */
 int checkSingleQuote(void)
 {
-	int c;
+/*
+ *  c : used for getchar();
+ */
+    int c;
 
-	while ((c = getchar()) != EOF) {
-		putchar(c);
-		if ((c == '\'') || (c == '\n')) {
-			if (c != '\'') {
-				puts("");
-				puts("Syntax Error!");
-	
-				return 1;
-			}
-			break;
-		}
-	}
+    while ((c = getchar()) != EOF) {
+        putchar(c);
+        if ((c == '\'') || (c == '\n')) {
+            if (c != '\'') {
+                puts("");
+                puts("Syntax Error!");
+    
+                return 1;
+            }
+            break;
+        }
+    }
 
-	return 0;
+    return 0;
 }
 ```

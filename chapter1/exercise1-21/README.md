@@ -7,43 +7,43 @@
 
 #include <stdio.h>
 
-void main(void)
+int main(void)
 {
-	int n, c, index, count;
+    int n, c, index, count;
 
-	index = count = 0;
-	printf("Tab size?\n");
-	scanf("%d", &n);
-	getchar();	//	skip '\n'
-	printf("Set tab size: %d, expressed blank as +(purpose to check it works.)\n", n);
-	while ((c = getchar()) != EOF) {
-		if (c == ' ') {
-			++count;
-			if (!((index + count) % n)) {
-				while (count) {
-					++index;
-					--count;
-					putchar(' ');
-				}
-			}
-		} else if (c == '\t') {
-			count = n - (index % n);
-			while (count) {
-				++index;
-				--count;
-				putchar(' ');
-			}
-		} else {
-			while (count) {
-				++index;
-				--count;
-				putchar('+');
-			}
-			putchar(c);
-			(c == '\n') ? (index = 0) : ++index;		
-		}
-	}
-	
-	return;
+    index = count = 0;
+    printf("Tab size?\n");
+    scanf("%d", &n);
+    getchar();  /*  skip '\n'   */
+    printf("Set tab size: %d, expressed blank as +(purpose to check it works.)\n", n);
+    while ((c = getchar()) != EOF) {
+        if (c == ' ') {
+            ++count;
+            if (!((index + count) % n)) {
+                while (count) {
+                    ++index;
+                    --count;
+                    putchar(' ');
+                }
+            }
+        } else if (c == '\t') {
+            count = n - (index % n);
+            while (count) {
+                ++index;
+                --count;
+                putchar(' ');
+            }
+        } else {
+            while (count) {
+                ++index;
+                --count;
+                putchar('+');
+            }
+            putchar(c);
+            (c == '\n') ? (index = 0) : ++index;        
+        }
+    }
+    
+    return 0;
 }
 ```

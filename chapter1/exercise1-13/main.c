@@ -6,17 +6,17 @@
 
 #include <stdio.h>
 
-void main(void)
+int main(void)
 {
-	int c;
+    int c;
 
-	while ((c = getchar()) != EOF) {
-		if((c == ' ') || (c == '\n') || (c == '\t')) {
-			putchar('\n');
-		} else {
-			putchar('=');
-		}
-	}
+    while ((c = getchar()) != EOF) {
+        if ((c == ' ') || (c == '\n') || (c == '\t')) {
+            putchar('\n');
+        } else {
+            putchar('=');
+        }
+    }
   
-	return;
+    return 0;
 }

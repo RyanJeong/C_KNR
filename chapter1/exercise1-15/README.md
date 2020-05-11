@@ -5,42 +5,44 @@
 
 #include <stdio.h>
 
-#define LOWER 0
-#define UPPER 300
-#define STEP  20
+enum {
+    LOWER   = 0,
+    UPPER   = 300,
+    STEP    = 20
+};
 
 void fahrToCel(void);
 void celToFahr(void);
 
-void main()
+int main(void)
 {
-	fahrToCel();
-	celToFahr();
+    fahrToCel();
+    celToFahr();
   
-	return;
+    return 0;
 }
 
 void fahrToCel()
 {
-	float fahr;
+    float fahr;
 
-	printf("%s\n", "Fahrenheit to Celsius Conversion");
-	for(fahr = LOWER; fahr <= UPPER; fahr += STEP) {
-		printf("%3.0f %6.1f\n", fahr, (5.0 / 9.0) * (fahr - 32.0));
-	}
+    printf("%s\n", "Fahrenheit to Celsius Conversion");
+    for (fahr = LOWER; fahr <= UPPER; fahr += STEP) {
+        printf("%3.0f %6.1f\n", fahr, (5.0 / 9.0)*(fahr - 32.0));
+    }
   
-	return;
+    return;
 }
 
 void celToFahr()
 {
-	float celsius;
+    float celsius;
   
-	printf("%s\n", "Celsius to Fahrenheit Conversion");
-	for(celsius = LOWER; celsius <= UPPER; celsius += STEP) {
-		printf("%3.0f %6.1f\n", celsius, (9.0 / 5.0 * celsius) + 32);
-	}
+    printf("%s\n", "Celsius to Fahrenheit Conversion");
+    for (celsius = LOWER; celsius <= UPPER; celsius += STEP) {
+        printf("%3.0f %6.1f\n", celsius, (9.0 / 5.0 * celsius)+32);
+    }
 
-	return;
+    return;
 }
 ```

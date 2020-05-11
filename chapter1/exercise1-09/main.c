@@ -4,25 +4,28 @@
  */
 
 #include <stdio.h>
-#define ON	1	/*	start of blank	*/
-#define OFF	0	/*	end of blank	*/
 
-void main()
+enum {
+    OFF,    /*  start of blank  */
+    ON      /*  end of blank    */
+};
+
+int main(void)
 {
-	int c, state;
+    int c, state;
 
-	state = OFF;
-	while ((c = getchar()) != EOF) {
-		if (c == ' ') {
-			if (!state) {
-				putchar(c);
-				state = ON;
-			}
-		} else {
-			putchar(c);
-			state = OFF;
-		}
-	}
+    state = OFF;
+    while ((c = getchar()) != EOF) {
+        if (c == ' ') {
+            if (!state) {
+                putchar(c);
+                state = ON;
+            }
+        } else {
+            putchar(c);
+            state = OFF;
+        }
+    }
   
-	return;
+    return 0;
 }

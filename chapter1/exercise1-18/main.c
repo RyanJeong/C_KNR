@@ -4,49 +4,52 @@
  */
 
 #include <stdio.h>
-#define MAXLINE 1000		/*	maximum input line size	*/
 
-int 	_getline(void);
+enum {
+    MAXLINE = 1000  /*  maximum input line size */
+};
 
-char 	line[MAXLINE];		/*	current input line	*/
+int     getline(void);
 
-void main()
+char    line[MAXLINE];      /*  current input line  */
+
+int main(void)
 {
-	int 		len;
-	char		c;
-	extern char 	line[];
-	
-	while ((len = _getline()) > 0) {
-		for (--len; len; --len) {	//	init-expression: to skip null character
-			c = line[len];
-			if ((c != ' ') && (c != '\t') && (c != '\n')) {
-				break;
-			}
-		}
-		if (len) {
-			line[len + 1]	= '\n';	//	recovery of excess parts
-			line[len + 2]	= '\0';
-			puts(line);
-		}
-	}
+    extern char line[];
+    char        c;
+    int         len;
+    
+    while ((len = getline()) > 0) {
+        for (--len; len; --len) {   /*  init-expression: to skip null character */
+            c = line[len];
+            if ((c != ' ') && (c != '\t') && (c != '\n')) {
+                break;
+            }
+        }
+        if (len) {
+            line[len + 1]   = '\n'; /*  recovery of excess parts    */
+            line[len + 2]   = '\0';
+            puts(line);
+        }
+    }
 
-	return;
+    return 0;
 }
 
-/*	_getline: read a line into s, return length	*/
-int _getline()
+/*  getline: read a line into s, return length  */
+int getline()
 {
-	int 		c, i;
-	extern char 	line[];
-	
-	for (i = 0; i < (MAXLINE - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
-		line[i] = c;
-	}
-	if (c == '\n') {
-		line[i] = c;
-		++i;
-	}
-	line[i] = '\0';
-	
-	return i;
+    extern char line[];
+    int         c, i;
+    
+    for (i = 0; i < (MAXLINE - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
+        line[i] = c;
+    }
+    if (c == '\n') {
+        line[i] = c;
+        ++i;
+    }
+    line[i] = '\0';
+    
+    return i;
 }

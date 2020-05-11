@@ -5,10 +5,10 @@
 
 #include <stdio.h>
 
-void main()
+int main(void)
 {
-	printf("value of EOF is %d\n", EOF);
+    printf("value of EOF is %d\n", EOF);
   
-	return;
+    return 0;
 }
 ```

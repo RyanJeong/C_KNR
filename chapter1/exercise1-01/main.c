@@ -5,11 +5,11 @@
  
 #include <stdio.h>
 
-void main()
+int main(void)
 {
-	printf("hello, ");
-	printf("world");
-	printf("\n");
+    printf("hello, ");
+    printf("world");
+    printf("\n");
   
-	return;
+    return 0;
 }

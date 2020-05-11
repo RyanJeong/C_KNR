@@ -1,53 +1,59 @@
+```Text
+$cc main.c -o run -ansi
+```
 ```c
 /*
- *	Write a function reverse(s) that reverses the character string s. 
- *	Use it to write a program that reverses its input a line at a time.
+ *  Write a function reverse(s) that reverses the character string s. 
+ *  Use it to write a program that reverses its input a line at a time.
  */
 
 #include <stdio.h>
-#define MAXLINE 1000		/*	maximum input line size	*/
 
-int 	_getline(void);
+enum {
+    MAXLINE = 1000  /*  maximum input line size */
+};
 
-char 	line[MAXLINE];		/*	current input line	*/
+int     getline(void);
 
-void main()
+char    line[MAXLINE];      /*  current input line  */
+
+int main(void)
 {
-	int 		len;
-	char		c;
-	extern char 	line[];
-	
-	while ((len = _getline()) > 0) {
-		while (line[len] == '\0') {
-			--len;
-		}
-		while (line[len] == '\n') {
-			--len;
-		}
-		while (len >= 0) {
-			putchar(line[len--]);
-		}	
-		putchar('\n');
-	}
+    extern char line[];
+    char        c;
+    int         len;
+    
+    while ((len = getline()) > 0) {
+        while (line[len] == '\0') {
+            --len;
+        }
+        while (line[len] == '\n') {
+            --len;
+        }
+        while (len >= 0) {
+            putchar(line[len--]);
+        }   
+        putchar('\n');
+    }
 
-	return;
+    return 0;
 }
 
-/*	_getline: read a line into s, return length	*/
-int _getline()
+/*  getline: read a line into s, return length  */
+int getline()
 {
-	int 		c, i;
-	extern char 	line[];
-	
-	for (i = 0; i < (MAXLINE - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
-		line[i] = c;
-	}
-	if (c == '\n') {
-		line[i] = c;
-		++i;
-	}
-	line[i] = '\0';
-	
-	return i;
+    extern char line[];
+    int         c, i;
+    
+    for (i = 0; i < (MAXLINE - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
+        line[i] = c;
+    }
+    if (c == '\n') {
+        line[i] = c;
+        ++i;
+    }
+    line[i] = '\0';
+    
+    return i;
 }
 ```

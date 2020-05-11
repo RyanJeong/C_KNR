@@ -5,17 +5,17 @@
 
 #include <stdio.h>
 
-void main()
+int main(void)
 {
-	int c;
+    int c;
   
-	while ((c = getchar()) != EOF) {
-		if ((c == ' ') || (c == '\t')) {
-			c = '\n';
-		}
-		putchar(c);
-	}
+    while ((c = getchar()) != EOF) {
+        if ((c == ' ') || (c == '\t')) {
+            c = '\n';
+        }
+        putchar(c);
+    }
   
-	return;
+    return 0;
 }
 ```
