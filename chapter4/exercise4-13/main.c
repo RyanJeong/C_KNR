@@ -18,7 +18,6 @@ int main(void)
     int     len;
     
     while ((len = getline(line)) > 0) {
-        printf("%d\n", len);
         if (line[len-2] == '\n') {
             line[len-2] = '\0';
         }
@@ -49,16 +48,15 @@ int getline(char s[])
 /*  reverse: reverses the character string s, recursive version, return nothing   */
 void reverse(char s[])
 {
-    char *p, temp;
+    char        *p, temp;
+    static int  count;
 
-    p       = s + strlen(s) - 1;    /*  TODO: Fix it    */
-    printf("%p %p\n", s, p);
+    ++count;
+    p       = s + strlen(s) - count;    /*  TODO: Fix it    */
     temp    = *s;
     *s++    = *p;
     *p--    = temp;
-    if (s < p) {
-        reverse(s);
-    }
+    (s < p) ? reverse(s) : (count = 0);
 
     return;
 }
