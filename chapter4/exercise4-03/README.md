@@ -8,10 +8,12 @@
 #include <stdlib.h> /* for atof() */
 #include <ctype.h>
 
-#define MAXOP 100   /* max size of operand or operator */
-#define NUMBER '0'  /* signal that a number was found */
-#define MAXVAL 100  /* maximum depth of val stack */
-#define BUFSIZE 100
+enum {
+    MAXOP   = 100,  /* max size of operand or operator */
+    NUMBER  = '0',  /* signal that a number was found */
+    MAXVAL  = 100,  /* maximum depth of val stack */
+    BUFSIZE = 100   /* max size of the buffer   */
+};
 
 int     getop(char []);
 void    push(double);
@@ -19,10 +21,10 @@ double  pop(void);
 int     getch(void);
 void    ungetch(int);
 
-int     sp = 0;         /* next free stack position */
-double  val[MAXVAL];    /* value stack */
 char    buf[BUFSIZE];   /* buffer for ungetch */
 int     bufp = 0;       /* next free position in buf */
+int     sp = 0;         /* next free stack position */
+double  val[MAXVAL];    /* value stack */
 
 /* reverse Polish calculator */
 
@@ -46,11 +48,11 @@ int     bufp = 0;       /* next free position in buf */
  *  4   -3      %
  *  -4  -3      %
  */
-int main()
+int main(void)
 {
+    char    s[MAXOP];
     int     type;
     double  op2;
-    char    s[MAXOP];
 
     while ((type = getop(s)) != EOF) {
         switch (type) {

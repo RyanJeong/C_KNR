@@ -32,11 +32,10 @@
 
 void expand(char *, char *);
 
-int main()
+int main(void)
 {
     char    *str[10], buf[SIZE];
     size_t  i;
-    int     c;
     
     *(str + 0) = "1-4--97-2";
     *(str + 1) = "-a--z-c9-3f-a";
@@ -67,7 +66,7 @@ void expand(char *s, char *t)
     while (1) {
         if (*s == '\0') {
             break;
-        } else if (*s != '-') { //  -a0-    : next step will be in here
+        } else if (*s != '-') { /*  -a0-    : next step will be in here */
             src = *s++;
             *t++ = src;
         } else {
@@ -75,7 +74,7 @@ void expand(char *s, char *t)
                 if (*s == '-') {
                     ++s;
                 } else {
-                    dest = *s++;    //  a-a-a , a--a--a, ..., a------a : next step will be in here,
+                    dest = *s++;    /*  a-a-a , a--a--a, ..., a------a : next step will be in here, */
                     if ((src >= '0') && (src <= '9')) {
                         if ((dest >= '0') && (dest <= '9')) {
                             while (src != dest) {

@@ -73,11 +73,11 @@ int     bufp = 0;       /* next free position in buf */
  *  3 4 ! 5 # +
  *      10
  */
-int main()
+int main(void)
 {
+    char    s[MAXOP];
     int     type;
     double  op2;
-    char    s[MAXOP];
 
     while ((type = getop(s)) != EOF) {
         switch (type) {
@@ -126,7 +126,6 @@ int main()
 
     return 0;
 }
-
 
 /* push: push f onto value stack */
 void push(double f)

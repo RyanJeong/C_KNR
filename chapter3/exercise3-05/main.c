@@ -14,8 +14,8 @@ void reverse(char *);
 int main()
 {
     char    buf[1 << 5];
-    size_t  i;
     int     pos, neg;
+    size_t  i;
 
     pos = 254;
     neg = -127;
@@ -31,9 +31,9 @@ int main()
 
 void itoa(int n, char *s, int b)
 {
+    char    *p;
     int     sign;
     size_t  temp;
-    char    *p;
     
     p       = s;
     sign    = n;
@@ -58,7 +58,7 @@ void reverse(char *s)
     while (*p != '\0') {
         ++p;
     }
-    --p;    // one step before('\0')
+    --p;    /*  one step before('\0')   */
     while (s < p) {
         c       = *s;
         *s++  = *p;

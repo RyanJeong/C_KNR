@@ -1,13 +1,9 @@
 /*  
  *  Add access to library functions like sin, exp, and pow. See <math.h> in Appendix B, Section 4.
- *  -----------
- *  $ gcc -o run main.c -lm
  */
-
 #include <stdio.h>
 #include <stdlib.h> /* for atof() */
 #include <ctype.h>
-#include <math.h>
 
 #define MAXOP 100   /* max size of operand or operator */
 #define NUMBER '0'  /* signal that a number was found */
@@ -74,20 +70,12 @@ int     bufp = 0;       /* next free position in buf */
  *      -8
  *  3 4 ! 5 # +
  *      10
- *  3.141592 2 / s
- *      1
- *  3 e
- *      20.085537
- *  3 4 ^
- *      81
- *  3.141592 4 / T
- *      0.99999967
  */
-int main()
+int main(void)
 {
+    char    s[MAXOP];
     int     type;
     double  op2;
-    char    s[MAXOP];
 
     while ((type = getop(s)) != EOF) {
         switch (type) {
@@ -125,25 +113,6 @@ int main()
         case '!':
             clear();
             break;
-        case '^':
-            op2 = pop();
-            push(pow(pop(), op2));
-            break;
-        case 's':
-        case 'S':
-            push(sin(pop()));
-            break;
-        case 'c':
-        case 'C':
-            push(cos(pop()));
-            break;
-        case 't':
-        case 'T':
-            push(tan(pop()));
-            break;
-        case 'e':
-            push(exp(pop()));
-            break;
         case '\n':
             printf("\t%.8g\n", pop());
             break;
@@ -155,7 +124,6 @@ int main()
 
     return 0;
 }
-
 
 /* push: push f onto value stack */
 void push(double f)
@@ -295,4 +263,5 @@ void clear(void)
 
     return;
 }
+
 

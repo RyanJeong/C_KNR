@@ -7,12 +7,12 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#define MAXLINE 1000 /* maximum input line length */
+#define MAXLINE 1000    /* maximum input line length */
 
 int     getLine(char *, int);
 double  atofEx(char *);
 
-int main()
+int main(void)
 {
     char line[MAXLINE];
 
@@ -34,8 +34,8 @@ int main()
 
 double atofEx(char *s)
 {
-    double  val, power;
     int     sign, exSign, ex;
+    double  val, power;
 
     while (isspace(*s)) {   /* skip white space */
         ++s;
@@ -83,8 +83,8 @@ double atofEx(char *s)
 /* getLine: get line into s, return length */
 int getLine(char *s, int lim)
 {
-    int     c;
     char    *p;
+    int     c;
 
     c = 0;
     p = s;
@@ -105,5 +105,4 @@ int getLine(char *s, int lim)
 
     return (s - p);
 }
-
 ```
