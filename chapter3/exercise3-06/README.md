@@ -1,8 +1,8 @@
 ```C
 /*
- *	Write a version of itoa that accepts three arguments instead of two.
- *	The third argument is a minimum field width;
- *	the converted number must be padded with blanks on the left if necessary to make it wide enough.
+ *  Write a version of itoa that accepts three arguments instead of two.
+ *  The third argument is a minimum field width;
+ *  the converted number must be padded with blanks on the left if necessary to make it wide enough.
  */
 
 #include <stdio.h>
@@ -16,14 +16,14 @@ void reverse(char *);
 
 int main(void)
 {
-    char    buf[SIZE];
     int     a, b, c, d, e;
+    char    buf[SIZE];
+
     a   = 102;
     b   = -2345;
     c   = 502831;
     d   = -9987734;
     e   = 1702523523;
-    
     itoa(a, buf, SIZE);
     printf("a: %s\n", buf);
     itoa(b, buf, SIZE);
@@ -40,8 +40,8 @@ int main(void)
 
 void itoa(int n, char *buf, size_t width)
 {
-    int     sign;
     char    *p;
+    int     sign;
     size_t  count;
     
     count   = 0;
@@ -74,7 +74,7 @@ void reverse(char *buf)
     while (*p != '\0') {
         ++p;
     }
-    --p;    // one step before('\0')
+    --p;    /* one step before('\0')    */
     while (buf < p) {
         c       = *buf;
         *buf++  = *p;

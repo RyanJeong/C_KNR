@@ -8,21 +8,22 @@
 
 #define MAX (1 << 8)
 
-int _getline(char [], int);
+int     getline(char [], int);
 void    escape(char *, char *);
-int main()
+
+int main(void)
 {
     char s[MAX], t[MAX];
 
-    _getline(t, MAX);
+    getline(t, MAX);
     escape(s, t);
     printf("%s: %s\n%s: %s\n", "Before: ", t, "After: ", s);
 
     return 0;
 }
 
-/*  _getline: read a line into s, return length */
-int _getline(char s[], int lim)
+/*  getline: read a line into s, return length */
+int getline(char s[], int lim)
 {
     int c, i;
     
@@ -42,7 +43,7 @@ void escape(char *s, char *t)
 {
     char c;
 
-    while (c = *t++) {
+    while ((c = *t++)) {
         switch (c) {
         case '\t':
             *s++ = '\\';

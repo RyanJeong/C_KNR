@@ -13,47 +13,58 @@ enum {
     MAXLINE = 1000  /*  maximum input line size */
 };
 
-int     getline(void);
-
-char    line[MAXLINE];      /*  current input line  */
+int     getline(char []);
+void    reverse(char []);
 
 int main(void)
 {
-    extern char line[];
-    char        c;
-    int         len;
+    char    line[MAXLINE];
+    int     len;
     
-    while ((len = getline()) > 0) {
-        while (line[len] == '\0') {
-            --len;
-        }
-        while (line[len] == '\n') {
-            --len;
-        }
-        while (len >= 0) {
-            putchar(line[len--]);
-        }   
-        putchar('\n');
+    while ((len = getline(line)) > 0) {
+        reverse(line);
+        puts(line);
     }
 
     return 0;
 }
 
 /*  getline: read a line into s, return length  */
-int getline()
+int getline(char s[])
 {
-    extern char line[];
-    int         c, i;
+    int c, i;
     
     for (i = 0; i < (MAXLINE - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
-        line[i] = c;
+        s[i] = c;
     }
     if (c == '\n') {
-        line[i] = c;
+        s[i] = c;
         ++i;
     }
-    line[i] = '\0';
+    s[i] = '\0';
     
     return i;
+}
+
+/*  reverse: reverses the character string s, return nothing   */
+void reverse(char s[])
+{
+    char *p, temp;
+
+    p = s;
+    while (*p++) {
+        ;
+    }
+    p--;
+    if (*--p == '\n') {
+        *p-- = '\0';
+    }
+    while (s < p) {
+        temp    = *s;
+        *s++    = *p;
+        *p--    = temp;
+    }
+
+    return;
 }
 ```

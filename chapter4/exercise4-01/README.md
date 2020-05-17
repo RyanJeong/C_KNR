@@ -14,13 +14,17 @@ int strrindex(char *, char *);
 /*
  *  Examples:
  * 
- * Could, would, and should are all used to talk about possible events or situations, but each one tells us something different.
- * Could is used to say that an action or event is possible. Would is used to talk about a possible or imagined situation, and is often used when that possible situation is not going to happen. Should is used to say that something is the proper or best thing to do, or to say that someone ought to do something or must do something.
+ *   Could, would, and should are all used to talk about possible events or situations,
+ * but each one tells us something different.
+ *   Could is used to say that an action or event is possible. Would is used to talk
+ * about a possible or imagined situation, and is often used when that possible situation
+ * is not going to happen. Should is used to say that something is the proper or best thing
+ * to do, or to say that someone ought to do something or must do something.
  */
 char *pattern = "ould"; /* pattern to search for */
 
 /* find all lines matching pattern */
-int main()
+int main(void)
 {
     char line[MAXLINE];
 

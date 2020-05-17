@@ -15,8 +15,6 @@ unsigned long htoi(char []);
 
 int main(void)
 {
-    int i, len;
-
     char *test[] = {
         "Assignment #4",
         "01010110",
@@ -33,8 +31,10 @@ int main(void)
         "dabedbefe",
         "xyz"
     };
+    int i, len;
+
     len = (int) (sizeof(test) / sizeof(char *));
-    for(i = 0; i < len; ++i) {
+    for (i = 0; i < len; ++i) {
         printf("%16s %16lu\n", test[i], htoi(test[i]));
     }
 

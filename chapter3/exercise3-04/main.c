@@ -24,8 +24,8 @@ int main(void)
 
 void itoa(int n, char *buf)
 {
-    int     sign;
     char    *p;
+    int     sign;
     
     p       = buf;
     sign    = n;
@@ -50,7 +50,7 @@ void reverse(char *buf)
     while (*p != '\0') {
         ++p;
     }
-    --p;    // one step before('\0')
+    --p;    /*  one step before('\0')   */
     while (buf < p) {
         c       = *buf;
         *buf++  = *p;

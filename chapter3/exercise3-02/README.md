@@ -1,81 +1,66 @@
 ```c
 /*
- *  Our binary search makes two tests inside the loop, when one would suffice (at the price of more tests outside).
- *  Write a version with only one test inside the loop and measure the difference in run-time.
+ *  Write a function escape(s,t) that converts characters like newline and tab into visible escape sequences
+ *  like \n and \t as it copies the string t to s. Use a switch. 
+ *  Write a function for the other direction as well, converting escape sequences into the real characters.
  */
+
 #include <stdio.h>
-#include <time.h>
-#define MAX 32768
 
-int binsearch1(int, int [], int);
-int binsearch2(int, int [], int);
+#define MAX (1 << 8)
 
-int main()
+int     getline(char [], int);
+void    escape(char *, char *);
+
+int main(void)
 {
-    int series[MAX], i, target, result;
-    clock_t start, end;
-    double  cpu_time_used;
+    char s[MAX], t[MAX];
 
-    for (i = 0; i < MAX; ++i) {
-        *(series + i) = i;
-    }
-  
-    printf("%s\n%s\n", 
-            "Binary search performance between two tests model and one test model.",
-            "Input number between 0 to 32,767.");
-    scanf("%d", &target);
-
-    start   = clock();
-    result  = binsearch1(target, series, MAX);  
-    end = clock();
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("Binsearch1's result: %d, used time: %lf\n", result, cpu_time_used);
-    start   = clock();
-    result  = binsearch2(target, series, MAX);  
-    end = clock();
-    cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
-    printf("Binsearch2's result: %d, used time: %lf\n", result, cpu_time_used);
+    getline(t, MAX);
+    escape(s, t);
+    printf("%s: %s\n%s: %s\n", "Before: ", t, "After: ", s);
 
     return 0;
 }
 
-int binsearch1(int x, int v[], int n)
+/*  getline: read a line into s, return length */
+int getline(char s[], int lim)
 {
-    int low, high, mid;
-
-    low = 0;
-    high    = (n - 1);
-    while (low <= high) {
-        mid = (low + high) / 2;
-        if (x < v[mid]) {
-            high = (mid - 1);
-        } else if (x > v[mid]) {
-            low = (mid + 1);
-        } else {
-
-            return mid; // found match
-        }
+    int c, i;
+    
+    for (i = 0; i < (lim - 1) && (c = getchar()) != EOF && c != '\n'; ++i) {
+        s[i] = c;
     }
-
-    return (-1);    // no match
+    if (c == '\n') {
+        s[i] = c;
+        ++i;
+    }
+    s[i] = '\0';
+    
+    return i;
 }
 
-int binsearch2(int x, int v[], int n)
+void escape(char *s, char *t)
 {
-    int low, high, mid;
+    char c;
 
-    low = 0;
-    high    = (n - 1);
-    mid = (low + high) >> 1;
-    while ((low < high) && (x != v[mid])) {
-        if (x > v[mid]) {
-            low = (mid + 1);
-        } else {
-            high = (mid - 1);
+    while ((c = *t++)) {
+        switch (c) {
+        case '\t':
+            *s++ = '\\';
+            *s++ = 't';
+            break;
+        case '\n':
+            *s++ = '\\';
+            *s++ = 'n';
+            break;
+        default:
+            *s++ = c;
+            break;
         }
-        mid = (low + high) >> 1;
     }
+    *s = c;
 
-    return ((x == v[mid]) ? mid : (-1));
+    return;
 }
 ```
