@@ -290,7 +290,7 @@ struct a {
 
 #endif
 
-#ifndef A
+#ifdef A
 #define NKEYS 32
 
 char *keyword[NKEYS];
@@ -334,6 +334,37 @@ struct key {
 ...
 
 
+void aa(){
+struct {
+    char c1;
+    char c2;
+    char c3;
+} ccc;
 
+struct {
+    short s;
+    int   i;
+    char  c;
+} sic;
+
+struct {
+    short s;
+    char  c;
+    int   i;
+} sci;
+
+ccc = { 0, 0, 0 };
+sic = { 0, 0, 0 };
+sci = { 0, 0, 0 };
+}
+
+
+
+#endif
+
+#ifndef B
+struct key *binsearch(char *word, struct key *tab, int n);
+struct key *
+binsearch(char *word, struct key *tab, int n);
 
 #endif

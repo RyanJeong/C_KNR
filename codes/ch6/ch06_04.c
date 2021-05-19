@@ -18,25 +18,25 @@ struct key {
     "struct",   0,  "switch",   0,  "typedef",  0,  "union",  0,
     "unsigned", 0,  "void",     0,  "volatile", 0,  "while",  0
 };
-int binsearch(char *, struct key *, int);
+struct key *binsearch(char *, struct key [], int);
 int getword(char *, int);
 
-/* count C keywords */
+/* count C keywords; pointer version */
 int main(void)
 {
-    int     n;
-    char    word[MAXWORD];
+    struct key *p;
+    char       word[MAXWORD];
 
     while (getword(word, MAXWORD) != EOF) {
         if (isalpha(word[0])) {
-            if ((n = binsearch(word, keytab, NKEYS)) >= 0) {
-                keytab[n].count++;
+            if ((p = binsearch(word, keytab, NKEYS)) != NULL) {
+                p->count++;
             }
         }
     }
-    for (n = 0; n < NKEYS; n++) {
-        if (keytab[n].count > 0) {
-            printf("%4d %s\n", keytab[n].count, keytab[n].word);
+    for (p = keytab; p < keytab + NKEYS; p++) {
+        if (p->count > 0) {
+            printf("%4d %s\n", p->count, p->word);
         }
     }
 
@@ -44,17 +44,17 @@ int main(void)
 }
 
 /* binsearch: find word in tab[0]...tab[n-1] */
-int binsearch(char *word, struct key tab[], int n)
+struct key *binsearch(char *word, struct key tab[], int n)
 {
-    int cond;
-    int low, high, mid;
+    int        cond;
+    struct key *low  = &tab[0];
+    struct key *high = &tab[n];
+    struct key *mid;
 
-    low = 0;
-    high = n - 1;
-    while (low <= high) {
-        mid = (low + high) / 2;
-        if ((cond = strcmp(word, tab[mid].word)) < 0) {
-            high = mid - 1;
+    while (low < high) {
+        mid = low + (high - low) / 2; /* mid = (low + high) / 2, WRONG! */
+        if ((cond = strcmp(word, mid->word)) < 0) {
+            high = mid;
         } else if (cond > 0) {
             low = mid + 1;
         } else {
@@ -63,15 +63,15 @@ int binsearch(char *word, struct key tab[], int n)
         }
     }
 
-    return -1;
+    return NULL;
 }
 
 /* getword: get next word or character from input */
 int getword(char *word, int lim)
 {
-    int     c, getch(void);
-    void    ungetch(int);
-    char    *w;
+    int  c, getch(void);
+    void ungetch(int);
+    char *w;
 
     w = word;
     while (isspace(c = getch())) {

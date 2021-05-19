@@ -1,97 +1,96 @@
 #include <stdio.h>
 #include <ctype.h>
-#include <string.h>
 
 #define MAXWORD 100
-#define NKEYS   (sizeof keytab / sizeof(struct key))
 
-struct key {
-    char *word;
-    int count;
-} keytab[] = {
-    "auto",     0,  "break",    0,  "case",     0,  "char",   0,
-    "const",    0,  "continue", 0,  "default",  0,  "do",     0,
-    "double",   0,  "else",     0,  "enum",     0,  "extern", 0,
-    "float",    0,  "for",      0,  "goto",     0,  "if",     0,
-    "int",      0,  "long",     0,  "register", 0,  "return", 0,
-    "short",    0,  "signed",   0,  "sizeof",   0,  "static", 0,
-    "struct",   0,  "switch",   0,  "typedef",  0,  "union",  0,
-    "unsigned", 0,  "void",     0,  "volatile", 0,  "while",  0
+struct tnode {           /* the tree node: */
+    char *word;          /* points to the text */
+    int count;           /* number of occurrences */
+    struct tnode *left;  /* left child */
+    struct tnode *right; /* right child */
 };
-int binsearch(char *, struct key *, int);
-int getword(char *, int);
 
-/* count C keywords */
+struct tnode *addtree(struct tnode *, char *);
+void         treeprint(struct tnode *);
+int          getword(char *, int);
+
+/* word frequency count */
 int main(void)
 {
-    int     n;
-    char    word[MAXWORD];
+    struct tnode *root;
+    char   word[MAXWORD];
 
+    root = NULL;
     while (getword(word, MAXWORD) != EOF) {
         if (isalpha(word[0])) {
-            if ((n = binsearch(word, keytab, NKEYS)) >= 0) {
-                keytab[n].count++;
-            }
+            root = addtree(root, word);
         }
     }
-    for (n = 0; n < NKEYS; n++) {
-        if (keytab[n].count > 0) {
-            printf("%4d %s\n", keytab[n].count, keytab[n].word);
-        }
-    }
+    treeprint(root);
 
     return 0;
 }
 
-/* binsearch: find word in tab[0]...tab[n-1] */
-int binsearch(char *word, struct key tab[], int n)
+#include <string.h>
+
+struct tnode *talloc(void);
+char         *strdup(char *);
+
+/* addtree: add a node with w, at or below p */
+struct tnode *addtree(struct tnode *p, char *w)
 {
     int cond;
-    int low, high, mid;
 
-    low = 0;
-    high = n - 1;
-    while (low <= high) {
-        mid = (low + high) / 2;
-        if ((cond = strcmp(word, tab[mid].word)) < 0) {
-            high = mid - 1;
-        } else if (cond > 0) {
-            low = mid + 1;
-        } else {
-
-            return mid;
-        }
+    if (!p) { /* p == NULL, a new word has arrived */
+        p        = talloc();  /* make a new node */
+        p->word  = strdup(w);
+        p->count = 1;
+        p->left  = p->right = NULL;
+    } else if ((cond = strcmp(w, p->word)) > 0) { 
+        /* greater than into right subtree */
+        p->right = addtree(p->right, w);
+    } else if (cond < 0) { 
+        /* less than into left subtree */
+        p->left = addtree(p->left, w);
+    } else {  
+        /* repeated word */
+        p->count++;
     }
 
-    return -1;
+    return p;
 }
 
-/* getword: get next word or character from input */
-int getword(char *word, int lim)
+/* treeprint: in-order print of tree p */
+void treeprint(struct tnode *p)
 {
-    int     c, getch(void);
-    void    ungetch(int);
-    char    *w;
+    if (p) { /* p != NULL */
+        treeprint(p->left);
+        printf("%4d %s\n", p->count, p->word);
+        treeprint(p->right);
+    }
 
-    w = word;
-    while (isspace(c = getch())) {
-        ;
-    }
-    if (c != EOF) {
-        *w++ = c;
-    }
-    if (!isalpha(c)) {
-        *w = '\0';
+    return;
+}
 
-        return c;
-    }
-    for (; --lim > 0; w++) {
-        if (!isalnum(*w = getch())) {
-            ungetch(*w);
-            break;
-        }
-    }
-    *w = '\0';
+#include <stdlib.h>
 
-    return word[0];
+/* talloc: make a tnode */
+struct tnode *talloc(void)
+{
+
+    return (struct tnode *) malloc(sizeof(struct tnode));
+}
+
+
+char *strdup(char *s)
+{
+    char *p;
+
+    /* make a duplicate of s */
+    p = (char *) malloc(strlen(s) + 1); /* +1 for '\0' */
+    if (p) { /* p != NULL */
+        strcpy(p, s);
+    }
+
+    return p;
 }
