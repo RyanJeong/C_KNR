@@ -10,5 +10,6 @@ struct tnode {           /* the tree node: */
 
 struct tnode *addtree(struct tnode *, char *);
 void         treeprint(struct tnode *);
+struct tnode *talloc(void);
 
 #endif

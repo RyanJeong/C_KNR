@@ -1,9 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include "tree.h"
 
-struct tnode *talloc(void);
-char         *strdup(char *);
+char *strdup(char *);
 
 /* addtree: add a node with w, at or below p */
 struct tnode *addtree(struct tnode *p, char *w)
@@ -39,4 +39,11 @@ void treeprint(struct tnode *p)
     }
 
     return;
+}
+
+/* talloc: make a tnode */
+struct tnode *talloc(void)
+{
+
+    return (struct tnode *) malloc(sizeof(struct tnode));
 }

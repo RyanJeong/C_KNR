@@ -362,9 +362,50 @@ sci = { 0, 0, 0 };
 
 #endif
 
-#ifndef B
+#ifdef B
 struct key *binsearch(char *word, struct key *tab, int n);
 struct key *
 binsearch(char *word, struct key *tab, int n);
+
+#define IN 1
+
+state = IN;
+
+
+#endif
+#ifdef B
+#include <stdlib.h>
+
+typedef int Length;
+
+Length len, maxlen;
+Length *lengths[];
+
+#define MAXLINES 10000
+
+typedef char *String;
+
+String p, lineptr[MAXLINES], alloc(int);
+int strcmp(String, String);
+p = (String) malloc(100);
+
+typedef struct tnode *Treeptr;
+
+typedef struct tnode { /*the tree node: */
+    char    *word;     /* points to the text */
+    int     count;     /* number of occurrences */
+    Treeptr left;      /* left child */
+    Treeptr right;     /* right child */
+} Treenode;
+
+Treeptr talloc(void)
+{
+    
+    return (Treeptr) malloc(sizeof(Treenode));
+}
+
+typedef int (*PFI)(char *, char *);
+
+PFI strcmp, numcmp;
 
 #endif
