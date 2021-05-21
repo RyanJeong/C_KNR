@@ -8,7 +8,6 @@ struct {
 
 int main(void)
 {
-
     bits.a = 1;   /*         1 */
     bits.b = 2;   /*        10 */
     bits.c = 1;   /*         1 */
@@ -16,3 +15,4 @@ int main(void)
 
     return 0;
 }
+
