@@ -409,3 +409,126 @@ typedef int (*PFI)(char *, char *);
 PFI strcmp, numcmp;
 
 #endif
+#ifdef A
+#include <stddef.h>
+
+#ifdef _MSC_VER
+  typedef unsigned __int64 ImU64;     // 64-bit unsigned integer
+#else
+  typedef unsigned long long ImU64;   // 64-bit unsigned integer
+#endif 
+
+void *malloc(unsigned int n);
+void *malloc(size_t       n);
+
+typedef struct tnode *Treeptr;
+
+typedef struct tnode { /*the tree node: */
+    char    *word;     /* points to the text */
+    int     count;     /* number of occurrences */
+    Treeptr left;      /* left child */
+    Treeptr right;     /* right child */
+} Treenode;
+
+Treeptr talloc(void)
+{
+    
+    return (Treeptr) malloc(sizeof(Treenode));
+}
+#endif
+#ifdef B
+union u_tag {
+    int  ival;
+    float fval;
+    char *sval;
+} u;
+
+union-name.member
+union-pointer->member
+
+#endif
+
+#ifdef C
+#define NSYM 100
+
+struct {
+    char *name;
+    int  flags;
+    int  utype;
+    union {
+        int   ival;
+        float fval;
+        char  *sval;
+    } u;
+} symtab[NSYM];
+
+enum {
+    INT,
+    FLOAT,
+    STRING
+};
+
+void f() {
+    int i = 0;
+
+    if (symtab[i].utype == INT) {
+        printf("%d\n", symtab[i].u.ival);
+    } else if (symtab[i].utype == FLOAT) {
+        printf("%f\n", symtab[i].u.fval);
+    } else if (symtab[i].utype == STRING) {
+        printf("%s\n", symtab[i].u.sval);
+    } else {
+        printf("bad type %d in utype\n", symtab[i].utype);
+    }
+}
+
+
+#endif
+#ifdef D
+#include <stdio.h>
+
+#define KEYWORD  01
+#define EXTERNAL 02
+#define STATIC   04
+
+#define NSYM 100
+
+struct{
+    int a:4;
+    unsigned b : 4;
+} a;
+
+void f()
+{
+    unsigned int flags;
+
+    flags |= EXTERNAL | STATIC;
+    flags &= ~(EXTERNAL | STATIC);
+    if ((flags & (EXTERNAL | STATIC)) == 0) { ... }
+
+    return;
+}
+
+struct {
+    char *name;
+    struct {
+        unsigned int is_keyword : 1;
+        unsigned int is_extern  : 1;
+        unsigned int is_static  : 1;
+    } flags;
+    int  utype;
+    union {
+        int   ival;
+        float fval;
+        char  *sval;
+    } u;
+} symtab[NSYM];
+
+void ff()
+{
+    int i = 0;
+    symtab[i].flags.is_extern  = 1;
+    symtab[i].flags.is_keyword = symtab[i].flags.is_static = 0;
+    if (!(symtab[i].flags.is_extern || symtab[i].flags.is_static)) { ... }
+}
+#endif
