@@ -1,18 +1,20 @@
-struct {
-    unsigned int   a : 1;
-    unsigned int   b : 2;
-    unsigned short   : 0;
-    unsigned int   c : 1; 
-    unsigned int   d : 8;
-} bits;
+#include <stdio.h>
 
 int main(void)
 {
+    float fahr, celsius;
+    int  lower, upper, step;
 
-    bits.a = 1;   /*         1 */
-    bits.b = 2;   /*        10 */
-    bits.c = 1;   /*         1 */
-    bits.d = 128; /* 1000 0000 */
+    lower = 0;
+    upper = 300;
+    step = 20;
+
+    fahr = lower;
+    while (fahr <= upper) {
+        celsius = (fahr/(5.0/9.0)) + 32;
+        printf("%3.0f %6.1f\n", fahr, celsius);
+        fahr = fahr + step;
+    }
 
     return 0;
 }
