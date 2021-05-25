@@ -1,4 +1,7 @@
 # :set noexpandtab
+#################################################
+# in .bashrc, copy it: alias QWE='cp ~/Makefile ./ && make && ls -al'
+#################################################
 #Tell make to make one .out file for each .cpp file found in the current directory
 # all: $(patsubst %.cpp, %.out, $(wildcard *.cpp))
 # all: $(patsubst %.c, %.out, $(wildcard *.c))
