@@ -59,8 +59,8 @@ int main(void)
     printf("%g\n", d1);
 
     printf("%f\n", d2);
-    printf("%e\n", d2);
-    printf("%g\n", d2);
+    printf("%E\n", d2);
+    printf("%G\n", d2);
 
     printf("%g\n", d3);
     printf("%.2g\n", d3);
@@ -73,7 +73,20 @@ int main(void)
     printf("%*.*s\n", 4, 5, "ABCDE");
 
     printf(s);       /* FAILS if s contains '%' */
-    printf("%s", s); /* SAFE */
+    printf("%s\n", s); /* SAFE */
+
+    int      i = 15;
+    int      o = 077;
+    int      h = 0xFF;
+    unsigned u = 1 << 31; /* int: -2^31 ~ 2^31 - 1 */
+    char     c = 'Z';
+
+    printf("%3d %3o %3x %3X\n", i, i, i, i);
+    printf("%3d %3o %3x %3X\n", o, o, o, o);
+    printf("%3d %3o %3x %3X\n", h, h, h, h);
+    printf("%u\n", u);
+    printf("%3c %3d %3x %3X\n", c, c, c, c);
 
     return 0;
 }
+
