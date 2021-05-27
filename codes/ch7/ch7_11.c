@@ -2,12 +2,11 @@
 
 int main(void)
 {
-    int  n;
-    char c;
+    int a, b;
 
-    scanf("%d", &n);
-    scanf("%c", &c);
-    printf("int: %d, char: %c\n", n, c);
+    while (scanf("%d %d", &a, &b) != EOF) {
+        printf("%d + %d = %d\n", a, b, a + b);
+    }
 
     return 0;
 }

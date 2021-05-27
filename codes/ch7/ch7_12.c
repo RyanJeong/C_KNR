@@ -2,12 +2,13 @@
 
 int main(void)
 {
-    int  n;
-    char c;
+    char   string[32] = "1 12.3 sscanf";
+    int    i;
+    double d;
+    char   str[32];
 
-    scanf("%d ", &n); /* expect '\n' */
-    scanf("%c", &c);
-    printf("int: %d, char: %c\n", n, c);
+    sscanf(string, "%d %lf %s", &i, &d, str);
+    printf("int: %d, double: %f, string: %s\n", i, d, str);
 
     return 0;
 }

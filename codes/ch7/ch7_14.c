@@ -2,12 +2,16 @@
 
 int main(void)
 {
-    char str1[10], str2[10], str3[10];
+    int  n;
+    char c;
 
-    /* input: suppression */
-    scanf("%2s %*2s %4s %s", str1, str2, str3);
-    /* output: */
-    printf("%s %s %s\n", str1, str2, str3);
+    /* C89, § 7.9.6.2. A directive composed of white-space character(s) 
+                       is executed by reading input up to the first
+                       non-white-space character (which remains unread), 
+                       or until no more characters can be read. */
+    scanf("%d ", &n); /* expect '\n' */
+    scanf("%c", &c);
+    printf("int: %d, char: %c\n", n, c);
 
     return 0;
 }

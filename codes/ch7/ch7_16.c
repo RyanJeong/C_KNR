@@ -2,21 +2,18 @@
 
 int main(void)
 {
-    int      i, o, h;
-    unsigned u;
+    int day, month, year;
 
-    /* > 100 077 0xFF */
-    scanf("%d %o %x", &i, &o, &h);
-    printf("%d %d %d\n", i, o, h);
+    /* case 1
+       05/15/21
+       > 3
+       month: 5, day: 15, year: 21
 
-    /* > 100 033 0xaa */
-    scanf("%i %i %i", &i, &o, &h);
-    printf("%d %d %d\n", i, o, h);
-
-    /* > 2147483648 */
-    scanf("%u", &u);
-    printf("%u\n", u);
+       case 2
+       05 15 21
+       > 1
+       month: 5, day: ??, year: ?? */
+    printf("%d\n", scanf("%d/%d/%d", &month, &day, &year));
 
     return 0;
 }
-

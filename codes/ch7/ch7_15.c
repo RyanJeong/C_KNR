@@ -2,18 +2,13 @@
 
 int main(void)
 {
-    short       s;
-    int         i;
-    long        l;
-    float       f;
-    double      d;
-    long double ld;
+    int  n;
+    char c;
 
-    /* integer */
-    scanf("%hd %d %ld", &s, &i, &l);
-
-    /* floating-point */
-    scanf("%f %lf %Lf", &f, &d, &ld);
+    scanf("%d", &n); /* expect '\n' */
+    getchar();
+    scanf("%c", &c);
+    printf("int: %d, char: %c\n", n, c);
 
     return 0;
 }

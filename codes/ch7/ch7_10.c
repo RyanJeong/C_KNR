@@ -1,14 +1,14 @@
 #include <stdio.h>
 
-int main(void)
+int main(void) /* rudimentary calculator */
 {
-    char   string[32] = "1 12.3 sscanf";
-    int    i;
-    double d;
-    char   str[32];
+    double sum, v;
 
-    sscanf(string, "%d %lf %s", &i, &d, str);
-    printf("int: %d, double: %f, string: %s\n", i, d, str);
+    sum = 0;
+    /* warning: the arguments to scanf and sscanf must be pointers. */
+    while (scanf("%lf", &v) == 1) {
+        printf("\t%.2f\n", sum += v);
+    }
 
     return 0;
 }
