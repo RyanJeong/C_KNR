@@ -40,11 +40,25 @@ while (getline(line, sizeof(line)) > 0) {
 #endif
 
 #ifndef B
+#include <stdio.h>
+
 void f()
 {
   int n;
 
   scanf("%d", n);  /* ERROR! */
   scanf("%d", &n); /* OK */
+}
+
+FILE *fp;
+FILE *fopen(char *name, char *mode);
+int getc(FILE *fp);
+
+void b()
+{
+  char *name, *mode;
+  fp = fopen(name, mode);
+
+
 }
 #endif
