@@ -3,7 +3,7 @@
 
 void filecopy(FILE *, FILE *);
 
-int main(int argc, char *argv[])
+int main(void)
 {
     FILE *src, *dst;
 
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     fclose(src);
     fclose(dst);
 
-    return 0;
+    exit(0);
 }
 
 /* filecopy: copy file ifp to file ofp */
@@ -36,10 +36,10 @@ void filecopy(FILE *ifp, FILE *ofp)
             exit(1);
         }
     }
-    if (feof(ifp)) {
+    if (feof(ifp)) { /* normal */
         printf("End of file\n");
     }
-    if (ferror(ifp)) {
+    if (ferror(ifp)) { /* abnormal */
         printf("Error in reading from file\n");
         
         exit(1);
