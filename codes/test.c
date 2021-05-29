@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h> /* exit() function declared here */
-#include <ctype.h>
 
 void filecopy(FILE *, FILE *);
 
