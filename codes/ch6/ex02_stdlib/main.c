@@ -7,7 +7,7 @@
 #define MAXWORD 100
 
 int getword(char *, int);
-int compareStr(const void *, const void *);
+int cmp(const void *, const void *);
 
 /* count C keywords; pointer version */
 int main(void)
@@ -23,7 +23,7 @@ int main(void)
                         size_t num, size_t size,
                         int (*compare)(const void *key, const void *element));
             */
-            if ((p = (struct key *) bsearch(word, keytab, NKEYS, sizeof(struct key), compareStr)) != NULL) {
+            if ((p = (struct key *) bsearch(word, keytab, NKEYS, sizeof(struct key), cmp)) != NULL) {
                 p->count++;
             }
         }
@@ -37,10 +37,8 @@ int main(void)
     return 0;
 }
 
-int compareStr(const void *word, const void *key)
+int cmp(const void *word, const void *key)
 {
-    const char *s = (const char *) word;
-    const char *t = (const char *) ((struct key *) key)->word;
 
-    return strcmp(s, t);
+    return strcmp((char *) word, ((struct key *) key)->word);
 }

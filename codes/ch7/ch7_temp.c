@@ -64,6 +64,17 @@ int fprintf(FILE *fp, char *format, ...);
 int ferror(FILE *fp);
 int feof(FILE *fp);
 
+char *fgets(char *line, int maxline, FILE *fp);
+int fputs(char *line, FILE *fp);
+
+int getchar(void);
+char *gets(char *line);
+
+int putchar(int c);
+int puts(char *line);
+
+
+int fclose(FILE *stream);
 
 void b()
 {

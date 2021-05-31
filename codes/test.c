@@ -1,49 +1,17 @@
 #include <stdio.h>
-#include <stdlib.h> /* exit() function declared here */
-
-void filecopy(FILE *, FILE *);
+#include <math.h>
 
 int main(void)
 {
-    FILE *src, *dst;
+struct nlist {          /* table entry: */
+    struct nlist *next; /* next entry in chain */
+    char         *name; /* defined name */
+    char         *defn; /* replacement text */
+};
 
-    src = fopen("source.txt", "r");
-    dst = fopen("destination.txt", "w");
-    /* check error */
-    if (src == NULL || dst == NULL) {
-        printf("Unable to open file\n");
+struct nlist *np;
 
-        exit(1);
-    }
-    filecopy(src, dst);
-    fclose(src);
-    fclose(dst);
+printf("%ld\n", sizeof(*np));
 
-    exit(0);
-}
-
-/* filecopy: copy file ifp to file ofp */
-void filecopy(FILE *ifp, FILE *ofp)
-{
-    int c;
-
-    while ((c = getc(ifp)) != EOF) {
-        /* The putc function normally return a copy of the byte that is has written - as confirmation of success.
-           If there is an error it returns EOF instead. */
-        if (putc(c, ofp) == EOF) {
-            printf("Error in writing to file\n");
-
-            exit(1);
-        }
-    }
-    if (feof(ifp)) { /* normal */
-        printf("End of file\n");
-    }
-    if (ferror(ifp)) { /* abnormal */
-        printf("Error in reading from file\n");
-        
-        exit(1);
-    }
-
-    return;
+return 0;
 }
