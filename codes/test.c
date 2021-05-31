@@ -1,17 +1,20 @@
 #include <stdio.h>
-#include <math.h>
+#include <ctype.h>
+
+/*
+#define PASTE(front, back)           front ## back
+#define PRINT_ERROR(prog, func, str) fprintf(stderr, #PASTE(
+  */
+
+enum {
+  MAIN
+};
+#define ERRORMAIN "TTTTT"
+#define P(prog, str) printf(#prog" : %s", ERROR ## str)
 
 int main(void)
 {
-struct nlist {          /* table entry: */
-    struct nlist *next; /* next entry in chain */
-    char         *name; /* defined name */
-    char         *defn; /* replacement text */
-};
+  P("main", MAIN);
 
-struct nlist *np;
-
-printf("%ld\n", sizeof(*np));
-
-return 0;
+  return 0;
 }

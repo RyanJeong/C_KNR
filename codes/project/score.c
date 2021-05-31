@@ -1,13 +1,17 @@
 #include <stdio.h>
 #include "score.h"
+#include "util.h" /* skipWhite() */
 
 void run(void)
 {
   int c;
+
   do {
     menu();
+    /* call scanf() after skipWhite() to ignore white-space */
+    skipWhite(stdin);
     scanf("%d", &c);
-    getchar();
+    printf("  %d\n", c);
   } while (c != QUIT);
 
   return;

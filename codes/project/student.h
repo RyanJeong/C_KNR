@@ -4,13 +4,17 @@
 #include <stdio.h>
 
 typedef struct {
-  size_t idx;
+  char   id[9]; /* 8 + '\0' */
   char   *name;
   int    score;
   char   grade;
 } Student;
-void   setIdx(size_t);
-void   setNum(size_t);
-size_t getIdx(void);
-size_t getNum(void);
+
+void    setNum(size_t);
+size_t  getNum(void);
+void    setNamelen(int);
+size_t  getNamelen(void);
+void    setStudentPtr(Student *ptr)
+Student *getStudentPtr(void)
+
 #endif

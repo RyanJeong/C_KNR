@@ -1,15 +1,9 @@
 #include <stdio.h>
 #include "student.h"
 
-static size_t idx;
-static size_t num;
-
-void setIdx(size_t s)
-{
-  idx = s;
-
-  return;
-}
+static size_t  num;
+static int     namelen;
+static Student *studentPtr;
 
 void setNum(size_t s)
 {
@@ -18,14 +12,34 @@ void setNum(size_t s)
   return;
 }
 
-size_t getIdx(void)
-{
-
-  return idx;
-}
-
 size_t getNum(void)
 {
 
   return num;
+}
+
+void setNamelen(int i)
+{
+  namelen = i;
+
+  return;
+}
+
+size_t getNamelen(void)
+{
+
+  return namelen;
+}
+
+void setStudentPtr(Student *ptr)
+{
+  studentPtr = ptr;
+
+  return;
+}
+
+Student *getStudentPtr(void)
+{
+
+  return studentPtr;
 }

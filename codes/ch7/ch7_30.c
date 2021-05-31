@@ -8,7 +8,7 @@ int skipWhite(FILE *f)
 
    do {
       c = getc(f);
-   } while (isspace(ch));
+   } while (isspace(c));
 
-   return ungetc(ch, f);
+   return ungetc(c, f);
 }
