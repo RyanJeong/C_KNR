@@ -1,11 +1,11 @@
 #include <ctype.h>  /* isspace() */
-#include <stdio.h>
 #include <string.h> /* strcpy(), memcpy() */
+#include <stdlib.h> /* malloc() */
 
+#include "student.h" /* Student type */
 #include "util.h"
-#include "student.h"
 
-static int offset;
+static int    offset;
 static size_t size;
 
 void setOffset(int i)
@@ -47,15 +47,15 @@ int skipWhite(FILE *f)
 
 char *strDup(char *s)
 {
-    char *p;
+  char *p;
 
-    /* make a duplicate of s */
-    p = (char *) malloc(strlen(s) + 1); /* +1 for '\0' */
-    if (p) { /* p != NULL */
-        strcpy(p, s);
-    }
+  /* make a duplicate of s */
+  p = (char *) malloc(strlen(s) + 1); /* +1 for '\0' */
+  if (p) { /* p != NULL */
+    strcpy(p, s);
+  }
 
-    return p;
+  return p;
 }
 
 Student *studentDup(Student *obj)
@@ -69,4 +69,10 @@ Student *studentDup(Student *obj)
   setSize(size);
 
   return ptr;
+}
+
+int cmp(const void *id, const void *student)
+{
+
+  return strcmp((char *) id, ((Student *) student)->id);
 }

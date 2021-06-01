@@ -1,4 +1,5 @@
-#include <stdio.h>
+#include <stdio.h> /* size_t */
+
 #include "student.h"
 
 static size_t  num;
@@ -25,7 +26,7 @@ void setNamelen(int i)
   return;
 }
 
-size_t getNamelen(void)
+int getNamelen(void)
 {
 
   return namelen;

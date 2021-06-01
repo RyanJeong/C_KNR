@@ -1,8 +1,8 @@
 /* Student Score Management System */
-#include <string.h> /* strcmp() */
-#include <stdlib.h> /* atoi()   */
-#include "util.h"   /* offset, extern char *prog */
-#include "score.h"  /* run()    */
+#include <stdlib.h> /* atoi() */
+
+#include "management.h" /* run()  */
+#include "util.h"       /* offset */
 
 int main(int argc, char *argv[])
 {

@@ -1,7 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>  /* exit(), malloc(), calloe(), ... */
-#include "student.h" /* Student *, ... */
-#include "file.h"    /* FILENAME */
+#include <stdio.h>  /* size_t, ... */
+#include <stdlib.h> /* exit(), malloc(), calloe(), ... */
+
+#include "file.h"    
+#include "student.h" /* Student type, ... */
 #include "util.h"    /* offset, strDup(), ... */
 
 extern char *prog;
@@ -11,7 +12,8 @@ void load(void)
   FILE    *fp;  
   Student *ptr;
   char    *buf;
-  int     num, namelen, offset, size;
+  int     namelen, offset;
+  size_t  num, size;
   
   /*   Trying to read a file that does not exist 
      is an error, and there may be other causes 

@@ -13,5 +13,6 @@ size_t  getSize(void);
 int     skipWhite(FILE *);
 char    *strDup(char *);
 Student *studentDup(Student *obj);
+int     cmp(const void *, const void *);
 
 #endif
