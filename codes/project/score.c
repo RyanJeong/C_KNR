@@ -11,7 +11,22 @@ void run(void)
     /* call scanf() after skipWhite() to ignore white-space */
     skipWhite(stdin);
     scanf("%d", &c);
-    printf("  %d\n", c);
+    switch (c) {
+    case ADD:
+      break;
+    case DISPLAY:
+      break;
+    case SEARCH:
+      break;
+    case MODIFY:
+      break;
+    case DELETE:
+      break;
+    case DELETE_ALL:
+      break;
+    default:
+      break;
+    }
   } while (c != QUIT);
 
   return;

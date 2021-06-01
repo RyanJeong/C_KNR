@@ -1,20 +1,21 @@
 #include <stdio.h>
-#include <ctype.h>
+#include <stdlib.h>
 
-/*
-#define PASTE(front, back)           front ## back
-#define PRINT_ERROR(prog, func, str) fprintf(stderr, #PASTE(
-  */
 
-enum {
-  MAIN
-};
-#define ERRORMAIN "TTTTT"
-#define P(prog, str) printf(#prog" : %s", ERROR ## str)
+typedef struct{
+  int a;
+  int b;
+  int c;
+  int d;
+  int e;
+} S;
 
 int main(void)
 {
-  P("main", MAIN);
+  S *s;
+
+  s = (S *) calloc(10, sizeof(S));
+  printf("%ld %ld\n", sizeof s, sizeof *s);
 
   return 0;
 }

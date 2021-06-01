@@ -2,13 +2,16 @@
 #define __UTIL_H__
 
 #include <stdio.h>
+#include "student.h"
 
 #define DEFAULT_OFFSET 100
-#define FUNC_LOAD "load()"
-#define FUNC_SAVE "save()"
 
-void setOffset(int);
-int  getOffset(void);
-int  skipWhite(FILE *);
+void    setOffset(int);
+int     getOffset(void);
+void    setSize(size_t);
+size_t  getSize(void);
+int     skipWhite(FILE *);
+char    *strDup(char *);
+Student *studentDup(Student *obj);
 
 #endif
