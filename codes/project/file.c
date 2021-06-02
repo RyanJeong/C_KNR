@@ -5,8 +5,6 @@
 #include "student.h" /* Student type, ... */
 #include "util.h"    /* offset, strDup(), ... */
 
-extern char *prog;
-
 void load(void)
 {
   FILE    *fp;  

@@ -45,6 +45,27 @@ int skipWhite(FILE *f)
   return ungetc(c, f);
 }
 
+int getLine(char *line, int max)
+{
+  char *pos;
+
+  /* call fgets() after skipWhite() to ignore white-space */
+  skipWhite(stdin);
+  /*   The fgets() function returns a pointer to the string buffer if successful. 
+     A NULL return value indicates an error or an end-of-file condition. */
+  if (fgets(line, max, stdin) == NULL) {
+
+    return -1;
+  } else {
+    /* erase '\n' from the line */
+    if ((pos = strrchr(line, '\n'))) {
+      *pos = '\0';
+    }
+
+    return strlen(line);
+  }
+}
+
 char *strDup(char *s)
 {
   char *p;

@@ -1,28 +1,17 @@
 #include <stdio.h>
-#include <ctype.h>
-
-int skipWhite(FILE *f);
+#include <stdlib.h>
+#include <string.h>
+#define MAX 100
 
 int main(void)
 {
-  char s[100];
-  skipWhite(stdin);
-  scanf("%s", s);
-  printf("%s, %c(%d)", s, *s, *s);
-  skipWhite(stdin);
-  scanf("%s", s);
-  printf("%s, %c(%d)", s, *s, *s);
+  char s[MAX], *pos;
+
+  fgets(s, MAX, stdin);
+  if ((pos = strrchr(s, '\n'))) {
+    *pos = '\0';
+  }
+  printf("%s %d", s, strlen(s));
 
   return 0;
-}
-
-int skipWhite(FILE *f)
-{
-  int c;
-
-  do {
-    c = getc(f);
-  } while (isspace(c));
-
-  return ungetc(c, f);
 }

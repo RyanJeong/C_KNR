@@ -11,7 +11,8 @@ enum {
     DELETE_ALL
 };
 
-void run(void);
+void run(char *);
+char calcGrade(int);
 void menu(void);
 void add(void);
 void display(void);
@@ -19,6 +20,5 @@ void search(void);
 void modify(void);
 void delete(void);
 void deleteAll(void);
-char calcGrade(int);
 
 #endif

@@ -3,8 +3,10 @@
 
 #include <stdio.h>
 
+#define SIZE_ID 8
+
 typedef struct {
-  char   id[9]; /* 8 + '\0' */
+  char   id[SIZE_ID+1]; /* 8 + '\0' */
   char   *name;
   int    score;
   char   grade;
