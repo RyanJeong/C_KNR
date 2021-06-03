@@ -165,37 +165,34 @@ void add(void)
       fprintf(stderr, "modify(): %s\n", ERR_FGETS);
       exit(1);
     }
-    if (strlen(temp) == SIZE_ID) {
-      if (bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp)) {
-        puts("The ID already exists. Please enter a different ID.");
-      } else {
-        strcpy(ptr->id, temp);
-        break;
-      }
-    } else if (strlen(temp) == 1 && *temp == 'q') {
-
-      return;
-    } else {
-      puts("The ID is entered incorrectly.");
-    }
-  } while (1);
-  do {
-    printf("Please enter a name.\n"
-           "(enter q if you want to stop): ");
-    if (getLine(temp, MAXLINE) < 0) {
-      fprintf(stderr, "modify(): %s\n", ERR_FGETS);
-      exit(1);
-    }
     if (strlen(temp) == 1 && *temp == 'q') {
 
       return;
     }
-    ptr->name = strDup(temp);
-    namelen   = strlen(ptr->name);
-    if (namelen > getNamelen()) {
-      setNamelen(namelen);
+    if (strlen(temp) != SIZE_ID) {
+      puts("The ID is entered incorrectly.");
+    } else if (bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp)) {
+      puts("The ID already exists. Please enter a different ID.");
+    } else {
+      strcpy(ptr->id, temp);
+      break;
     }
-  } while (0);
+  } while (1);
+  printf("Please enter a name.\n"
+         "(enter q if you want to stop): ");
+  if (getLine(temp, MAXLINE) < 0) {
+    fprintf(stderr, "modify(): %s\n", ERR_FGETS);
+    exit(1);
+  }
+  if (strlen(temp) == 1 && *temp == 'q') {
+
+    return;
+  }
+  ptr->name = strDup(temp);
+  namelen   = strlen(ptr->name);
+  if (namelen > getNamelen()) {
+    setNamelen(namelen);
+  }
   do {
     printf("Please enter a score of 0-100.\n"
            "(enter q if you want to stop): ");
@@ -206,15 +203,14 @@ void add(void)
     if (strlen(temp) == 1 && *temp == 'q') {
 
       return;
+    } 
+    score = isdigit(*temp) ? atoi(temp) : -1;
+    if (score < 0 || score > 100) {
+      puts("The score is entered incorrectly.");
     } else {
-      score = isdigit(*temp) ? atoi(temp) : -1;
-      if (score >= 0 && score <= 100) {
-        ptr->score = score;
-        ptr->grade = calcGrade(score);
-        break;
-      } else {
-        puts("The score is entered incorrectly.");
-      }
+      ptr->score = score;
+      ptr->grade = calcGrade(score);
+      break;
     }
   } while (1);
   setNum(getNum() + 1);
@@ -242,14 +238,15 @@ void search(void)
       fprintf(stderr, "search(): %s\n", ERR_FGETS);
       exit(1);
     }
-    if (strlen(temp) == SIZE_ID) {
-      ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
-      break;
-    } else if (strlen(temp) == 1 && *temp == 'q') {
+    if (strlen(temp) == 1 && *temp == 'q') {
 
       return;
-    } else {
+    }
+    if (strlen(temp) != SIZE_ID) {
       puts("The ID is entered incorrectly.");
+    } else {
+      ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
+      break;
     }
   } while (1);
   if (!ptr) {
@@ -264,13 +261,10 @@ void search(void)
 
 void modify(void)
 {
-  /* TODO! */
   Student *ptr;
   int     score, namelen;
   char    *name;
 
-  score = -1;
-  name  = NULL;
   if (!getNum()) {
     puts("There are no records to modify.");
 
@@ -283,14 +277,15 @@ void modify(void)
       fprintf(stderr, "modify(): %s\n", ERR_FGETS);
       exit(1);
     }
-    if (strlen(temp) == SIZE_ID) {
-      ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
-      break;
-    } else if (strlen(temp) == 1 && *temp == 'q') {
+    if (strlen(temp) == 1 && *temp == 'q') {
 
       return;
-    } else {
+    }
+    if (strlen(temp) != SIZE_ID) {
       puts("The ID is entered incorrectly.");
+    } else {
+      ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
+      break;
     }
   } while (1);
   if (!ptr) {
@@ -298,29 +293,28 @@ void modify(void)
 
     return;
   }
-  do {
-    printf("Please enter a new name.\n"
-            "(enter q if you want to stop or = if you don't want to change it): ");
-    if (getLine(temp, MAXLINE) < 0) {
-      fprintf(stderr, "modify(): %s\n", ERR_FGETS);
+  printf("Please enter a new name.\n"
+         "(enter q if you want to stop or = if you don't want to change it): ");
+  if (getLine(temp, MAXLINE) < 0) {
+    fprintf(stderr, "modify(): %s\n", ERR_FGETS);
+    exit(1);
+  }
+  if (strlen(temp) == 1 && *temp == 'q') {
+    
+    return;
+  }
+  if (strlen(temp) != 1 || *temp != '=') {
+    name = strDup(temp);
+    if (!name) {
+      fprintf(stderr, "modify(): %s\n", ERR_ALLOC);
       exit(1);
     }
-    if (strlen(temp) == 1 && *temp == 'q') {
-      
-      return;
-    } else if (strlen(temp) == 1 && *temp == '=') {
-      break;
-    } else {
-      name = strDup(temp);
-      if (!name) {
-        fprintf(stderr, "modify(): %s\n", ERR_ALLOC);
-        exit(1);
-      }
-    } 
-  } while (0);
+  } else {
+    name  = NULL;
+  }
   do {
     printf("Please enter a new score of 0-100.\n"
-            "(enter q if you want to stop or = if you don't want to change it): ");
+           "(enter q if you want to stop or = if you don't want to change it): ");
     if (getLine(temp, MAXLINE) < 0) {
       fprintf(stderr, "modify(): %s\n", ERR_FGETS);
       exit(1);
@@ -328,25 +322,31 @@ void modify(void)
     if (strlen(temp) == 1 && *temp == 'q') {
       
       return;
-    } else if (strlen(temp) == 1 && *temp == '=') {
-      break;
-    } else {
+    }
+    if (strlen(temp) != 1 || *temp != '=') {
       score = isdigit(*temp) ? atoi(temp) : -1;
-      if (score >= 0 && score <= 100) {
-        free(ptr->name);
-        ptr->name = name;
-        namelen   = strlen(ptr->name);
-        if (namelen > getNamelen()) {
-          setNamelen(namelen);
-        }
-        ptr->score = score;
-        ptr->grade = calcGrade(score);
-        break;
-      } else {
+      if (score < 0 || score > 100) {
         puts("The score is entered incorrectly.");
+      } else {
+        break;
       }
+    } else {
+      score = -1;
+      break;
     }
   } while (1);
+  if (!name) {
+    free(ptr->name);
+    ptr->name = name;
+    namelen   = strlen(ptr->name);
+    if (namelen > getNamelen()) {
+      setNamelen(namelen);
+    }
+  }
+  if (score >= 0) {
+    ptr->score = score;
+    ptr->grade = calcGrade(score);
+  }
   puts("The record has been modified successfully.");
   format();
   student(ptr);
@@ -370,15 +370,16 @@ void delete(void)
       fprintf(stderr, "delete(): %s\n", ERR_FGETS);
       exit(1);
     }
-    if (strlen(temp) == SIZE_ID) {
-      ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
-      break;
-    } else if (strlen(temp) == 1 && *temp == 'q') {
+    if (strlen(temp) == 1 && *temp == 'q') {
 
       return;
-    } else {
+    } 
+    if (strlen(temp) != SIZE_ID) {
       puts("The ID is entered incorrectly.");
-    }
+    } else {
+      ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
+      break;
+    } 
   } while (1);
   if (!ptr) {
     puts("There are no records for this ID.");
@@ -414,7 +415,7 @@ void deleteAll(void)
     fprintf(stderr, "deleteAll(): %s\n", ERR_FGETS);
     exit(1);
   }
-  if (*temp == 'y') {
+  if (strlen(temp) == 1 && *temp == 'y') {
     ptr = getStudentPtr();
     for (high = ptr + getNum(); ptr < high; ++ptr) {
       free(ptr->name);
