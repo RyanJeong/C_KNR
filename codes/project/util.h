@@ -5,7 +5,7 @@
 #include "student.h"
 
 #define DEFAULT_OFFSET 100
-#define MAXWORD        100
+#define MAXLINE        100
 
 #define WAR_FOPEN  "Either the file does not exist or you do not have a permission to read the file."
 

@@ -20,7 +20,6 @@ int getOffset(void)
 
   return offset;
 }
-
 void setSize(size_t s)
 {
   size = s;
@@ -82,12 +81,10 @@ char *strDup(char *s)
 Student *studentDup(Student *obj)
 {
   Student *ptr;
-  int     size;
 
-  size = getSize() + getOffset();
-  ptr  = (Student *) calloc(size, sizeof(Student));
+  ptr = (Student *) calloc(getNum() + getOffset(), sizeof(Student));
   memcpy(ptr, obj, getSize());
-  setSize(size);
+  free(obj);
 
   return ptr;
 }

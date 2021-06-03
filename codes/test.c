@@ -3,15 +3,20 @@
 #include <string.h>
 #define MAX 100
 
+typedef struct {
+  int a;
+  int b;
+  int c;
+  int d;
+  int e;
+} S;
+
 int main(void)
 {
-  char s[MAX], *pos;
+  S *s = (S *) calloc(10, sizeof(S));
 
-  fgets(s, MAX, stdin);
-  if ((pos = strrchr(s, '\n'))) {
-    *pos = '\0';
-  }
-  printf("%s %d", s, strlen(s));
+  printf("%lu\n", sizeof s);
+  printf("%lu\n", sizeof *s);
 
   return 0;
 }
