@@ -89,6 +89,12 @@ Student *studentDup(Student *obj)
   return ptr;
 }
 
+int cmpIds(const void *id1, const void *id2)
+{
+
+  return strcmp((char *) id1, (char *) id2);
+}
+
 int cmp(const void *id, const void *student)
 {
 

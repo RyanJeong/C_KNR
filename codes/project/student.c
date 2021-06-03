@@ -1,10 +1,9 @@
 #include <stdio.h> /* size_t */
-#include <string.h> /* strlen */
 
 #include "student.h"
 
 static size_t  num;
-static int     namelen = strlen("name");
+static int     namelen;
 static Student *studentPtr;
 
 void setNum(size_t s)

@@ -3,6 +3,7 @@
 #include <stdlib.h> /* free() */
 #include <string.h> /* strcpy() */
 
+#include "file.h"
 #include "management.h"
 #include "util.h"    /* skipWhite(), cmp() */
 #include "student.h" /* Student type, MAXNAME */
@@ -14,6 +15,7 @@ void run(char *arg)
   int c;
 
   setOffset(atoi(arg) > 0 ? atoi(arg) : DEFAULT_OFFSET);
+  load();
   do {
     menu();
     /* scanf("%d", &c);
@@ -43,6 +45,7 @@ void run(char *arg)
       deleteAll();
       break;
     case QUIT:
+      save();
       break;
     default: /* INVALID */
       puts("Invalid input. Try again.");
@@ -96,12 +99,12 @@ void format(void)
 {
   int width;
 
-  width = SIZE_ID + 1 + getNamelen() + 1 + strlen("Score") + 1 + strlen("Grade");
+  width = SIZE_ID + 1 + getNamelen() + 1 + strlen(LABEL3) + 1 + strlen(LABEL4);
   printf("%*s %*s %*s %*s\n", 
-          SIZE_ID, "ID", 
-          getNamelen(), "Name", 
-          (int) strlen("Score"), "Score", 
-          (int) strlen("Grade"), "Grade");
+          SIZE_ID, LABEL1,
+          getNamelen(), LABEL2,
+          (int) strlen(LABEL3), LABEL3,
+          (int) strlen(LABEL4), LABEL4);
   while (width--) {
     putchar('-');
   }
@@ -115,8 +118,8 @@ void student(Student *ptr)
   printf("%s %*s %*d %*c\n", 
          ptr->id, 
          getNamelen(), ptr->name, 
-         (int) strlen("Score"), ptr->score, 
-         (int) strlen("Grade"), ptr->grade);
+         (int) strlen(LABEL3), ptr->score, 
+         (int) strlen(LABEL4), ptr->grade);
 
   return;
 }
@@ -163,7 +166,7 @@ void add(void)
       exit(1);
     }
     if (strlen(temp) == SIZE_ID) {
-      if (bsearch(temp, ptr, getNum(), sizeof(Student), cmp)) {
+      if (bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp)) {
         puts("The ID already exists. Please enter a different ID.");
       } else {
         strcpy(ptr->id, temp);
@@ -188,7 +191,7 @@ void add(void)
       return;
     }
     ptr->name = strDup(temp);
-    namelen = strlen(ptr->name);
+    namelen   = strlen(ptr->name);
     if (namelen > getNamelen()) {
       setNamelen(namelen);
     }
@@ -218,11 +221,10 @@ void add(void)
   puts("A record has been added successfully.");
   format();
   student(ptr);
-  qsort(ptr, getNum(), sizeof(Student), cmp);
+  qsort(getStudentPtr(), getNum(), sizeof(Student), cmpIds);
 
   return;
 }
-
 
 void search(void)
 {
@@ -230,19 +232,31 @@ void search(void)
 
   if (!getNum()) {
     puts("There are no records to search.");
-  } else {
-    printf("Please enter the student ID to be searched: ");
+
+    return;
+  }
+  do {
+    printf("Please enter the student ID to be searched. The ID consists of 8 characters.\n"
+           "(If you want to stop, enter q): ");
     if (getLine(temp, MAXLINE) < 0) {
-      fprintf(stderr, "modify(): %s\n", ERR_FGETS);
+      fprintf(stderr, "search(): %s\n", ERR_FGETS);
       exit(1);
     }
-    ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
-    if (!ptr) {
-      puts("There are no records for this ID.");
+    if (strlen(temp) == SIZE_ID) {
+      ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
+      break;
+    } else if (strlen(temp) == 1 && *temp == 'q') {
+
+      return;
     } else {
-      format();
-      student(ptr);
+      puts("The ID is entered incorrectly.");
     }
+  } while (1);
+  if (!ptr) {
+    puts("There are no records for this ID.");
+  } else {
+    format();
+    student(ptr);
   }
 
   return;
@@ -250,77 +264,92 @@ void search(void)
 
 void modify(void)
 {
+  /* TODO! */
   Student *ptr;
   int     score, namelen;
-  char    *name; /* restore */
+  char    *name;
 
+  score = -1;
+  name  = NULL;
   if (!getNum()) {
     puts("There are no records to modify.");
-  } else {
-    printf("Please enter the student ID to be modified: ");
+
+    return;
+  } 
+  do {
+    printf("Please enter the student ID to be modified. The ID consists of 8 characters.\n"
+           "(If you want to stop, enter q): ");
     if (getLine(temp, MAXLINE) < 0) {
       fprintf(stderr, "modify(): %s\n", ERR_FGETS);
       exit(1);
     }
-    ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
-    if (!ptr) {
-      puts("There are no records for this ID.");
+    if (strlen(temp) == SIZE_ID) {
+      ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
+      break;
+    } else if (strlen(temp) == 1 && *temp == 'q') {
+
+      return;
     } else {
-      do {
-        printf("Please enter a new name.\n"
-               "(enter q if you want to stop or = if you don't want to change it): ");
-        if (getLine(temp, MAXLINE) < 0) {
-          fprintf(stderr, "modify(): %s\n", ERR_FGETS);
-          exit(1);
-        }
-        if (strlen(temp) == 1 && *temp == 'q') {
-          
-          return;
-        } else if (strlen(temp) == 1 && *temp == '=') {
-          break;
-        } else {
-          name = strDup(temp);
-          if (!name) {
-            fprintf(stderr, "modify(): %s\n", ERR_ALLOC);
-            exit(1);
-          }
-        } 
-      } while (0);
-      do {
-        printf("Please enter a new score of 0-100.\n"
-               "(enter q if you want to stop or = if you don't want to change it): ");
-        if (getLine(temp, MAXLINE) < 0) {
-          fprintf(stderr, "modify(): %s\n", ERR_FGETS);
-          exit(1);
-        }
-        if (strlen(temp) == 1 && *temp == 'q') {
-          
-          return;
-        } else if (strlen(temp) == 1 && *temp == '=') {
-          break;
-        } else {
-          score = isdigit(*temp) ? atoi(temp) : -1;
-          if (score >= 0 && score <= 100) {
-            free(ptr->name);
-            ptr->name = name;
-            namelen   = strlen(ptr->name);
-            if (namelen > getNamelen()) {
-              setNamelen(namelen);
-            }
-            ptr->score = score;
-            ptr->grade = calcGrade(score);
-            break;
-          } else {
-            puts("The score is entered incorrectly.");
-          }
-        }
-      } while (1);
-      puts("The record has been modified successfully.");
-      format();
-      student(ptr);
-      qsort(ptr, getNum(), sizeof(Student), cmp);
+      puts("The ID is entered incorrectly.");
     }
+  } while (1);
+  if (!ptr) {
+    puts("There are no records for this ID.");
+
+    return;
   }
+  do {
+    printf("Please enter a new name.\n"
+            "(enter q if you want to stop or = if you don't want to change it): ");
+    if (getLine(temp, MAXLINE) < 0) {
+      fprintf(stderr, "modify(): %s\n", ERR_FGETS);
+      exit(1);
+    }
+    if (strlen(temp) == 1 && *temp == 'q') {
+      
+      return;
+    } else if (strlen(temp) == 1 && *temp == '=') {
+      break;
+    } else {
+      name = strDup(temp);
+      if (!name) {
+        fprintf(stderr, "modify(): %s\n", ERR_ALLOC);
+        exit(1);
+      }
+    } 
+  } while (0);
+  do {
+    printf("Please enter a new score of 0-100.\n"
+            "(enter q if you want to stop or = if you don't want to change it): ");
+    if (getLine(temp, MAXLINE) < 0) {
+      fprintf(stderr, "modify(): %s\n", ERR_FGETS);
+      exit(1);
+    }
+    if (strlen(temp) == 1 && *temp == 'q') {
+      
+      return;
+    } else if (strlen(temp) == 1 && *temp == '=') {
+      break;
+    } else {
+      score = isdigit(*temp) ? atoi(temp) : -1;
+      if (score >= 0 && score <= 100) {
+        free(ptr->name);
+        ptr->name = name;
+        namelen   = strlen(ptr->name);
+        if (namelen > getNamelen()) {
+          setNamelen(namelen);
+        }
+        ptr->score = score;
+        ptr->grade = calcGrade(score);
+        break;
+      } else {
+        puts("The score is entered incorrectly.");
+      }
+    }
+  } while (1);
+  puts("The record has been modified successfully.");
+  format();
+  student(ptr);
 
   return;
 }
@@ -331,29 +360,41 @@ void delete(void)
 
   if (!getNum()) {
     puts("There are no records to delete.");
-  } else {
-    printf("Please enter the student ID to be deleted: ");
+
+    return;
+  }
+  do {
+    printf("Please enter the student ID to be deleted. The ID consists of 8 characters.\n"
+           "(If you want to stop, enter q): ");
     if (getLine(temp, MAXLINE) < 0) {
       fprintf(stderr, "delete(): %s\n", ERR_FGETS);
       exit(1);
     }
-    ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
-    if (!ptr) {
-      puts("There are no records for this ID.");
+    if (strlen(temp) == SIZE_ID) {
+      ptr = (Student *) bsearch(temp, getStudentPtr(), getNum(), sizeof(Student), cmp);
+      break;
+    } else if (strlen(temp) == 1 && *temp == 'q') {
+
+      return;
     } else {
-      free(ptr++->name);
-      for (high = getStudentPtr() + getNum(); ptr < high; ++ptr) {
-        prev = ptr - 1;
-        strcpy(prev->id, ptr->id);
-        prev->name  = ptr->name;
-        prev->score = ptr->score;
-        prev->grade = ptr->grade;
-        ++ptr;
-      }
-      setNum(getNum() - 1);
-      puts("The record has been deleted successfully.");
+      puts("The ID is entered incorrectly.");
     }
+  } while (1);
+  if (!ptr) {
+    puts("There are no records for this ID.");
+
+    return;
   }
+  free(ptr++->name);
+  for (high = getStudentPtr() + getNum(); ptr < high; ++ptr) {
+    prev = ptr - 1;
+    strcpy(prev->id, ptr->id);
+    prev->name  = ptr->name;
+    prev->score = ptr->score;
+    prev->grade = ptr->grade;
+  }
+  setNum(getNum() - 1);
+  puts("The record has been deleted successfully.");
 
   return;
 }
@@ -365,22 +406,21 @@ void deleteAll(void)
 
   if (!getNum()) {
     puts("There are no records to delete.");
-  } else {
-    printf("Are you sure you want to delete all records? (y / n): ");
-    if (getLine(temp, MAXLINE) < 0) {
-      fprintf(stderr, "deleteAll(): %s\n", ERR_FGETS);
-      exit(1);
+
+    return;
+  }
+  printf("Are you sure you want to delete all records? (y / n): ");
+  if (getLine(temp, MAXLINE) < 0) {
+    fprintf(stderr, "deleteAll(): %s\n", ERR_FGETS);
+    exit(1);
+  }
+  if (*temp == 'y') {
+    ptr = getStudentPtr();
+    for (high = ptr + getNum(); ptr < high; ++ptr) {
+      free(ptr->name);
     }
-    if (*temp == 'y') {
-      ptr = getStudentPtr();
-      for (high = ptr + getNum(); ptr < high; ++ptr) {
-        free(ptr->name);
-      }
-      setNum(0);
-      puts("All records have been deleted successfully.");
-    } else {
-      puts("The command has been canceled.");
-    }
+    setNum(0);
+    puts("All records have been deleted successfully.");
   }
 
   return;

@@ -7,6 +7,11 @@
 #define DEFAULT_OFFSET 100
 #define MAXLINE        100
 
+#define LABEL1 "ID"
+#define LABEL2 "Name"
+#define LABEL3 "Score"
+#define LABEL4 "Grade"
+
 #define WAR_FOPEN  "Either the file does not exist or you do not have a permission to read the file."
 
 #define ERR_FGETS  "The EOF is encountered or a read error is occurred while attempting to read a character."
@@ -24,6 +29,7 @@ int     skipWhite(FILE *);
 int     getLine(char *, int);
 char    *strDup(char *);
 Student *studentDup(Student *obj);
-int     cmp(const void *, const void *);
+int     cmpIds(const void *id1, const void *id2);
+int     cmp(const void *id, const void *student);
 
 #endif

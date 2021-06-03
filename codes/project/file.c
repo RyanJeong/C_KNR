@@ -1,5 +1,6 @@
 #include <stdio.h>  /* size_t, ... */
 #include <stdlib.h> /* exit(), malloc(), calloe(), ... */
+#include <string.h> /* strlen */
 
 #include "file.h"    
 #include "student.h" /* Student type, ... */
@@ -19,6 +20,7 @@ void load(void)
      when you don’t have permission. */
   if ((fp = fopen(FILENAME, "r")) == NULL) {
     puts("load(): " WAR_FOPEN);
+    setNamelen(strlen(LABEL2));
   } else {
     fscanf(fp, "%lu %d", &num, &namelen);
     if (ferror(fp)) {
