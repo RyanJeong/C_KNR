@@ -3,7 +3,7 @@
 
 #define FILENAME   "db.dj"
 
-void load(void);
 void save(void);
+void load(void);
 
 #endif

@@ -6,11 +6,47 @@
 #include "student.h" /* Student type, ... */
 #include "util.h"    /* offset, strDup(), ... */
 
+void save(void)
+{
+  FILE    *fp;  
+  Student *ptr, *high;
+
+  if ((fp = fopen(FILENAME, "w")) == NULL) {
+    fprintf(stderr, "save(): %s\n", ERR_FOPEN);
+    exit(1);
+  }
+  fprintf(fp, "%lu %d\n", getNum(), getNamelen());
+  if (ferror(fp)) {
+    fprintf(stderr, "save(): %s\n", ERR_WRITE);
+    exit(1);
+  }
+  ptr = getStudentPtr();
+  for (high = ptr + getNum(); ptr < high; ++ptr) {
+    if (fprintf(fp, "%s %d %c/%s\n", ptr->id, ptr->score, ptr->grade, ptr->name) == EOF) {
+      break;
+    }
+    free(ptr->name);
+  }
+  if (ferror(fp)) {
+    fprintf(stderr, "save(): %s\n", ERR_WRITE);
+    exit(1);
+  }
+  free(getStudentPtr());
+  /* if occurred error on the stream */
+  if (fclose(fp)) {
+    fprintf(stderr, "save(): %s\n", ERR_FCLOSE);
+    exit(1);
+  };
+  puts("save(): The file has been saved successfully.");
+
+  return;
+}
+
 void load(void)
 {
   FILE    *fp;  
   Student *ptr;
-  char    *buf;
+  char    temp[MAXLINE];
   int     namelen, offset;
   size_t  num, size;
   
@@ -30,8 +66,7 @@ void load(void)
     offset = getOffset();
     size   = (num / offset + 1) * offset;
     ptr    = (Student *) calloc(size, sizeof(Student));
-    buf    = (char *) malloc(namelen + 1); /* + '\0' */
-    if (!ptr || !buf) {
+    if (!ptr) {
       fprintf(stderr, "load(): %s\n", ERR_ALLOC);
       exit(1);
     } 
@@ -39,8 +74,14 @@ void load(void)
     setNamelen(namelen);
     setStudentPtr(ptr);
     setSize(size);
-    while (fscanf(fp, "%s %s %d %c", ptr->id, buf, &ptr->score, &ptr->grade) != EOF) {
-      ptr->name = strDup(buf);
+    while (fscanf(fp, "%s %d %c/", ptr->id, &ptr->score, &ptr->grade) != EOF) {
+      if (fgets(temp, MAXLINE, fp) == NULL) {
+        fprintf(stderr, "load(): %s\n", ERR_FGETS);
+        exit(1);
+      }
+      /* erase '\n' from the line */
+      temp[strlen(temp)-1] = '\0';
+      ptr->name = strDup(temp);
       if (!ptr->name) {
         fprintf(stderr, "load(): %s\n", ERR_ALLOC);
         exit(1);
@@ -58,42 +99,6 @@ void load(void)
     };
     puts("load(): The file has been loaded successfully.");
   }
-
-  return;
-}
-
-void save(void)
-{
-  FILE    *fp;  
-  Student *ptr, *high;
-
-  if ((fp = fopen(FILENAME, "w")) == NULL) {
-    fprintf(stderr, "save(): %s\n", ERR_FOPEN);
-    exit(1);
-  }
-  fprintf(fp, "%lu %d\n", getNum(), getNamelen());
-  if (ferror(fp)) {
-    fprintf(stderr, "save(): %s\n", ERR_WRITE);
-    exit(1);
-  }
-  ptr = getStudentPtr();
-  for (high = ptr + getNum(); ptr < high; ++ptr) {
-    if (fprintf(fp, "%s %s %d %c\n", ptr->id, ptr->name, ptr->score, ptr->grade) == EOF) {
-      break;
-    }
-    free(ptr->name);
-  }
-  if (ferror(fp)) {
-    fprintf(stderr, "save(): %s\n", ERR_WRITE);
-    exit(1);
-  }
-  free(getStudentPtr());
-  /* if occurred error on the stream */
-  if (fclose(fp)) {
-    fprintf(stderr, "save(): %s\n", ERR_FCLOSE);
-    exit(1);
-  };
-  puts("save(): The file has been saved successfully.");
 
   return;
 }

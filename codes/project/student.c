@@ -1,5 +1,7 @@
-#include <stdio.h> /* size_t */
+#include <stdio.h>  /* size_t */
+#include <string.h> /* strlen() */
 
+#include "util.h" /* LABEL */
 #include "student.h"
 
 static size_t  num;
@@ -28,6 +30,22 @@ void setNamelen(int i)
 
 int getNamelen(void)
 {
+
+  return namelen;
+}
+
+int getMaxNamelen(void)
+{
+  Student *ptr, *high;
+  int     namelen;
+
+  ptr     = getStudentPtr();
+  high    = ptr + getNum();
+  for (namelen = strlen(LABEL2); ptr < high; ++ptr) {
+    if (namelen < strlen(ptr->name)) {
+      namelen = strlen(ptr->name);
+    }
+  }
 
   return namelen;
 }

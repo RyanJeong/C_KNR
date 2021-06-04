@@ -14,14 +14,17 @@ enum {
     INVALID
 };
 
+void menu(void);
+
 void run(char *);
 char calcGrade(int);
-void menu(void);
-void display(void);
-void format(void);
+void print(char *, char *, char *, char *);
+void title(void);
 void student(Student *);
+int  getId(int);
 
 void add(void);
+void display(void);
 void search(void);
 void modify(void);
 void delete(void);

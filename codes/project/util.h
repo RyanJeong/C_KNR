@@ -25,6 +25,8 @@ void    setOffset(int);
 int     getOffset(void);
 void    setSize(size_t);
 size_t  getSize(void);
+void    reverse(char []);
+void    itoa(int, char []);
 int     skipWhite(FILE *);
 int     getLine(char *, int);
 char    *strDup(char *);

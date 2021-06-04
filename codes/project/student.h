@@ -16,6 +16,7 @@ void    setNum(size_t);
 size_t  getNum(void);
 void    setNamelen(int);
 int     getNamelen(void);
+int     getMaxNamelen(void);
 void    setStudentPtr(Student *);
 Student *getStudentPtr(void);
 
