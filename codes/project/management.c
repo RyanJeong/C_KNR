@@ -1,3 +1,4 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h> /* free() */
 #include <string.h> /* strcpy() */
@@ -405,7 +406,6 @@ void delete(void)
   return;
 }
 
-/* Please enter the student ID to be deleted: */
 void deleteAll(void)
 {
   Student *ptr, *high;
