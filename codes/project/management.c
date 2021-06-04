@@ -1,4 +1,3 @@
-#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h> /* free() */
 #include <string.h> /* strcpy() */
@@ -164,7 +163,7 @@ void add(void)
   if (getNum() == getSize()) {
     ptr = studentDup(getStudentPtr());
     if (!ptr) {
-      fprintf(stderr, "add(): %s\n", ERR_ALLOC);
+      fprintf(stderr, "%s: %s\n", fname[ADD], ERR_ALLOC);
       exit(1);
     }
     setStudentPtr(ptr);
@@ -198,11 +197,16 @@ void add(void)
     return;
   }
   ptr->name = strDup(temp);
+  if (!ptr->name) {
+    fprintf(stderr, "%s: %s\n", fname[ADD], ERR_ALLOC);
+    exit(1);
+  }
   /* score and grade */
   do {
     printf("Please enter a score of 0-100.\n"
            "(enter q if you want to stop): ");
     if (!isLine(ADD)) {
+      free(ptr->name);
 
       return;
     }
@@ -316,7 +320,7 @@ void modify(void)
   } else {
     name = strDup(temp);
     if (!name) {
-      fprintf(stderr, "modify(): %s\n", ERR_ALLOC);
+      fprintf(stderr, "%s: %s\n", fname[MODIFY], ERR_ALLOC);
       exit(1);
     }
   }
@@ -413,7 +417,7 @@ void deleteAll(void)
   }
   printf("Are you sure you want to delete all records? (y / n): ");
   if (getLine(temp, MAXLINE) < 0) {
-    fprintf(stderr, "deleteAll(): %s\n", ERR_FGETS);
+    fprintf(stderr, "%s: %s\n", fname[DELETE_ALL], ERR_FGETS);
     exit(1);
   }
   if (strlen(temp) == 1 && *temp == 'y') {
