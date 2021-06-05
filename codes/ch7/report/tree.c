@@ -32,6 +32,7 @@ struct tnode *addtree(struct tnode *p, char *w)
 /* treeprint: in-order print of tree p */
 void treeprint(struct tnode *p)
 {
+    /* TODO!! */
     if (p) { /* p != NULL */
         treeprint(p->left);
         printf("%4d %s\n", p->count, p->word);

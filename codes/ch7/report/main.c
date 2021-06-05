@@ -11,9 +11,14 @@ int main(void)
 {
     struct tnode *root;
     char   word[MAXWORD];
+    FILE   *fp;
 
     root = NULL;
-    while (getword(word, MAXWORD) != EOF) {
+    fp = fopen("in.txt", "r");
+    if (!fp) {
+        fprintf(stderr, "fopen() error!\n");
+    }
+    while (fscanf(fp, "%s", word) != EOF) {
         if (isalpha(word[0])) {
             root = addtree(root, word);
         }
