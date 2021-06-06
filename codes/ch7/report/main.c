@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <ctype.h>
 #include "tree.h"
 
@@ -11,19 +12,33 @@ int main(void)
 {
     struct tnode *root;
     char   word[MAXWORD];
-    FILE   *fp;
+    FILE   *ifp, *ofp;
 
     root = NULL;
-    fp = fopen("in.txt", "r");
-    if (!fp) {
+    ifp = fopen("in.txt", "r");
+    ofp = fopen("out.txt", "w");
+    if (!ifp || !ofp) {
         fprintf(stderr, "fopen() error!\n");
+        exit(1);
     }
-    while (fscanf(fp, "%s", word) != EOF) {
+    while (fscanf(ifp, "%s", word) != EOF) {
         if (isalpha(word[0])) {
             root = addtree(root, word);
         }
     }
-    treeprint(root);
+    if (ferror(ifp)) {
+        fprintf(stderr, "fscanf() error!\n");
+        exit(1);
+    }
+    treeprint(root, ofp);
+    if (ferror(ofp)) {
+        fprintf(stderr, "fprintf() error!\n");
+        exit(1);
+    }
+    if (fclose(ifp) || fclose(ofp)) {
+        fprintf(stderr, "fclose() error!\n");
+        exit(1);
+    };
 
     return 0;
 }
