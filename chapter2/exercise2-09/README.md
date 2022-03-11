@@ -46,7 +46,5 @@ void bitcount(unsigned x)
         x &= (x - 1);
     }
     printf("count: %d\n", count);
-
-    return;
 }
 ```

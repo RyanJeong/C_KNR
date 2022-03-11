@@ -21,12 +21,12 @@ int main(void)
 
 void func1(struct rect r)
 {
-
-  return;
+  r.pt1;
+  r.pt2;
 }
 
 void func2(struct rect *r)
 {
-
-  return;
+  r->pt1;
+  r->pt2;
 }

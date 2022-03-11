@@ -94,8 +94,6 @@ void afree(char *p)
     if (p >= allocbuf && p < allocbuf + ALLOCSIZE) {
         allocp = p;
     }
-
-    return;
 }
 ```
 ```C
@@ -167,8 +165,6 @@ void writelines(char *lineptr[], int nlines)
     for (i = 0; i < nlines; i++) {
         printf("%s\n", lineptr[i]);
     }
-
-    return;
 }
 ```
 ```C
@@ -210,8 +206,6 @@ void qsort(void *v[], int left, int right, int (*comp)(void *, void *))
     swap(v, left, last);
     qsort(v, left, last-1, comp);
     qsort(v, last+1, right, comp);
-
-    return;
 }
 
 /* numcmp: compare s1 and s2 numerically */
@@ -266,7 +260,5 @@ void swap(void *v[], int i, int j)
     temp = v[i];
     v[i] = v[j];
     v[j] = temp;
-
-    return;
 }
 ```

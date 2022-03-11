@@ -71,8 +71,6 @@ unsigned setbits(unsigned x, int p, int n, unsigned y)
 void printDecToBin(unsigned u)
 {
     (u) ? _printDecToBin(u) : putchar('0');
-
-    return;
 }
 
 void _printDecToBin(unsigned u)
@@ -81,7 +79,5 @@ void _printDecToBin(unsigned u)
         _printDecToBin((u >> 1));   
         putchar((u & 01) + '0');
     }
-
-    return; 
 }
 ```

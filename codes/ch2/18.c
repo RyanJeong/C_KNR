@@ -8,6 +8,4 @@ void bitcount(unsigned x)
   for (count = 0; x; ++count)
     x &= (x - 1);
   printf("count: %d\n", count);
-
-  return;
 }

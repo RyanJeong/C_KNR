@@ -73,8 +73,6 @@ void singleComment(void)
             break;
         }
     }   
-
-    return;
 }
 
 /*
@@ -98,7 +96,5 @@ void multiComment(void)
             isAsterisk = FALSE;
         }
     }   
-
-    return;
 }
 ```

@@ -10,8 +10,6 @@ void reverse(char s[])
         s[i] = s[j];
         s[j] = c;
     }
-
-    return;
 }
 
 /* itoa: convert n to characters in s */
@@ -31,6 +29,4 @@ void itoa(int n, char s[])
     }
     s[i] = '\0';
     reverse(s);
-
-    return;
 }

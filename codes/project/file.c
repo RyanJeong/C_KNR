@@ -38,8 +38,6 @@ void save(void)
     exit(1);
   };
   puts("save(): The file has been saved successfully.");
-
-  return;
 }
 
 void load(void)
@@ -99,6 +97,4 @@ void load(void)
     };
     puts("load(): The file has been loaded successfully.");
   }
-
-  return;
 }

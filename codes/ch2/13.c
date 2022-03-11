@@ -7,6 +7,4 @@ void strcat(char s[], char t[])
   while (s[i] != '\0') /*find end of s*/
     ++i;
   while ((s[i++] = t[j++]) != '\0') {} /*copy t*/
-
-  return;
 }

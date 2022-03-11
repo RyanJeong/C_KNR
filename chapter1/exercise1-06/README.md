@@ -13,7 +13,5 @@ void main()
         printf("%s%d\n", "c != EOF, value: ", c != EOF);
     }
     printf("%s%d\n", "c == EOF, value: ", c != EOF);
-    
-    return;
 }
 ```

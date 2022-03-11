@@ -9,8 +9,6 @@ void copyij(int s[SIZE][SIZE], int t[SIZE][SIZE])
             s[i][j] = t[i][j];
         }
     }
-
-    return;
 }
 
 void copyji(int s[SIZE][SIZE], int t[SIZE][SIZE])
@@ -22,6 +20,4 @@ void copyji(int s[SIZE][SIZE], int t[SIZE][SIZE])
             s[i][j] = t[i][j];
         }
     }
-
-    return;
 }

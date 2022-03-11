@@ -50,8 +50,6 @@ void binsearch1(int x, int v[], int n)
         }
     }
     printf("Binsearch1's result: %s, used time: %lf\n", (mid == x) ? "Found!" : "Not found...", (double) (time - clock()) / CLOCKS_PER_SEC);
-
-    return;
 }
 
 void binsearch2(int x, int v[], int n)
@@ -72,7 +70,5 @@ void binsearch2(int x, int v[], int n)
         mid = (low + high) >> 1;
     }
     printf("Binsearch1's result: %s, used time: %lf\n", (mid == x) ? "Found!" : "Not found...", (double) (time - clock()) / CLOCKS_PER_SEC);
-
-    return;
 }
 ```

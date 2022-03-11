@@ -7,8 +7,6 @@ void swap1(int a, int b) /* call by value */
     temp = a;
     a    = b;
     b    = temp;
-
-    return;
 }
 
 void swap2(int *a, int *b) /* call by address */
@@ -18,8 +16,6 @@ void swap2(int *a, int *b) /* call by address */
     temp = *a;
     *a   = *b;
     *b   = temp;
-
-    return;
 }
 
 int main(void)

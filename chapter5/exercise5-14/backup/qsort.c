@@ -21,8 +21,6 @@ void qsort(void *v[], int left, int right, int (*comp)(void *, void *))
     swap(v, left, last);
     qsort(v, left, last-1, comp);
     qsort(v, last+1, right, comp);
-
-    return;
 }
 
 /* numcmp: compare s1 and s2 numerically */

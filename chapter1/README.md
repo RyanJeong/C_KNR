@@ -45,8 +45,6 @@
         printf("3. [test()] addr: %p, value: %d\n", p, *p);
         ++p;
         printf("4. [test()] addr: %p, value: %d\n", p, *p);
-
-        return;
     }
 
     int main()

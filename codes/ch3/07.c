@@ -12,7 +12,6 @@ void itoa(int n, char s[])
   if (sign < 0)
     s[i++] = '-';
   s[i] = '\0';
+  /* not a standard library */
   reverse(s);
-
-  return;
 }

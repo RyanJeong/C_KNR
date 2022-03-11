@@ -29,8 +29,6 @@ void fahrToCel()
     for (fahr = LOWER; fahr <= UPPER; fahr += STEP) {
         printf("%3.0f %6.1f\n", fahr, (5.0 / 9.0)*(fahr - 32.0));
     }
-  
-    return;
 }
 
 void celToFahr()
@@ -41,6 +39,4 @@ void celToFahr()
     for (celsius = LOWER; celsius <= UPPER; celsius += STEP) {
         printf("%3.0f %6.1f\n", celsius, (9.0 / 5.0 * celsius)+32);
     }
-
-    return;
 }

@@ -32,6 +32,4 @@ void filecopy(FILE *ifp, FILE *ofp)
     while ((c = getc(ifp)) != EOF) {
         putc(c, ofp);
     }
-
-    return;
 }

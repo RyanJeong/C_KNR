@@ -39,8 +39,6 @@ void itoa(int n, char *buf)
     }
     *buf = '\0';
     reverse(p);
-
-    return;
 }
 
 void reverse(char *buf) 
@@ -57,7 +55,5 @@ void reverse(char *buf)
         *buf++  = *p;
         *p--    = c;    
     }
-
-    return;
 }
 ```

@@ -64,7 +64,5 @@ void reverse(char s[])
         *s++    = *p;
         *p--    = temp;
     }
-
-    return;
 }
 ```

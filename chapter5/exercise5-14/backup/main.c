@@ -49,8 +49,6 @@ void swap(void *v[], int i, int j)
     temp = v[i];
     v[i] = v[j];
     v[j] = temp;
-
-    return;
 }
 
 /* readlines: read input lines */
@@ -115,8 +113,6 @@ void writelines(char *lineptr[], int nlines)
     for (i = 0; i < nlines; i++) {
         printf("%s\n", lineptr[i]);
     }
-
-    return;
 }
 
 /*  strcpy: copy t to s;    */
@@ -125,6 +121,4 @@ void strcpy(char *s, char *t)
     while (*s++ = *t++) {
         ;
     }
-
-    return;
 }

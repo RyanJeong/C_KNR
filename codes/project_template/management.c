@@ -32,14 +32,11 @@ void menu(void)
          "\t[0] Save and Quit\n"
          "\t------------------------\n"
          "Enter your choice:");
-
-  return;
 }
 
 void run(char *arg)
 {
-
-  return;
+  /* do something ... */
 }
 
 char calcGrade(int i)
@@ -51,60 +48,50 @@ char calcGrade(int i)
 
 void title(void)
 {
-
-  return;
+  /* do something ... */
 }
 
 void student(Student *ptr)
 {
-
-  return;
+  /* do something ... */
 }
 
 void print(char *s1, char *s2, char *s3, char *s4)
 {
-
-  return;
+  /* do something ... */
 }
 
 int isLine(int caller)
 {
-
   return 1;
 }
 
 void add(void)
 {
-
-  return;
+  /* do something ... */
 }
 
 void display(void)
 {
-
-  return;
+  /* do something ... */
 }
 
 void search(void)
 {
-
-  return;
+  /* do something ... */
 }
 
 void modify(void)
 {
-
-  return;
+  /* do something ... */
 }
 
 void delete(void)
 {
-
-  return;
+  /* do something ... */
 }
 
 void deleteAll(void)
 {
-
-  return;
+  /* do something ... */
 }

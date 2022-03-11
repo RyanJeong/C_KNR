@@ -14,8 +14,6 @@ void push(double f)
     } else {
         printf("error: stack full, can't push %g\n", f);
     }
-
-    return;
 }
 
 /* pop: pop and return top value from stack */

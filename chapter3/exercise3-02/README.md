@@ -60,7 +60,5 @@ void escape(char *s, char *t)
         }
     }
     *s = c;
-
-    return;
 }
 ```

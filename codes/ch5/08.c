@@ -7,6 +7,4 @@ void strcpy(char *s, char *t)
     while ((s[i] = t[i]) != '\0') {
         i++;
     }
-
-    return;
 }

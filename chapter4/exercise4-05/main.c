@@ -133,8 +133,6 @@ void push(double f)
     } else {
         printf("error: stack full, can't push %g\n", f);
     }
-
-    return;
 }
 
 /* pop: pop and return top value from stack */
@@ -207,8 +205,6 @@ void ungetch(int c)
     } else {
         buf[bufp++] = c;
     }
-
-    return;
 }
 
 /*
@@ -224,8 +220,6 @@ void print(void)
     } else {
         printf("error: stack empty\n");
     }
-
-    return;
 }
 
 /*  duplicate: duplicate the top element of the stack   */
@@ -236,8 +230,6 @@ void duplicate(void)
     } else {
         printf("error: stack empty\n");
     }
-
-    return;
 }
 
 /*  swap: swap the top two elements */
@@ -252,16 +244,12 @@ void swap(void)
     } else {
         printf("error: stack empty\n");
     }
-
-    return;
 }
 
 /*  clear: clear the stack */
 void clear(void)
 {
     sp = 0;
-
-    return;
 }
 
 

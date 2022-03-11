@@ -38,13 +38,10 @@ void treeprint(struct tnode *p, FILE *ofp)
         printf("%4d %s\n", p->count, p->word);
         treeprint(p->right, ofp);
     }
-
-    return;
 }
 
 /* talloc: make a tnode */
 struct tnode *talloc(void)
 {
-
     return (struct tnode *) malloc(sizeof(struct tnode));
 }

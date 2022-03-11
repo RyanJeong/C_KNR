@@ -40,6 +40,4 @@ void any(char *s1, char *s2)
         }
         printf("%c\'s location: %d\n", *s2++, (!*p_s1) ? (-1) : (int) (p_s1 - s1));
     }
-
-    return;
 }

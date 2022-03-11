@@ -32,8 +32,6 @@ void menu(void)
          "\t[0] Save and Quit\n"
          "\t------------------------\n"
          "Enter your choice:");
-
-  return;
 }
 
 void run(char *arg)
@@ -79,8 +77,6 @@ void run(char *arg)
       break;
     }
   } while (c != QUIT);
-
-  return;
 }
 
 char calcGrade(int i)
@@ -114,8 +110,6 @@ void title(void)
     putchar('-');
   }
   putchar('\n');
-
-  return;
 }
 
 void student(Student *ptr)
@@ -127,8 +121,6 @@ void student(Student *ptr)
   *grade   = ptr->grade;
   grade[1] = '\0';
   print(ptr->id, ptr->name, score, grade);
-
-  return;
 }
 
 void print(char *s1, char *s2, char *s3, char *s4)
@@ -138,8 +130,6 @@ void print(char *s1, char *s2, char *s3, char *s4)
          getNamelen(), s2,
          (int) strlen(LABEL3), s3,
          (int) strlen(LABEL4), s4);
-
-  return;
 }
 
 int isLine(int caller)
@@ -178,7 +168,6 @@ void add(void)
     printf("Please enter an ID consisting of 8 characters.\n"
            "(If you want to stop, enter q): ");
     if (!isLine(ADD)) {
-
       return;
     }
     if (strlen(temp) != SIZE_ID) {
@@ -194,7 +183,6 @@ void add(void)
   printf("Please enter a name.\n"
          "(enter q if you want to stop): ");
   if (!isLine(ADD)) {
-
     return;
   }
   ptr->name = strDup(temp);
@@ -208,7 +196,6 @@ void add(void)
            "(enter q if you want to stop): ");
     if (!isLine(ADD)) {
       free(ptr->name);
-
       return;
     }
     score = isdigit(*temp) ? atoi(temp) : -1;
@@ -226,8 +213,6 @@ void add(void)
   title();
   student(ptr);
   qsort(getStudentPtr(), getNum(), sizeof(Student), cmpIds);
-
-  return;
 }
 
 void display(void)
@@ -243,8 +228,6 @@ void display(void)
       student(ptr);
     }
   }
-
-  return;
 }
 
 void search(void)
@@ -253,14 +236,12 @@ void search(void)
 
   if (!getNum()) {
     puts("There are no records to search.");
-
     return;
   }
   do {
     printf("Please enter the student ID to be searched. The ID consists of 8 characters.\n"
            "(If you want to stop, enter q): ");
     if (!isLine(SEARCH)) {
-
       return;
     }
     if (strlen(temp) != SIZE_ID) {
@@ -276,8 +257,6 @@ void search(void)
     title();
     student(ptr);
   }
-
-  return;
 }
 
 void modify(void)
@@ -288,14 +267,12 @@ void modify(void)
 
   if (!getNum()) {
     puts("There are no records to modify.");
-
     return;
   } 
   do {
     printf("Please enter the student ID to be modified. The ID consists of 8 characters.\n"
            "(If you want to stop, enter q): ");
     if (!isLine(MODIFY)) {
-
       return;
     }
     if (strlen(temp) != SIZE_ID) {
@@ -307,13 +284,11 @@ void modify(void)
   } while (1);
   if (!ptr) {
     puts("There are no records for this ID.");
-
     return;
   }
   printf("Please enter a new name.\n"
          "(enter q if you want to stop or = if you don't want to change it): ");
   if (!isLine(MODIFY)) {
-
     return;
   }
   if (strlen(temp) == 1 && *temp == '=') {
@@ -332,7 +307,6 @@ void modify(void)
       if (name) {
         free(name);
       }
-
       return;
     }
     if (strlen(temp) == 1 && *temp == '=') {
@@ -359,8 +333,6 @@ void modify(void)
   puts("The record has been modified successfully.");
   title();
   student(ptr);
-
-  return;
 }
 
 void delete(void)
@@ -369,14 +341,12 @@ void delete(void)
 
   if (!getNum()) {
     puts("There are no records to delete.");
-
     return;
   }
   do {
     printf("Please enter the student ID to be deleted. The ID consists of 8 characters.\n"
            "(If you want to stop, enter q): ");
     if (!isLine(DELETE)) {
-
       return;
     }
     if (strlen(temp) != SIZE_ID) {
@@ -388,7 +358,6 @@ void delete(void)
   } while (1);
   if (!ptr) {
     puts("There are no records for this ID.");
-
     return;
   }
   free(ptr++->name);
@@ -402,8 +371,6 @@ void delete(void)
   setNum(getNum() - 1);
   setNamelen(getMaxNamelen());
   puts("The record has been deleted successfully.");
-
-  return;
 }
 
 void deleteAll(void)
@@ -412,7 +379,6 @@ void deleteAll(void)
 
   if (!getNum()) {
     puts("There are no records to delete.");
-
     return;
   }
   printf("Are you sure you want to delete all records? (y / n): ");
@@ -429,6 +395,4 @@ void deleteAll(void)
     setNamelen(strlen(LABEL2));
     puts("All records have been deleted successfully.");
   }
-
-  return;
 }

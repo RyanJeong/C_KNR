@@ -149,8 +149,6 @@ void shellsort(int v[], int n)
 			}
 		}
 	}
-
-	return;
 }
 ```
 ```c
@@ -166,8 +164,6 @@ void reverse(char s[])
 		s[i] = s[j];
 		s[j] = c;
 	}
-
-	return;
 }
 ```
 ```c
@@ -194,8 +190,6 @@ void itoa(int n, char s[])
 	}
 	s[i] = '\0';
 	reverse(s);
-
-	return;
 }
 ```
 ### 3.7 Break and Continue<br>

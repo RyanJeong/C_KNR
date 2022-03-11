@@ -18,6 +18,4 @@ void ungetch(int c) /* push character back on input */
     } else {
         buf[bufp++] = c;
     }
-
-    return;
 }

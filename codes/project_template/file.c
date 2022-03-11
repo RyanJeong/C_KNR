@@ -8,12 +8,10 @@
 
 void save(void)
 {
-
-  return;
+  /* do something ... */
 }
 
 void load(void)
 {
-
-  return;
+  /* do something ... */
 }

@@ -66,6 +66,4 @@ void copy()
     while ((longest[i] = line[i]) != '\0') {
         ++i;
     }
-
-    return;
 }

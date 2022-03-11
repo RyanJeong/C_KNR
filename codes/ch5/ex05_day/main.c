@@ -29,8 +29,6 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
     }
     *pmonth = i;
     *pday   = yearday;
-
-    return;
 }
 
 /* month_name: return name of n-th month */

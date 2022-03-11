@@ -157,8 +157,6 @@ void fff()
   if (pt1.x == pt2.x && pt1.y == pt2.y)
     printf("pt1 and pt2 are the same\n");
   }
-
-  return;
 }
 
 #endif
@@ -505,8 +503,6 @@ void f()
     flags |= EXTERNAL | STATIC;
     flags &= ~(EXTERNAL | STATIC);
     if ((flags & (EXTERNAL | STATIC)) == 0) { ... }
-
-    return;
 }
 
 struct {

@@ -11,8 +11,6 @@ void init(void)
     srand(time(NULL)); /* Initialize the seed. */
     printf("*** Number Baseball Game ***\n"
            "You have 9 chances to find out the right answer with 10 numbers(0 - 9).\n");
-
-    return;
 }
 
 int answer[PITCHES];
@@ -43,8 +41,6 @@ void play(void)
                (n_ball == 1) ? "" : "s");
     }
     printf("%s\n", (i > INNINGS) ? "You lose!" : "You win!");
-
-    return;
 }
 
 void setAnswer(void)
@@ -62,8 +58,6 @@ void setAnswer(void)
         }
         check[num] = 1;
     }
-
-    return;
 }
 
 void setGuess(void)
@@ -88,6 +82,4 @@ void setGuess(void)
             }
         }
     }
-
-    return;
 }

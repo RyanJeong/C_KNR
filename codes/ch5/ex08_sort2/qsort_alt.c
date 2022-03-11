@@ -19,8 +19,6 @@ void qsort(void *v[], int left, int right,
     swap(v, left, last);
     qsort(v, left, last - 1, comp);
     qsort(v, last + 1, right, comp);
-
-    return;
 }
 
 /* swap: interchange v[i] and v[j] */
@@ -31,7 +29,5 @@ void swap(void *v[], int i, int j)
     temp = v[i];
     v[i] = v[j];
     v[j] = temp;
-
-    return;
 }
 

@@ -1,3 +1,5 @@
+#include <string.h>
+
 /* trim: remove trailing blanks, tabs, newlines */
 int trim(char s[])
 {

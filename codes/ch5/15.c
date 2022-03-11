@@ -71,8 +71,6 @@ void qsort(char *v[], int left, int right)
     swap(v, left, last);
     qsort(v, left, last-1);
     qsort(v, last+1, right);
-
-    return;
 }
 
 /* swap: interchange v[i] and v[j] */
@@ -83,8 +81,6 @@ void swap(char *v[], int i, int j)
     temp = v[i];
     v[i] = v[j];
     v[j] = temp;
-
-    return;
 }
 
 /* writelines can be written instead as */
@@ -93,8 +89,6 @@ void writelines(char *lineptr[], int nlines)
     while (nlines-- > 0) {
         printf("%s\n", *lineptr++);
     }
-
-    return;
 }
 
 /* getline: get line into s, return length */

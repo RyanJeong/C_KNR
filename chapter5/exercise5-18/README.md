@@ -106,8 +106,6 @@ void dcl(void)
     while (ns-- > 0) {
         strcat(out, " pointer to");
     }
-
-    return;
 }
 
 /* dirdcl: parse a direct declarator */
@@ -137,8 +135,6 @@ void dirdcl(void)
             strcat(out, " of");
         }
     }
-
-    return;
 }
 
 /*  getch.c */
@@ -164,7 +160,5 @@ void ungetch(int c)
     } else {
         buf[bufp++] = c;
     }
-
-    return;
 }
 ```

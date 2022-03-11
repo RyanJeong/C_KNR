@@ -321,8 +321,6 @@ void push(double f)
     } else {
         printf("error: stack full, can't push %g\n", f);
     }
-
-    return;
 }
 
 /* pop: pop and return top value from stack */
@@ -395,8 +393,6 @@ void ungetch(int c) /* push character back on input */
     } else {
         buf[bufp++] = c;
     }
-
-    return;
 }
 ```
 ### 4.7 Register Variables<br>
@@ -419,8 +415,6 @@ void printd(int n)
         printd(n / 10);
     }
     putchar(n % 10 + '0');
-    
-    return;
 }
 ```
 ```C
@@ -444,8 +438,6 @@ void qsort(int v[], int left, int right)
     swap(v, left, last); /* restore partition elem */
     qsort(v, left, last-1);
     qsort(v, last+1, right);
-
-    return;
 }
 ```
 ```C
@@ -457,8 +449,6 @@ void swap(int v[], int i, int j)
     temp = v[i];
     v[i] = v[j];
     v[j] = temp;
-
-    return;
 }
 ```
 ### 4.11 The C Preprocessor<br>

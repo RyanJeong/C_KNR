@@ -127,6 +127,4 @@ void expand(char *s, char *t)
         *t++ = '-';
     }
     *t = '\0';
-
-    return;
 }

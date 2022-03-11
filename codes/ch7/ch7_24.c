@@ -44,6 +44,4 @@ void filecopy(FILE *ifp, FILE *ofp)
         
         exit(1);
     }
-
-    return;
 }

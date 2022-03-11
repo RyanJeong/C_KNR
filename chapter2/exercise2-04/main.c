@@ -64,6 +64,4 @@ void squeeze(char *s1, char *s2)
         }
         *p_s1 = '\0';
     }
-
-    return;
 }

@@ -205,8 +205,6 @@ void squeeze(char s[], int c)
 		}
 	}
 	s[j] = '\0';
-	
-	return;
 }
 ```
 ```c
@@ -222,8 +220,6 @@ void strcat(char s[], char t[])
 	while ((s[i++] = t[j++]) != '\0') {	/*	copy t	*/
 		;
 	}
-
-	return;
 }
 ```
 ### 2.9 Bitwise Operators

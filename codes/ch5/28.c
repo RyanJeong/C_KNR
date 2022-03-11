@@ -16,17 +16,28 @@ char name[MAXTOKEN];     /* identifier name */
 char datatype[MAXTOKEN]; /* data type = char, int, etc. */
 char out[1000];          /* output string */
 
-/* convert declaration to words */
+/* undcl: convert word descriptions to declarations */
 int main(void)
 {
-    while (gettoken() != EOF) {  /* 1st token on line */
-        strcpy(datatype, token); /* is the datatype */
-        out[0] = '\0';
-        dcl(); /* parse rest of line */
-        if (tokentype != '\n') {
-            printf("syntax error\n");
+    int  type;
+    char temp[MAXTOKEN];
+
+    while (gettoken() != EOF) {
+        strcpy(out, token);
+        while ((type = gettoken()) != '\n') {
+            if (type == PARENS || type == BRACKETS) {
+                strcat(out, token);
+            } else if (type == '*') {
+                sprintf(temp, "(*%s)", out);
+                strcpy(out, temp);
+            } else if (type == NAME) {
+                sprintf(temp, "%s %s", token, out);
+                strcpy(out, temp);
+            } else {
+                printf("invalid input at %s\n", token);
+            }
         }
-        printf("%s: %s %s\n", name, out, datatype);
+        printf("%s\n", out);
     }
 
     return 0;
@@ -45,8 +56,6 @@ void dcl(void)
     while (ns-- > 0) {
         strcat(out, " pointer to");
     }
-
-    return;
 }
 
 /* dirdcl: parse a direct declarator */
@@ -73,8 +82,6 @@ void dirdcl(void)
             strcat(out, " of");
         }
     }
-
-    return;
 }
 
 #define BUFSIZE 100
@@ -94,8 +101,6 @@ void ungetch(int c) /* push character back on input */
     } else {
         buf[bufp++] = c;
     }
-
-    return;
 }
 
 int gettoken(void) /* return next token */
@@ -137,3 +142,4 @@ int gettoken(void) /* return next token */
         return tokentype = c;
     }
 }
+

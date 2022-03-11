@@ -19,6 +19,4 @@ void qsort(void *v[], int left, int right,
     swap(v, left, last);
     qsort(v, left, last - 1, comp);
     qsort(v, last + 1, right, comp);
-
-    return;
 }

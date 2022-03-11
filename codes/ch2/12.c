@@ -8,6 +8,4 @@ void squeeze(char s[], int c)
       s[j++] = s[i];
   }
   s[j] = '\0';
-
-  return;
 }
