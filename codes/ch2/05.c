@@ -1,11 +1,14 @@
-/* atoi: convert s to integer */
-int atoi(char s[])
+#include <stdio.h>
+
+int main(void)
 {
-  int i, n;
+  int i = 0x00000001;
 
-  n = 0;
-  for (i = 0; s[i] >= '0' && s[i] <= '9'; ++i)
-    n = 10 * n + (s[i] - '0');
+  /* 
+    if little endian, 01 00 00 00
+    else,              00 00 00 01 
+  */
+  printf("%s\n", *((char *) &i) ? "Little Endian" : "Big Endian");
 
-  return n;
+  return 0;
 }

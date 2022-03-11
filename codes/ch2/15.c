@@ -1,13 +1,22 @@
 #include <stdio.h>
 
-/* bitcount: faster version of the bitcount */
-void bitcount(unsigned x)
+int main(void)
 {
-  int count;
+  /* x = 248, 1111 1000 */
+  unsigned char x = 248;
 
-  for (count = 0; x; ++count)
-    x &= (x - 1);
-  printf("count: %d\n", count);
+  /* The result is 0011 1000 */
+  printf("x & 077 = %d\n", x & 077); /* mask operation */
 
-  return;
+  /* The result is 1111 1111 */
+  printf("x | 07 = %d\n", x | 07);  /* set operation  */
+
+  /* The result is 1100 0000 */
+  printf("x & ~077 = %d\n", x & ~077);  /* better than 0x300  */
+  /* 
+   * 0x300, which assumes that x is a 8-bit quantity
+   * ~077 is independent of word length
+   */
+
+  return 0;
 }

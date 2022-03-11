@@ -1,11 +1,11 @@
-/*strlen: return length of s*/
-int strlen(char s[])
+#include <stdio.h>
+
+int main(void)
 {
-  int i;
+  int num;
 
-  i = 0;
-  while (s[i] != '\0')
-    ++i;
+  num = 50000;
+  printf("%d\n", num * num); /* Maybe 2 500 000 000 ? */
 
-  return i;
+  return 0;
 }

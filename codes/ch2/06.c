@@ -1,8 +1,11 @@
-/* lower: convert c to lower case; ASCII only */
-int lower(int c)
+/* strlen: return length of s */
+int strlen(char s[])
 {
-  if (c >= 'A' && c <= 'Z')
-    return (c + 'a' - 'A');
-  else
-    return c;
+  int i;
+
+  i = 0;
+  while (s[i] != '\0')
+    ++i;
+
+  return i;
 }

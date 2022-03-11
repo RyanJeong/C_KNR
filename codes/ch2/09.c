@@ -1,13 +1,8 @@
-/* squeeze: delete all c from s */
-void squeeze(char s[], int c)
+/* lower: convert c to lower case; ASCII only */
+int lower(int c)
 {
-  int i, j;
-
-  for (i = j = 0; s[i] != '\0'; ++i) {
-    if (s[i] != c)
-      s[j++] = s[i];
-  }
-  s[j] = '\0';
-
-  return;
+  if (c >= 'A' && c <= 'Z')
+    return (c + 'a' - 'A');
+  else
+    return c;
 }

@@ -1,22 +1,18 @@
-#include <stdio.h>
+unsigned long int next = 1;
 
-int main(void)
+/* rand: return pseudo-random integer on 0 ... 32,767 */
+int rand(void)
 {
-  /* a = 5, 0000 0101, b = 9, 0000 1001 */
-  unsigned char a = 5, b = 9;
+  next = (next * 1103515245) + 12345;
 
-  /* The result is 0000 0001 */
-  printf("a & b = %d\n", a & b);
-  /* The result is 0000 1101 */
-  printf("a | b = %d\n", a | b);
-  /* The result is 0000 1100 */
-  printf("a ^ b = %d\n", a ^ b);
-  /* The result is 1111 1010 */
-  printf("~a = %d\n", a = ~a);
-  /* The result is 0001 0010 */
-  printf("b << 1 = %d\n", b << 1);
-  /* The result is 0000 0100 */
-  printf("b >> 1 = %d\n", b >> 1);
-
-  return 0;
+  return (unsigned int) (next / 65536) % 32768;
 }
+
+/* srand: set seed for rand() */
+void srand(unsigned int seed)
+{
+  next = seed;
+
+  return;
+}
+

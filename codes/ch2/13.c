@@ -1,5 +1,12 @@
-/* getbits: get n bits from position p */
-unsigned getbits(unsigned x, int p, int n)
+/* strcat: concatenate t to end of s; s must be big enough */
+void strcat(char s[], char t[])
 {
-  return (x >> (p + 1 - n)) & ~(~0 << n);
+  int i, j;
+
+  i = j = 0;
+  while (s[i] != '\0') /*find end of s*/
+    ++i;
+  while ((s[i++] = t[j++]) != '\0') {} /*copy t*/
+
+  return;
 }

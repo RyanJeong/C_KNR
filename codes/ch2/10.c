@@ -1,12 +1,15 @@
-/* strcat: concatenate t to end of s; s must be big enough */
-void strcat(char s[], char t[])  // [NOLINT]
+#include <stdio.h>
+
+add();
+
+int main(void)
 {
-  int i, j;
+  printf("%d", add(4, 5));
 
-  i = j = 0;
-  while (s[i] != '\0') /*find end of s*/
-    ++i;
-  while ((s[i++] = t[j++]) != '\0') {} /*copy t*/
+  return 0;
+}
 
-  return;
+add(a, b)
+{
+  return a + b;
 }

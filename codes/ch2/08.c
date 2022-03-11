@@ -1,18 +1,11 @@
-unsigned long int next = 1;
-
-/* rand: return pseudo-random integer on 0 ... 32,767 */
-int rand(void)
+/* atoi: convert s to integer */
+int atoi(char s[])
 {
-  next = (next * 1103515245) + 12345;
+  int i, n;
 
-  return (unsigned int) (next / 65536) % 32768;
+  n = 0;
+  for (i = 0; s[i] >= '0' && s[i] <= '9'; ++i)
+    n = 10 * n + (s[i] - '0');
+
+  return n;
 }
-
-/* srand: set seed for rand() */
-void srand(unsigned int seed)
-{
-  next = seed;
-
-  return;
-}
-

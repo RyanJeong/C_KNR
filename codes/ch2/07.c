@@ -1,15 +1,17 @@
 #include <stdio.h>
 
-add();
+#define ON 0
+enum boolean { NO, YES };
 
 int main(void)
 {
-  printf("%d", add(4, 5));
+  enum boolean state;
+
+  state = 0;
+  state = 1;
+  state = ON;
+
+  printf("%d\n", state);
 
   return 0;
-}
-
-add(a, b)
-{
-  return a + b;
 }

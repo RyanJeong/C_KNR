@@ -1,22 +1,13 @@
-#include <stdio.h>
-
-int main(void)
+/* squeeze: delete all c from s */
+void squeeze(char s[], int c)
 {
-  /* x = 248, 1111 1000 */
-  unsigned char x = 248;
+  int i, j;
 
-  /* The result is 0011 1000 */
-  printf("x & 077 = %d\n", x & 077); /* mask operation */
+  for (i = j = 0; s[i] != '\0'; ++i) {
+    if (s[i] != c)
+      s[j++] = s[i];
+  }
+  s[j] = '\0';
 
-  /* The result is 1111 1111 */
-  printf("x | 07 = %d\n", x | 07);  /* set operation  */
-
-  /* The result is 1100 0000 */
-  printf("x & ~077 = %d\n", x & ~077);  /* better than 0x300  */
-  /* 
-   * 0x300, which assumes that x is a 8-bit quantity
-   * ~077 is independent of word length
-   */
-
-  return 0;
+  return;
 }

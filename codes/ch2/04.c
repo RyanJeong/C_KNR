@@ -1,17 +1,20 @@
 #include <stdio.h>
-
-#define ON 0
-enum boolean { NO, YES };
+#include <float.h>
 
 int main(void)
 {
-  enum boolean state;
+  float a, b, c, res1, res2;
 
-  state = 0;
-  state = 1;
-  state = ON;
+  a = 1e20; /* scientific notation, 10 to the 20th power */
+  b = -1e20;
+  c = 1.0;
 
-  printf("%d\n", state);
+  /* Are the expressions a + (b + c) and (a + b) + c the same? */
+  res1 = a + (b + c);
+  res2 = (a + b) + c;
+  printf("Maximum float: %e\n"
+      "The expressions a + (b + c) and (a + b) + c are %s.\n",
+      FLT_MAX, (res1 == res2) ? "the same" : "not the same");
 
   return 0;
 }
