@@ -1,38 +1,93 @@
-x = 0;
-++i;
-printf(...);
+#define TEST_MALLOC(x) ((x) = malloc(sizeof(*x)), assert(x))
+#include <stdio.h>
 
-if (expression)
-    statement1
-else
-    statement2
+int test() {
+  int x;
+  int i;
+
+  int n;
+  int s[10];
+  int a[200];
+  goto gt;
+  int m;
+  int j;
+  int b[200];
 
 
-if (expression)
-/* if (expression != 0) */
+do
+  s[i++] = (n % 10) + '0'; /* get next digit */
+while ((n /= 10) > 0); /* delete it */
 
-if (n > 0)
-    if (a > b)
-        z = a;
+for (i = 0; i < n; ++i) {
+  if (a[i] < 0) /* skip negative elements */
+    continue;
+  /* do positive elements */
+}
+gt:
+
+
+      for (i = 0; i < n; ++i) {
+        for (j = 0; j < m; ++j) {
+          if (a[i] == b[j])
+            goto found;
+        }
+      }
+      /* didn't find any common elements */
+    found:
+      /* got one: a[i] == b[j]*/
+
+}
+void qqwer() {
+  int n, m, i, j, k, a[100], b[200];
+    int found = 0;
+    for (i = 0; (i < n) && !found; ++i) {
+      for (j = 0; (j < m) && !found; ++j) {
+        if (a[i] == b[j])
+          found = 1;
+      }
+    }
+    if (found)
+      /* got one: a[i] == b[j] */
     else
+      /* didn't find any common element */  
+
+
+
+}
+int q() {
+  const int sdf = 100;
+
+  int a, b, z, n;
+  int i;
+  int s[100];
+    if (n > 0)
+      if (a > b)
+        z = a;
+      else
         z = b;
 
-if (n > 0) {
-    if (a > b) 
+    if (n > 0) {
+      if (a > b) 
         z = a;
-}
-else 
-    z = b;
+    } else {
+      z = b;
+    }
 
-if (n >= 0)
-    for (i = 0; i < n; ++i) 
+    if (n >= 0)
+      for (i = 0; i < n; ++i) 
         if (s[i] > 0) {
-            printf("......");
+          printf("positive number found\n");
 
-            return i;
+          return i;
         }
-else /* WRONG */
-    printf("error -- n is negative\n");   
+    else /* WRONG */
+      printf("error -- n is negative\n");   
+
+  return 0;
+}
+
+
+
 
 if (expression)
     statement
@@ -88,16 +143,16 @@ for (i = 0; i < n; ++i) {
     ... /* do positive elements */
 }
 
-for (...)
-    for (...) {
+    for (...)
+      for (...) {
         ...
         if (disaster)
-            goto error:
+          goto error:
+      }
     }
-}
-...
-error:
-    clean up the mess
+    ...
+    error:
+      clean up the mess
 
 
     for (i = 0; i < n; ++i) {
