@@ -36,6 +36,13 @@
         //"${file}",
         "${fileDirname}/*.c",
         "-o",
+        // PWD: Print Working Directory
+        // ${string#substring}
+        // Deletes shortest match of substring from front of $string.
+        // ${string##substring}
+        // Deletes longest match of substring from front of $string.
+        // {PWD##*/}
+        // Deletes longest match of "*/" from front of PWD
         "${PWD##*/}",
         "-ansi",
         "-Wall"
