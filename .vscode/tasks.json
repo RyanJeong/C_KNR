@@ -22,6 +22,32 @@
       ],
       "group": {
         "kind": "build",
+        "isDefault": false
+      },
+      "detail": "compiler: /usr/bin/gcc"
+    },
+    {
+      "type": "cppbuild",
+      "label": "C/C++: gcc build",
+      "command": "/usr/bin/gcc",
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",
+        //"${file}",
+        "${fileDirname}/*.c",
+        "-o",
+        "${PWD##*/}",
+        "-ansi",
+        "-Wall"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": {
+        "kind": "build",
         "isDefault": true
       },
       "detail": "compiler: /usr/bin/gcc"
