@@ -204,6 +204,16 @@ char pattern[] = { 'o', 'u', 'l', 'd', '\0' };
 
 #define name replacement_text
 
+#define foo \
+STMT1; \
+STMT2;
+
+#define foo do { \
+  stmt1;         \
+  stmt2;         \
+  stmt3;         \
+} while (0)      \
+
 #define YES 123
 
 printf("YES");
@@ -241,12 +251,10 @@ printf("x/y = &g\n", x/y);
 /* paste(name, 1) creates the token name1 */
 #define paste(front, back) front ## back
 
-/*
 #if !defined(HDR)
 #define HDR
 
 #endif
-*/
 
 
 #ifndef HDR
