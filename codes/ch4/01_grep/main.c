@@ -17,7 +17,7 @@ int main(void)
   while (getline(line, MAXLINE) > 0) {
     if (strindex(line, pattern) >= 0) {
       printf("%s", line);
-      found++;
+      ++found;
     }
   }
 
