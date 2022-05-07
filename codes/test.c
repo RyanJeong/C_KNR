@@ -10,6 +10,20 @@
 
 #define dprint(expr) printf(#expr " = %g\n", expr)
 
+void foo()
+{
+  int x = 10, y = 20;
+  int *ip = &x;
+
+  y = *ip + 1;  /* y is now 11 */
+  printf("x: %d, y: %d\n", x, y);
+  *ip += 1;  /* x is now 11 */
+  printf("x: %d, y: %d\n", x, y);
+  ++*ip;  /* x is now 12 */
+  printf("x: %d, y: %d\n", x, y);
+  (*ip)++;  /* x is now 13 */
+  printf("x: %d, y: %d\n", x, y);
+}
 int main(void)
 {
   int a[] = {1, 2, 3, 4, 5};
@@ -37,6 +51,8 @@ int main(void)
 
   /* the strings are concatenated, so the effect is */
   printf("x/y = &g\n", x/y);
+
+  foo();
 
   return 0;
 }
