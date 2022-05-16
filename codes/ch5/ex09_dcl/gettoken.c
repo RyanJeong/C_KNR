@@ -28,8 +28,7 @@ int gettoken(void) /* return next token */
 
     return tokentype = BRACKETS;
   } else if (isalpha(c)) {
-    for (*p++ = c; isalnum(c = getch()); )
-      *p++ = c;
+    for (*p++ = c; isalnum(c = getch()); *p++ = c) { }
     *p = '\0';
     ungetch(c);
 

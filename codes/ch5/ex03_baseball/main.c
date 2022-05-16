@@ -2,8 +2,8 @@
 
 int main(void)
 {
-    init();
-    play();
+  init();
+  play();
 
-    return 0;    
+  return 0;
 }

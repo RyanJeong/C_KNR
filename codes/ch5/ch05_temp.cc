@@ -25,6 +25,9 @@ void fff(void)
 int x = 10, y = 20;
 int *ip = &x;
 
+int a[10][20];
+int *b[20];
+
 y = *ip + 1;  /* y is now 11 */
 *ip += 1;  /* x is now 11 */
 ++*ip;  /* x is now 12 */
@@ -35,6 +38,8 @@ void ffff(void)
 {
 int *ip, *iq, i;
 
+char *name[] = { "Illegal month", "Jan", "Feb", "Mar" };
+char aname[][15] = { "Illegal month", "Jan", "Feb", "Mar" };
 i = 3;
 ip = &i;
 iq = ip;
