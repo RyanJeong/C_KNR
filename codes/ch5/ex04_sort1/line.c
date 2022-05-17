@@ -29,6 +29,7 @@ int readlines(char *lineptr[], int maxlines)
 /* writelines can be written instead as */
 void writelines(char *lineptr[], int nlines)
 {
-  while (nlines-- > 0)
+  /* while (nlines-- > 0) */
+  while (nlines--)
     printf("%s\n", *lineptr++);
 }

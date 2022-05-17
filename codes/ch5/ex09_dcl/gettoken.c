@@ -1,5 +1,6 @@
 #include <ctype.h>
 #include <string.h>
+
 #include "gettoken.h"
 
 extern int  tokentype;  /* main.c */
