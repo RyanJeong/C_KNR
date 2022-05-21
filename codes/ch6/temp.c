@@ -1,3 +1,13 @@
+enum {
+  LEN = 100
+};
+
+char name[LEN];              /* 이름 */
+char addr[LEN];              /* 주소 */
+int social_security_number;  /* 주민등록번호 */
+double salary;               /* 봉급 */
+/* ... SKIPPED ... */
+
 struct point {
   int x;
   int y;
