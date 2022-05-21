@@ -1,32 +1,24 @@
 #include <stdio.h>
+#include <ctype.h>
 
-#include "table.h"
+#include "tree.h"
 
-void itoa(int n, char s[]);
+#define MAXWORD 100
 
-extern struct nlist *hashtab[HASHSIZE]; /* pointer table */
+int getword(char *, int);
 
-int main(int argc, char *argv[])
+/* word frequency count */
+int main(void)
 {
-  char *str[] = { "OFF", "ON", "ERROR" };
-  char buf[10];
-  struct nlist *temp;
-  int i, size;
+  struct tnode *root;
+  char word[MAXWORD];
 
-  size = sizeof str / sizeof(char *);
-  for (i = 0; i < size; ++i) {
-    itoa(i, buf);
-    /* return NULL if for any reason there is no room for a new entry */
-    if (!install(str[i], buf))
-      return -1;
+  root = NULL;
+  while (getword(word, MAXWORD) != EOF) {
+    if (isalpha(word[0]))
+      root = addtree(root, word);
   }
-  for (i = 0; i < size; ++i) {
-    /* if the string is to be found anywhere */
-    if ((temp = lookup(str[i])))
-      printf("%6s: %2s\n", temp->name, temp->defn);
-  }
-  install("ERROR", "-1");
-  printf("%6s: %2s\n", lookup("ERROR")->name, lookup("ERROR")->defn);
+  treeprint(root);
 
   return 0;
 }

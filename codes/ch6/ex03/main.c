@@ -1,24 +1,29 @@
 #include <stdio.h>
 #include <ctype.h>
 
-#include "tree.h"
+#include "key.h"
 
 #define MAXWORD 100
 
+struct key *binsearch(char *, struct key [], int);
 int getword(char *, int);
 
-/* word frequency count */
+/* count C keywords; pointer version */
 int main(void)
 {
-  struct tnode *root;
+  struct key *p;
   char word[MAXWORD];
 
-  root = NULL;
   while (getword(word, MAXWORD) != EOF) {
-    if (isalpha(word[0]))
-      root = addtree(root, word);
+    if (isalpha(word[0])) {
+      if ((p = binsearch(word, keytab, NKEYS)) != NULL)
+        p->count++;
+    }
   }
-  treeprint(root);
+  for (p = keytab; p < keytab + NKEYS; p++) {
+    if (p->count > 0)
+      printf("%4d %s\n", p->count, p->word);
+  }
 
   return 0;
 }

@@ -8,6 +8,17 @@ int social_security_number;  /* 주민등록번호 */
 double salary;               /* 봉급 */
 /* ... SKIPPED ... */
 
+int name;
+struct name {
+  int name;
+};
+
+struct foo {
+  int x;
+  int y;
+  int z;
+} foo1, foo2;
+
 struct point {
   int x;
   int y;
@@ -253,7 +264,9 @@ void f(void) {
   struct point origin, *pp;
 
   pp = &origin;
-  /* printf("origin is (%d ,%d)\n", (*pp).x, (*pp).y); */
+  /*
+  printf("origin is (%d ,%d)\n", (*pp).x, (*pp).y);
+  */
   printf("origin is (%d ,%d)\n", pp->x, pp->y);
 }
 
@@ -272,10 +285,10 @@ struct rect r, *rp = &r;
 
 void v() {
 /* these four expressions are equivalent: */
-r.pt1.x
-rp->pt1.x
-(r.pt1).x
-(rp->pt1).x
+r.pt1.x;
+rp->pt1.x;
+(r.pt1).x;
+(rp->pt1).x;
 }
 
 void s() {
@@ -350,7 +363,7 @@ struct key {
 { "auto", 0 },
 { "break", 0 },
 { "case", 0 },
-...
+  /* ... */
 
 
 void aa(){
@@ -454,6 +467,21 @@ Treeptr talloc(void)
 }
 #endif
 #ifdef B
+union {
+  char c;   /* 1 byte */
+  short s;  /* 2 bytes */
+  int i;    /* 4 bytes */
+} u = 0x12345678;
+
+&u;    /* 0x08AF53DC */
+&u.c;  /* 0x08AF53DC */
+&u.s;  /* 0x08AF53DC */
+&u.i;  /* 0x08AF53DC */
+
+u.c;  /* 0x78 */
+u.s;  /* 0x5678 */
+u.i;  /* 0x12345678 */
+
 union u_tag {
   int ival;
   float fval;
