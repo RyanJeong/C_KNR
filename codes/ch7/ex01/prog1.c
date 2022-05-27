@@ -3,11 +3,10 @@
 
 int main(void)
 {
-    int c;
+  int c;
 
-    while ((c = getchar()) != EOF) {
-      putchar(toupper(c));
-    }
+  while ((c = getchar()) != EOF)
+    putchar(toupper(c));
 
-    return 0;
+  return 0;
 }
