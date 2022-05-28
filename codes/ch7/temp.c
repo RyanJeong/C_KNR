@@ -5,7 +5,7 @@ int foo()
   char arr[100];
   printf("\n");
   sprintf(arr, "\n");
-
+  scanf("%d", &arr[0]);
 }
 
 #include <stdio.h>
