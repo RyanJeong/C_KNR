@@ -1,5 +1,12 @@
 #ifndef A
-int printf(char *format, arg1 , arg2 , ... )
+#include <stdio.h>
+int foo() 
+{
+  char arr[100];
+  printf("\n");
+  sprintf(arr, "\n");
+
+}
 
 #include <stdio.h>
 
