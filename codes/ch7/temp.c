@@ -6,6 +6,12 @@ int foo()
   printf("\n");
   sprintf(arr, "\n");
   scanf("%d", &arr[0]);
+  /*
+  int fscanf(FILE *fp, char *format, ...);
+  int fprintf(FILE *fp, char *format, ...);
+  */
+ fscanf(stdin, "%s", arr);  /* scanf("%s", arr); */
+ fprintf(stdout, "%s", arr);  /* printf("%s", arr); */
 }
 
 #include <stdio.h>
@@ -81,6 +87,7 @@ int fprintf(FILE *fp, char *format, ...);
 int ferror(FILE *fp);
 int feof(FILE *fp);
 
+#include <stdio.h>
 char *fgets(char *line, int maxline, FILE *fp);
 int fputs(char *line, FILE *fp);
 
@@ -88,19 +95,25 @@ int fputs(char *line, FILE *fp);
 #undef getchar
 #endif
 int getchar(void);
+#include <stdio.h>
 char *gets(char *line);
 
 #ifdef putchar
 #undef putchar
 #endif
 int putchar(int c);
+#include <stdio.h>
 int puts(char *line);
 
 int fclose(FILE *stream);
 
+#include <stdlib.h>
 void b()
 {
   char *name, *mode;
+  void *test = malloc(100);
+  void *test = calloc(100, sizeof(int));
   fp = fopen(name, mode);
 }
 #endif
+

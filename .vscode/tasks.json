@@ -12,7 +12,8 @@
         "-o",
         "${fileDirname}/${fileBasenameNoExtension}",
         "-ansi",
-        "-Wall"
+        "-Wall",
+        "-lm"
       ],
       "options": {
         "cwd": "${fileDirname}"
@@ -45,7 +46,8 @@
         // Deletes longest match of "*/" from front of PWD
         "${PWD##*/}",
         "-ansi",
-        "-Wall"
+        "-Wall",
+        "-lm"
       ],
       "options": {
         "cwd": "${fileDirname}"

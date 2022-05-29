@@ -10,7 +10,9 @@ void f()
   int n, *ip;
 
   n = 5;
+  ip = (int *) malloc(n * sizeof(int));
   ip = (int *) calloc(n, sizeof(int));
+  free(ip);
 }
 
 void ff()
@@ -25,6 +27,7 @@ void ff()
   for (p = head; p != NULL; p = p->next)
     free(p);
 
+  /* OK! */
   for (p = head; p != NULL; p = q) {
     q = p->next;
     free(p);

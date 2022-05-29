@@ -1,8 +1,6 @@
 #include <stdio.h>
 
-int ungetc(int c, FILE *fp);
-
-int skipWhite(FILE *f)
+int skipwhite(FILE *f)
 {
   int c;
 
