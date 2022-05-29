@@ -9,7 +9,7 @@ int main(void)
   scanf("%d %o %x", &i, &o, &h);
   printf("%d %d %d\n", i, o, h);
 
-  /* > 100 033 0xaa */
+  /* > 100 077 0xFF */
   scanf("%i %i %i", &i, &o, &h);
   printf("%d %d %d\n", i, o, h);
 

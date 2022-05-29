@@ -27,6 +27,18 @@ int getline(char s[], int lim)
 
   return i;
 }
+void ff() {
+  char s[] = "1 12.3 12.3 12.3 sscanf";
+  int i;
+  float f;
+  double d;
+  long double ld;
+  char str[10];
+
+  sscanf(s, "%d %f %lf %Lf %s", &i, &f, &d, &ld, str);
+  /* 1 12.300000 12.300000 12.300000 sscanf */
+  printf("%d %f %f %Lf %s\n", i, f, d, ld, str);
+}
 
 void f() {
   int month, day, year;
@@ -35,7 +47,7 @@ void f() {
   while (getline(line, sizeof(line)) > 0) {
     if (sscanf(line, "%d %s %d", &day, monthname, &year) == 3)
       printf("valid: %s\n", line);  /* 25 Dec 1998 form */
-    else if (sscanf(line, "%d%d%d", &month, &day, &year) == 3)
+    else if (sscanf(line, "%d/%d/%d", &month, &day, &year) == 3)
       printf("valid: %s\n", line);  /* mm/dd/yy form */
     else
       printf("invalid: %s\n", line);  /* invalid form */
