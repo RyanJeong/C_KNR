@@ -1,0 +1,6 @@
+{
+  "cpplint.filters": [
+    "-legal/copyright",
+    "-whitespace/braces"
+  ]
+}
