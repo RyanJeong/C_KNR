@@ -8,10 +8,8 @@ int cmp(const void *, const void *);
 
 int main(void)
 {
-  char *str[SIZE] = {
-    "Alpha", "Charlie", "Juliett", "Echo", "Golf",
-    "Hotel", "India", "Bravo", "Delta", "Foxtrot"
-  };
+  char *str[SIZE] = { "Alpha", "Charlie", "Juliett", "Echo",  "Golf",
+                      "Hotel", "India",   "Bravo",   "Delta", "Foxtrot" };
   int i;
 
   printf("Before: ");

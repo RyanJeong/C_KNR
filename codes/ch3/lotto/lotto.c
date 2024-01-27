@@ -1,11 +1,11 @@
+#include <ctype.h> /*  isdigit() */
 #include <stdio.h>
-#include <ctype.h>   /*  isdigit() */
-#include <stdlib.h>  /*  srand(), rand() */
-#include <time.h>    /*  time(NULL)  */
+#include <stdlib.h> /*  srand(), rand() */
+#include <time.h>   /*  time(NULL)  */
 
 enum {
   LOTTO_SIZE = 6,
-  MAX_NUM = 45  /* 1 ~ 45 */
+  MAX_NUM = 45 /* 1 ~ 45 */
 };
 
 int main(void)
@@ -16,7 +16,7 @@ int main(void)
   int num;            /* 임의의 숫자 보관 변수 */
 
   printf("*** LOTTO NUMBER GENERATOR ***\n"
-      "How many lines do you want to generate?\n");
+         "How many lines do you want to generate?\n");
   cnt = 0;
   while ((c = getchar()) != EOF) {
     if (!isdigit(c))
@@ -37,7 +37,7 @@ int main(void)
       check[j] = 0;
     printf("Index: [%4d]:", i);
     for (j = 0; j < LOTTO_SIZE; ++j) {
-      while (check[num = rand() % MAX_NUM]) { }
+      while (check[num = rand() % MAX_NUM]) {}
       /* 0 ~ 44 -> 1 ~ 45  */
       check[num++] = 1;
       printf("%3d", num);

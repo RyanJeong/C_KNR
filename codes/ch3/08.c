@@ -9,7 +9,7 @@ int trim(char s[])
     if (s[n] != ' ' && s[n] != '\t' && s[n] != '\n')
       break;
   }
-  s[n+1] = '\0';
+  s[n + 1] = '\0';
 
   return n;
 }

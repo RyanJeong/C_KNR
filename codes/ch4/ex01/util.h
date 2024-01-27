@@ -8,7 +8,8 @@
 #define F_B_NAME "b()"
 
 #define MSG "Test"
-#define PRINT(prog, name, content) printf("%s, " name ## _NAME ": " #content "\n", prog)
+#define PRINT(prog, name, content) \
+  printf("%s, " name##_NAME ": " #content "\n", prog)
 
 extern char *prog;
 

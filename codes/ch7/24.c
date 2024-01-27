@@ -26,7 +26,8 @@ void filecopy(FILE *ifp, FILE *ofp)
   int c;
 
   while ((c = getc(ifp)) != EOF) {
-    /* The putc function normally return a copy of the byte that is has written - as confirmation of success.
+    /* The putc function normally return a copy of the byte that is has written
+      - as confirmation of success.
       If there is an error it returns EOF instead. */
     if (putc(c, ofp) == EOF) {
       printf("Error in writing to file\n");

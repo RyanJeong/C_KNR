@@ -1,8 +1,6 @@
 #include <stdio.h>
 
-enum {
-  SIZE = 5
-};
+enum { SIZE = 5 };
 
 int main(void)
 {

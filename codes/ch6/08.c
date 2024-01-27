@@ -7,19 +7,16 @@ struct {
   int flags;
   int utype;
   union {
-    int  ival;
+    int ival;
     float fval;
     char *sval;
   } u;
 } symtab[NSYM];
 
-enum {
-  INT,
-  FLOAT,
-  STRING
-};
+enum { INT, FLOAT, STRING };
 
-void f() {
+void f()
+{
   int i = 0;
 
   if (symtab[i].utype == INT)

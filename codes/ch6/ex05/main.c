@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     if ((temp = lookup(str[i])))
       printf("%6s: %2s\n", temp->name, temp->defn);
   }
-  install("ERROR", "-1");  /* update ERROR's replacement text */
+  install("ERROR", "-1"); /* update ERROR's replacement text */
   printf("%6s: %2s\n", lookup("ERROR")->name, lookup("ERROR")->defn);
   if ((temp = lookup("TRUE")))
     printf("%6s: %2s\n", temp->name, temp->defn);

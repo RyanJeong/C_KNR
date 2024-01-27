@@ -1,20 +1,20 @@
+#include <ctype.h> /*  isdigit() */
 #include <stdio.h>
-#include <ctype.h>   /*  isdigit() */
-#include <stdlib.h>  /*  srand(), rand() */
-#include <time.h>    /*  time(NULL)  */
+#include <stdlib.h> /*  srand(), rand() */
+#include <time.h>   /*  time(NULL)  */
 
 enum {
   LOTTO_SIZE = 6,
-  MAX_NUM = 45  /* 1 ~ 45 */
+  MAX_NUM = 45 /* 1 ~ 45 */
 };
 
 int main(void)
 {
   int c, i, j;
-  int cnt;  /* 로또 번호 생성 횟수 */
+  int cnt; /* 로또 번호 생성 횟수 */
 
   printf("*** LOTTO NUMBER GENERATOR ***\n"
-      "How many lines do you want to generate?\n");
+         "How many lines do you want to generate?\n");
   cnt = 0;
   while ((c = getchar()) != EOF) {
     if (!isdigit(c))

@@ -32,13 +32,10 @@ void month_day(int year, int yearday, int *pmonth, int *pday)
 /* month_name: return name of n-th month */
 char *month_name(int n)
 {
-  static char *name[] = {
-    "Illegal month",
-    "January", "February", "March",
-    "April", "May", "June",
-    "July", "August", "September",
-    "October", "November", "December"
-  };
+  static char *name[] = { "Illegal month", "January",   "February", "March",
+                          "April",         "May",       "June",     "July",
+                          "August",        "September", "October",  "November",
+                          "December" };
 
   return (n < 1 || n > 12) ? name[0] : name[n];
 }
@@ -51,12 +48,11 @@ int main(void)
   month = 4;
   day = 30;
   day_year = day_of_year(year, month, day);
-  printf("Day of year from %s & %d is %d.\n",
-      month_name(month), day, day_year);
+  printf("Day of year from %s & %d is %d.\n", month_name(month), day, day_year);
   day_year = 200;
   month_day(year, day_year, &month, &day);
-  printf("Month, day from day of year (%d) are %s and %d.\n",
-      day_year, month_name(month), day);
+  printf("Month, day from day of year (%d) are %s and %d.\n", day_year,
+         month_name(month), day);
 
   return 0;
 }

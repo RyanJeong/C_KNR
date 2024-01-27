@@ -1,5 +1,12 @@
 {
-  "cpplint.filters": ["-legal/copyright", "-whitespace/braces"],
+  "cpplint.filters": [
+    "-legal/copyright",
+    "-whitespace/braces",
+    "-runtime/int",
+    "-readability/casting",
+    "-build/include_subdir",
+    "-build/header_guard"
+  ],
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   "[html]": {

@@ -1,7 +1,7 @@
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 
 #include "key.h"
 
@@ -23,15 +23,14 @@ int main(void)
       void *bsearch(const void *key, const void *base, size_t num, size_t size,
           int (*compare)(const void *key, const void *element));
       */
-      if ((p = (struct key *) bsearch(
-          word, keytab, NKEYS, sizeof(struct key), cmp)) != NULL)
+      if ((p = (struct key *) bsearch(word, keytab, NKEYS, sizeof(struct key),
+                                      cmp)) != NULL)
         p->count++;
     }
   }
   for (p = keytab; p < keytab + NKEYS; p++) {
-    if (p->count > 0) {
+    if (p->count > 0)
       printf("%4d %s\n", p->count, p->word);
-    }
   }
 
   return 0;

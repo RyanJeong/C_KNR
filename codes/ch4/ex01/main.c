@@ -1,5 +1,5 @@
+#include "func.h"
 #include "util.h" /* extern char *prog; */
-#include "func.h" 
 
 int main(int argc, char *argv[])
 {

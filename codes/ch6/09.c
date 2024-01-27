@@ -7,8 +7,8 @@ struct {
 
 int main(void)
 {
-  bits.a = bits.b = 0x0F;  /* 1111 */
-  printf("%d %d\n", bits.a, bits.b);  /* 15 -1 */
+  bits.a = bits.b = 0x0F;            /* 1111 */
+  printf("%d %d\n", bits.a, bits.b); /* 15 -1 */
 
   return 0;
 }

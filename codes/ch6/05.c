@@ -12,7 +12,7 @@ int main(void)
   /* case #2 */
   struct {
     short s;
-    int  i;
+    int i;
     char c;
   } sic;
 
@@ -20,7 +20,7 @@ int main(void)
   struct {
     short s;
     char c;
-    int  i;
+    int i;
   } sci;
 
   printf("size of ccc is %ld\n", sizeof ccc);

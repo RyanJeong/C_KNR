@@ -9,4 +9,4 @@ struct key {
 extern const int NKEYS;
 extern struct key keytab[];
 
-#endif  /* __KEYWORD_KEY_H__ */
+#endif /* __KEYWORD_KEY_H__ */

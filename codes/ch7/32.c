@@ -1,6 +1,7 @@
 #include <math.h>
 
-void f() {
+void f()
+{
   double x, y;
 
   sin(x);      /* sine of x, x in radians */

@@ -6,7 +6,7 @@
 
 char *strdup(char *s);
 
-struct nlist *hashtab[HASHSIZE];  /* pointer table */
+struct nlist *hashtab[HASHSIZE]; /* pointer table */
 
 /* hash: form hash value for string s */
 unsigned hash(char *s)
@@ -29,7 +29,7 @@ struct nlist *lookup(char *s)
       return np; /* found */
   }
 
-  return NULL;  /* not found */
+  return NULL; /* not found */
 }
 
 /* install: put (name, defn) in hashtab */
@@ -48,7 +48,7 @@ struct nlist *install(char *name, char *defn)
     hashtab[hashval] = np;
   } else {
     /* already there */
-    free((void *) np->defn);  /* free previous defn */
+    free((void *) np->defn); /* free previous defn */
   }
   if (!(np->defn = strdup(defn)))
     return NULL;

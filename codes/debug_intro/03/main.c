@@ -4,7 +4,7 @@ int factorial(int);
 
 int main(void)
 {
-    printf("%d\n", factorial(5));
+  printf("%d\n", factorial(5));
 
-    return 0;
+  return 0;
 }

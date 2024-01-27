@@ -6,7 +6,7 @@ int main(void)
 {
   int a = 100;
   foo(a);
-  printf("%d\n", a);  /* 100 */
+  printf("%d\n", a); /* 100 */
 
   return 0;
 }
@@ -14,7 +14,7 @@ int main(void)
 void foo(int a)
 {
   a += 100;
-  printf("%d\n", a);  /* 200 */
+  printf("%d\n", a); /* 200 */
 }
 
 void f(register int param)
@@ -24,13 +24,13 @@ void f(register int param)
 
 void g()
 {
-    int i = 0;
+  int i = 0;
 
-    if (i == 0) {
-      int i;  /* declare a new variable i */
+  if (i == 0) {
+    int i; /* declare a new variable i */
 
-      for (i = 0; i < 10; ++i) { }
-    }
+    for (i = 0; i < 10; ++i) {}
+  }
 }
 
 int x;
@@ -64,28 +64,30 @@ char pattern_1[] = "ould";
 /* is a shorthand for the longer but equivalent */
 char pattern_2[] = { 'o', 'u', 'l', 'd', '\0' };
 
-#define foo stmt1; \
-            stmt2; \
-            stmt3;
+#define foo \
+  stmt1;    \
+  stmt2;    \
+  stmt3;
 
 #define HELLO WORLD
-#define HI HELLO  /* HI -> WORLD */
+#define HI HELLO /* HI -> WORLD */
 
 int ttt()
 {
   int expression = 10;
-    if (expression)
-      do {
-        expression;
-        expression;
-        expression;
-      } while (0);
+  if (expression) {
+    do {
+      expression;
+      expression;
+      expression;
+    } while (0);
+  }
 }
 
 #define TOKENIZER "token"
 #define TOKEN "token"
 
-#define forever for(;;) /* infinite loop */
+#define forever for (;;) /* infinite loop */
 #define MAX(a, b) ((a > b) ? a : b)
 int tttt()
 {

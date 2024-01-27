@@ -4,7 +4,7 @@
 
 #define SIZE 10
 
-/* 
+/*
 qsort: https://www.cplusplus.com/reference/cstdlib/qsort/
 int compar (const void* p1, const void* p2);
 
@@ -50,11 +50,13 @@ int main(void)
     printf("%3d%c", arr[i], i == SIZE - 1 ? '\n' : ' ');
 
   target = 16;
-  printf("%d %s\n", target, (bsearch(&target, arr, SIZE, sizeof(int), cmp) ?
-      "is found" : "is not found"));
+  printf("%d %s\n", target,
+         (bsearch(&target, arr, SIZE, sizeof(int), cmp) ? "is found"
+                                                        : "is not found"));
   target = 32;
-  printf("%d %s\n", target, (bsearch(&target, arr, SIZE, sizeof(int), cmp) ?
-      "is found" : "is not found"));
+  printf("%d %s\n", target,
+         (bsearch(&target, arr, SIZE, sizeof(int), cmp) ? "is found"
+                                                        : "is not found"));
 
   return 0;
 }
@@ -63,4 +65,3 @@ int cmp(const void *s, const void *t)
 {
   return (*(int *) s - *(int *) t);
 }
-

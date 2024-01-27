@@ -3,10 +3,10 @@
 
 #define NUMBER '0' /* signal that a number was found */
 
-int getop(char []);
+int getop(char[]);
 void push(double);
 double pop(void);
 int getch(void);
 void ungetch(int);
 
-#endif  /* __CALC_CALC_H__ */
+#endif /* __CALC_CALC_H__ */

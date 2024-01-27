@@ -3,8 +3,8 @@
 
 #include "gettoken.h"
 
-extern int  tokentype;  /* main.c */
-extern char token[];    /* main.c */
+extern int tokentype; /* main.c */
+extern char token[];  /* main.c */
 
 int gettoken(void) /* return next token */
 {
@@ -12,7 +12,7 @@ int gettoken(void) /* return next token */
   void ungetch(int);
   char *p = token;
 
-  while ((c = getch()) == ' ' || c == '\t') { }
+  while ((c = getch()) == ' ' || c == '\t') {}
   if (c == '(') {
     if ((c = getch()) == ')') {
       strcpy(token, "()");
@@ -24,12 +24,12 @@ int gettoken(void) /* return next token */
       return tokentype = '(';
     }
   } else if (c == '[') {
-    for (*p++ = c; (*p++ = getch()) != ']'; ) { }
+    for (*p++ = c; (*p++ = getch()) != ']';) {}
     *p = '\0';
 
     return tokentype = BRACKETS;
   } else if (isalpha(c)) {
-    for (*p++ = c; isalnum(c = getch()); *p++ = c) { }
+    for (*p++ = c; isalnum(c = getch()); *p++ = c) {}
     *p = '\0';
     ungetch(c);
 

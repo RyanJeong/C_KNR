@@ -8,7 +8,7 @@ int main(void)
 {
   double sum;
   char line[MAXLINE];
-  int getline(char [], int);
+  int getline(char[], int);
 
   sum = 0;
   while (getline(line, MAXLINE) > 0)
@@ -16,4 +16,3 @@ int main(void)
 
   return 0;
 }
-

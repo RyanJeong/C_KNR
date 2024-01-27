@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
 
 /* getword: get next word or character from input */
 int getword(char *word, int lim)
@@ -9,7 +9,7 @@ int getword(char *word, int lim)
   char *w;
 
   w = word;
-  while (isspace(c = getch())) { }
+  while (isspace(c = getch())) {}
   if (c != EOF)
     *w++ = c;
   if (!isalpha(c)) {

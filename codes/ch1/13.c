@@ -11,7 +11,7 @@ int main(void)
     ndigit[i] = 0;
   while ((c = getchar()) != EOF) {
     if (c >= '0' && c <= '9')
-      ++ndigit[c-'0'];
+      ++ndigit[c - '0'];
     else if ((c == ' ') || (c == '\n') || (c == '\t'))
       ++nwhite;
     else

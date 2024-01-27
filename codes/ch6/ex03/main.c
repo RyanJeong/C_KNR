@@ -1,11 +1,11 @@
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
 
 #include "key.h"
 
 #define MAXWORD 100
 
-struct key *binsearch(char *, struct key [], int);
+struct key *binsearch(char *, struct key[], int);
 int getword(char *, int);
 
 /* count C keywords; pointer version */

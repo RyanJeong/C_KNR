@@ -13,7 +13,7 @@ struct tnode *addtree(struct tnode *p, char *w)
 
   if (!p) {
     /* p == NULL, a new word has arrived */
-    p = talloc();  /* make a new node */
+    p = talloc(); /* make a new node */
     p->word = strdup(w);
     p->count = 1;
     p->left = p->right = NULL;
@@ -34,7 +34,7 @@ struct tnode *addtree(struct tnode *p, char *w)
 /* treeprint: in-order print of tree p */
 void treeprint(struct tnode *p)
 {
-  if (p) {  /* p != NULL */
+  if (p) { /* p != NULL */
     treeprint(p->left);
     printf("%4d %s\n", p->count, p->word);
     treeprint(p->right);

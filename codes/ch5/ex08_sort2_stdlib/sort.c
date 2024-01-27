@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAXLINES 5000     /* max #lines to be sorted */
-char *lineptr[MAXLINES];  /* pointers to text lines */
+#define MAXLINES 5000    /* max #lines to be sorted */
+char *lineptr[MAXLINES]; /* pointers to text lines */
 
 int readlines(char *lineptr[], int nlines);
 void writelines(char *lineptr[], int nlines);
@@ -15,7 +15,7 @@ static int numeric = 0; /* 1 if numeric sort */
 /* sort input lines */
 int main(int argc, char *argv[])
 {
-  int nlines;   /* number of input lines read */
+  int nlines; /* number of input lines read */
 
   if (argc > 1 && strcmp(argv[1], "-n") == 0)
     numeric = 1;
@@ -37,7 +37,6 @@ int main(int argc, char *argv[])
 
 int cmp(const void *s, const void *t)
 {
-  return (numeric ?
-      numcmp(*(char **) s, *(char **) t) :
-      strcmp(*(char **) s, *(char **) t));
+  return (numeric ? numcmp(*(char **) s, *(char **) t)
+                  : strcmp(*(char **) s, *(char **) t));
 }

@@ -8,7 +8,7 @@ int main(void)
   printf("%6d\n", 1000000);
   printf("%-6d\n", 1000000);
 
-  char *s = "Hello, world";  /* 12 */
+  char *s = "Hello, world"; /* 12 */
 
   /* string with precision */
   printf(":%s:\n", s);
@@ -28,7 +28,7 @@ int main(void)
   printf("%-9.6f\n", 3.141592);
 
   /* integer type value with precision */
-  printf("%.5d\n",  12);
+  printf("%.5d\n", 12);
   printf("%5.5d\n", 1234);
   printf("%8.5d\n", 1234);
   printf("%-8.5d\n", 1234);
@@ -50,8 +50,8 @@ int main(void)
   printf("%ld\n", (long) 1 << 32);
   printf("%-12ld\n", (long) 1 << 32);
 
-  double d1 = 0.125;               /* 1 ÷ 8 */
-  double d2 = 0.0000152587890625;  /* 1 ÷ 65,536 */
+  double d1 = 0.125;              /* 1 ÷ 8 */
+  double d2 = 0.0000152587890625; /* 1 ÷ 65,536 */
   double d3 = 1234.56;
 
   printf("%f\n", d1);
@@ -72,13 +72,13 @@ int main(void)
   printf("%*.*s\n", 4, 3, "ABCDE");
   printf("%*.*s\n", 4, 5, "ABCDE");
 
-  printf(s);          /* Fail if s contains '%' */
-  printf("%s\n", s);  /* Safe */
+  printf(s);         /* Fail if s contains '%' */
+  printf("%s\n", s); /* Safe */
 
   int i = 15;
   int o = 077;
   int h = 0xFF;
-  unsigned u = 1 << 31;  /* int: -2^31 ~ 2^31 - 1 */
+  unsigned u = 1 << 31; /* int: -2^31 ~ 2^31 - 1 */
   char c = 'Z';
 
   printf("%3d %3o %3x %3X\n", i, i, i, i);

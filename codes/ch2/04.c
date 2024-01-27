@@ -1,5 +1,5 @@
-#include <stdio.h>
 #include <float.h>
+#include <stdio.h>
 
 int main(void)
 {
@@ -13,8 +13,8 @@ int main(void)
   res1 = a + (b + c);
   res2 = (a + b) + c;
   printf("Maximum float: %e\n"
-      "The expressions a + (b + c) and (a + b) + c are %s.\n",
-      FLT_MAX, (res1 == res2) ? "the same" : "not the same");
+         "The expressions a + (b + c) and (a + b) + c are %s.\n",
+         FLT_MAX, (res1 == res2) ? "the same" : "not the same");
 
   return 0;
 }

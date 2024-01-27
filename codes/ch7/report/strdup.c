@@ -1,15 +1,14 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *strDup(char *s)
+char *strdup(char *s)
 {
-    char *p;
+  char *p;
 
-    /* make a duplicate of s */
-    p = (char *) malloc(strlen(s) + 1); /* +1 for '\0' */
-    if (p) { /* p != NULL */
-        strcpy(p, s);
-    }
+  /* make a duplicate of s */
+  p = (char *) malloc(strlen(s) + 1); /* +1 for '\0' */
+  if (p)                              /* p != NULL */
+    strcpy(p, s);
 
-    return p;
+  return p;
 }

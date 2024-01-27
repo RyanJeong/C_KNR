@@ -5,4 +5,4 @@ int foo()
 {
   return 100;
 }
-#endif  /* __HEADER_GUARD_GRANDPARENT_H__ */
+#endif /* __HEADER_GUARD_GRANDPARENT_H__ */

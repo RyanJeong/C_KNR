@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define MAXLEN 1000  /* max length of any input line */
+#define MAXLEN 1000 /* max length of any input line */
 
 int getline(char *, int);
 char *alloc(int);
@@ -18,7 +18,7 @@ int readlines(char *lineptr[], int maxlines)
 
       return -1;
     } else {
-      line[len-1] = '\0'; /* delete newline */
+      line[len - 1] = '\0'; /* delete newline */
       strcpy(p, line);
       lineptr[nlines++] = p;
     }

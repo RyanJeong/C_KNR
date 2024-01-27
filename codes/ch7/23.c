@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
   FILE *fp;
   void filecopy(FILE *, FILE *);
-  char *prog = argv[0];  /* program name for errors */
+  char *prog = argv[0]; /* program name for errors */
 
   /* no args; copy standard input */
   if (argc == 1) {

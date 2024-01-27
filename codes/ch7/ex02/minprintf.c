@@ -1,10 +1,10 @@
+#include <stdarg.h> /* va_list, va_start, va_arg, va_end */
 #include <stdio.h>
-#include <stdarg.h>  /* va_list, va_start, va_arg, va_end */
 
 /* minprintf: minimal printf with variable argument list */
 void minprintf(char *fmt, ...)
 {
-  va_list ap;  /* points to each unnamed arg in turn */
+  va_list ap; /* points to each unnamed arg in turn */
   char *p, *sval;
   int ival;
   double dval;
@@ -12,11 +12,11 @@ void minprintf(char *fmt, ...)
   /* make ap point to 1st unnamed arg */
   va_start(ap, fmt);
   for (p = fmt; *p; ++p) {
-    if (*p != '%') {  /* ordinary characters */
+    if (*p != '%') { /* ordinary characters */
       putchar(*p);
       continue;
     }
-    switch (*++p) {  /* conversion specifications */
+    switch (*++p) { /* conversion specifications */
     case 'd':
       ival = va_arg(ap, int);
       printf("%d", ival);

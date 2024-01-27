@@ -15,17 +15,17 @@ int main(int argc, char *argv[])
   while (--argc > 0 && (*++argv)[0] == '-') {
     while ((c = *++argv[0])) {
       switch (c) {
-        case 'x':
-          except = 1;
-          break;
-        case 'n':
-          number = 1;
-          break;
-        default:
-          printf("find: illegal option %c\n", c);
-          argc = 0;
-          found = -1;
-          break;
+      case 'x':
+        except = 1;
+        break;
+      case 'n':
+        number = 1;
+        break;
+      default:
+        printf("find: illegal option %c\n", c);
+        argc = 0;
+        found = -1;
+        break;
       }
     }
   }

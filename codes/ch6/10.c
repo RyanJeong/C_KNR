@@ -8,10 +8,10 @@ struct {
 
 int main(void)
 {
-  bits.a = 1;    /*         1 */
-  bits.b = 2;    /*        10 */
-  bits.c = 15;   /*      1111 */
-  bits.d = 128;  /* 1000 0000 */
+  bits.a = 1;   /*         1 */
+  bits.b = 2;   /*        10 */
+  bits.c = 15;  /*      1111 */
+  bits.d = 128; /* 1000 0000 */
 
   return 0;
 }

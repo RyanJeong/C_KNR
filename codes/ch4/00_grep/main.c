@@ -23,12 +23,11 @@ int main(void)
       line[i++] = c;
     if (c == '\n')
       line[i++] = c;
-    line[len=i] = '\0';
+    line[len = i] = '\0';
 
     for (i = 0; line[i] != '\0'; ++i) {
-      for (j = i, k = 0;
-          (pattern[k] != '\0') && (line[j] == pattern[k]);
-          ++j, ++k) {}
+      for (j = i, k = 0; (pattern[k] != '\0') && (line[j] == pattern[k]);
+           ++j, ++k) {}
       if (k > 0 && pattern[k] == '\0') {
         ++found;
         printf("%s", line);
